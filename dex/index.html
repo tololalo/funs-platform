@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FunSwap — Decentralized Exchange</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #FF6B35;
+  --secondary: #FFD700;
+  --accent: #4FC3F7;
+  --dark: #080B14;
+  --dark2: #0D1120;
+  --dark3: #141828;
+  --card: #1a1f35;
+  --card2: #222842;
+  --border: rgba(255,107,53,0.2);
+  --text: #e8eaf0;
+  --muted: #8892b0;
+  --green: #4caf50;
+  --red: #ef5350;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 17px; }
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--dark);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+.dex-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px; height: 64px;
+  background: rgba(8,11,20,0.9);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 100;
+}
+.dex-nav .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.dex-nav .logo img { height: 36px; width: 36px; object-fit: contain; }
+.dex-nav .logo span { font-family: 'Orbitron', monospace; font-weight: 700; font-size: 1rem; color: var(--secondary); letter-spacing: 2px; }
+.dex-nav .logo .sub { font-size: 0.7rem; color: var(--muted); letter-spacing: 1px; margin-left: 4px; }
+.nav-tabs { display: flex; gap: 4px; background: var(--dark3); border-radius: 12px; padding: 4px; }
+.nav-tab {
+  padding: 8px 20px; border-radius: 10px; border: none;
+  background: transparent; color: var(--muted); font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; transition: all .2s; font-family: inherit;
+}
+.nav-tab.active { background: var(--card2); color: var(--text); }
+.nav-tab:hover:not(.active) { color: var(--text); }
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.chain-btn {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--dark3); border: 1px solid var(--border); border-radius: 12px;
+  padding: 8px 14px; color: var(--text); font-size: 0.8rem; font-weight: 600;
+  cursor: pointer; transition: border-color .2s; font-family: inherit;
+}
+.chain-btn:hover { border-color: var(--primary); }
+.connect-btn {
+  background: linear-gradient(135deg, var(--primary), #ff9a00);
+  color: #fff; border: none; padding: 10px 22px; border-radius: 12px;
+  font-weight: 700; font-size: 0.85rem; cursor: pointer;
+  transition: transform .2s, box-shadow .2s; font-family: inherit;
+}
+.connect-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,107,53,.4); }
+
+/* ── MAIN LAYOUT ── */
+.dex-main {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 48px 20px 80px;
+  min-height: calc(100vh - 64px);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255,107,53,.06), transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(79,195,247,.04), transparent 40%);
+}
+
+/* ── SWAP CARD ── */
+.swap-card {
+  width: 100%; max-width: 480px;
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 20px;
+}
+.swap-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 12px;
+}
+.swap-header h2 { font-size: 1rem; font-weight: 700; }
+.swap-header .settings-btn {
+  background: none; border: none; color: var(--muted); font-size: 1.2rem;
+  cursor: pointer; transition: color .2s; padding: 4px;
+}
+.swap-header .settings-btn:hover { color: var(--text); }
+
+/* Token Input Row */
+.token-input-wrap {
+  background: var(--dark3);
+  border: 1px solid transparent;
+  border-radius: 16px;
+  padding: 16px;
+  transition: border-color .2s;
+}
+.token-input-wrap:focus-within { border-color: var(--border); }
+.token-row-top {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 8px;
+}
+.token-row-top .label { font-size: 0.75rem; color: var(--muted); font-weight: 500; }
+.token-row-top .balance { font-size: 0.75rem; color: var(--muted); }
+.token-row-top .balance span { color: var(--accent); cursor: pointer; font-weight: 600; }
+.token-row {
+  display: flex; align-items: center; gap: 12px;
+}
+.token-amount {
+  flex: 1; background: none; border: none; outline: none;
+  color: var(--text); font-size: 1.8rem; font-weight: 700;
+  font-family: 'Orbitron', monospace;
+  width: 0;
+}
+.token-amount::placeholder { color: rgba(136,146,176,0.4); }
+.token-select {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--card2); border: 1px solid var(--border);
+  border-radius: 50px; padding: 8px 14px 8px 10px;
+  cursor: pointer; transition: all .2s; flex-shrink: 0;
+}
+.token-select:hover { border-color: var(--primary); background: rgba(255,107,53,.08); }
+.token-select img { width: 28px; height: 28px; border-radius: 50%; }
+.token-select .token-symbol { font-weight: 700; font-size: 0.95rem; }
+.token-select .arrow { font-size: 0.7rem; color: var(--muted); margin-left: 2px; }
+.token-usd { font-size: 0.75rem; color: var(--muted); margin-top: 6px; }
+
+/* Swap Arrow */
+.swap-arrow-wrap {
+  display: flex; justify-content: center;
+  margin: -8px 0; position: relative; z-index: 2;
+}
+.swap-arrow {
+  width: 40px; height: 40px; border-radius: 12px;
+  background: var(--dark2); border: 3px solid var(--dark3);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: transform .2s, background .2s;
+  font-size: 1.1rem; color: var(--muted);
+}
+.swap-arrow:hover { transform: rotate(180deg); background: var(--card2); color: var(--primary); }
+
+/* Details */
+.swap-details {
+  margin-top: 12px; padding: 12px 16px;
+  background: var(--dark3); border-radius: 12px;
+  font-size: 0.8rem; color: var(--muted);
+}
+.detail-row {
+  display: flex; justify-content: space-between; padding: 4px 0;
+}
+.detail-row .val { color: var(--text); font-weight: 500; }
+
+/* Swap Button */
+.swap-btn {
+  width: 100%; margin-top: 16px; padding: 18px;
+  border: none; border-radius: 16px;
+  font-size: 1.05rem; font-weight: 700;
+  cursor: pointer; transition: all .2s;
+  font-family: inherit;
+}
+.swap-btn.connect {
+  background: linear-gradient(135deg, var(--primary), #ff9a00);
+  color: #fff;
+}
+.swap-btn.connect:hover { box-shadow: 0 8px 28px rgba(255,107,53,.4); transform: translateY(-1px); }
+.swap-btn.disabled {
+  background: var(--dark3); color: var(--muted); cursor: not-allowed;
+}
+
+/* ── POOL TAB ── */
+.pool-card {
+  width: 100%; max-width: 480px;
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 24px;
+  display: none;
+}
+.pool-card.active { display: block; }
+.swap-card.active { display: block; }
+.pool-empty {
+  text-align: center; padding: 48px 20px;
+}
+.pool-empty .icon { font-size: 3rem; margin-bottom: 16px; opacity: 0.5; }
+.pool-empty h3 { font-size: 1rem; margin-bottom: 8px; }
+.pool-empty p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; margin-bottom: 24px; }
+.pool-btn {
+  background: linear-gradient(135deg, var(--primary), #ff9a00);
+  color: #fff; border: none; padding: 14px 32px; border-radius: 14px;
+  font-weight: 700; font-size: 0.9rem; cursor: pointer;
+  transition: transform .2s, box-shadow .2s; font-family: inherit;
+}
+.pool-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,107,53,.4); }
+
+/* ── TOKEN MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.6);
+  backdrop-filter: blur(4px);
+  display: none; align-items: center; justify-content: center;
+  z-index: 200;
+}
+.modal-overlay.open { display: flex; }
+.token-modal {
+  background: var(--dark2); border: 1px solid var(--border);
+  border-radius: 20px; width: 90%; max-width: 420px;
+  max-height: 70vh; overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.modal-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 20px 12px;
+}
+.modal-header h3 { font-size: 1rem; }
+.modal-close {
+  background: none; border: none; color: var(--muted); font-size: 1.3rem;
+  cursor: pointer; padding: 4px;
+}
+.modal-search {
+  margin: 0 20px 12px; padding: 12px 16px;
+  background: var(--dark3); border: 1px solid var(--border); border-radius: 12px;
+  color: var(--text); font-size: 0.9rem; outline: none; width: calc(100% - 40px);
+  font-family: inherit;
+}
+.modal-search:focus { border-color: var(--primary); }
+.modal-search::placeholder { color: var(--muted); }
+.token-list {
+  overflow-y: auto; flex: 1; padding: 0 8px 12px;
+}
+.token-list-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px; border-radius: 12px; cursor: pointer;
+  transition: background .15s;
+}
+.token-list-item:hover { background: var(--dark3); }
+.token-list-item img { width: 36px; height: 36px; border-radius: 50%; }
+.token-list-item .info { flex: 1; }
+.token-list-item .name { font-weight: 700; font-size: 0.95rem; }
+.token-list-item .fullname { font-size: 0.75rem; color: var(--muted); }
+.token-list-item .item-balance { text-align: right; font-size: 0.85rem; color: var(--muted); }
+
+/* ── SETTINGS MODAL ── */
+.settings-modal {
+  background: var(--dark2); border: 1px solid var(--border);
+  border-radius: 20px; width: 90%; max-width: 380px; padding: 24px;
+}
+.slippage-options { display: flex; gap: 8px; margin-top: 12px; }
+.slip-btn {
+  flex: 1; padding: 10px; border-radius: 12px;
+  background: var(--dark3); border: 1px solid var(--border);
+  color: var(--text); font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; transition: all .2s; text-align: center; font-family: inherit;
+}
+.slip-btn.active, .slip-btn:hover { border-color: var(--primary); background: rgba(255,107,53,.1); color: var(--primary); }
+.slip-custom {
+  margin-top: 12px; display: flex; align-items: center; gap: 8px;
+}
+.slip-custom input {
+  flex: 1; padding: 10px 14px; border-radius: 12px;
+  background: var(--dark3); border: 1px solid var(--border);
+  color: var(--text); font-size: 0.85rem; outline: none; text-align: right;
+  font-family: inherit;
+}
+.slip-custom input:focus { border-color: var(--primary); }
+.slip-custom span { color: var(--muted); font-weight: 600; }
+
+/* ── PRICE TICKER ── */
+.price-ticker {
+  display: flex; gap: 24px; flex-wrap: wrap; justify-content: center;
+  margin-bottom: 32px; opacity: 0.7;
+}
+.ticker-chip {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--dark3); border: 1px solid var(--border);
+  border-radius: 50px; padding: 6px 14px 6px 8px;
+  font-size: 0.75rem;
+}
+.ticker-chip img { width: 20px; height: 20px; border-radius: 50%; }
+.ticker-chip .price { font-weight: 700; font-family: 'Orbitron', monospace; }
+.ticker-chip .change { font-weight: 600; }
+.ticker-chip .change.up { color: var(--green); }
+.ticker-chip .change.down { color: var(--red); }
+
+/* ── FOOTER ── */
+.dex-footer {
+  text-align: center; padding: 24px;
+  border-top: 1px solid var(--border);
+  font-size: 0.75rem; color: var(--muted);
+}
+.dex-footer a { color: var(--accent); text-decoration: none; }
+.dex-footer a:hover { text-decoration: underline; }
+
+/* ── RESPONSIVE ── */
+
+/* Tablet */
+@media(max-width:768px) {
+  .dex-main { padding: 32px 16px 60px; }
+  .swap-card, .pool-card { max-width: 100%; }
+  .price-ticker { gap: 12px; margin-bottom: 24px; }
+}
+
+/* Mobile */
+@media(max-width:600px) {
+  html { font-size: 15px; }
+  .dex-nav { padding: 0 10px; height: 56px; }
+  .dex-nav .logo img { height: 28px; width: 28px; }
+  .dex-nav .logo span { font-size: 0.85rem; letter-spacing: 1px; }
+  .dex-nav .logo .sub { display: none; }
+  .nav-tabs { display: none; }
+  .mobile-tabs { display: flex !important; }
+  .connect-btn { padding: 8px 14px; font-size: 0.75rem; }
+  .chain-btn { padding: 6px 10px; font-size: 0.75rem; }
+  .chain-btn span.chain-name { display: none; }
+
+  .dex-main { padding: 20px 12px 60px; }
+  .price-ticker { gap: 8px; margin-bottom: 20px; }
+  .ticker-chip { padding: 5px 10px 5px 6px; font-size: 0.7rem; gap: 4px; }
+  .ticker-chip img { width: 16px; height: 16px; }
+
+  .swap-card, .pool-card { border-radius: 16px; padding: 14px; }
+  .swap-header h2 { font-size: 0.9rem; }
+  .token-input-wrap { padding: 12px; border-radius: 12px; }
+  .token-amount { font-size: 1.4rem; }
+  .token-select { padding: 6px 10px 6px 8px; gap: 6px; }
+  .token-select img, .token-select .token-img { width: 24px !important; height: 24px !important; }
+  .token-select .token-symbol { font-size: 0.85rem; }
+  .token-select .arrow { font-size: 0.6rem; }
+  .token-row-top .label, .token-row-top .balance { font-size: 0.7rem; }
+  .token-usd { font-size: 0.7rem; }
+
+  .swap-arrow { width: 36px; height: 36px; font-size: 1rem; }
+  .swap-details { padding: 10px 12px; font-size: 0.75rem; }
+  .swap-btn { padding: 16px; font-size: 0.95rem; border-radius: 14px; }
+
+  .pool-empty { padding: 32px 16px; }
+  .pool-empty .icon { font-size: 2.4rem; }
+  .pool-empty h3 { font-size: 0.9rem; }
+  .pool-empty p { font-size: 0.8rem; }
+  .pool-btn { padding: 12px 24px; font-size: 0.85rem; }
+
+  /* Modals */
+  .token-modal { width: 95%; max-height: 80vh; border-radius: 16px; }
+  .modal-header { padding: 16px 16px 10px; }
+  .modal-search { margin: 0 16px 10px; width: calc(100% - 32px); padding: 10px 14px; font-size: 0.85rem; }
+  .token-list-item { padding: 10px; gap: 10px; }
+  .token-list-item img { width: 32px; height: 32px; }
+  .settings-modal { width: 95%; padding: 20px; border-radius: 16px; }
+  .slippage-options { gap: 6px; }
+  .slip-btn { padding: 8px; font-size: 0.8rem; }
+
+  .dex-footer { padding: 20px 12px; font-size: 0.7rem; }
+}
+
+/* Small Mobile */
+@media(max-width:380px) {
+  html { font-size: 14px; }
+  .dex-nav { gap: 4px; }
+  .connect-btn { padding: 7px 10px; font-size: 0.7rem; }
+  .chain-btn { padding: 5px 8px; }
+  .token-amount { font-size: 1.2rem; }
+  .price-ticker { flex-direction: column; align-items: center; gap: 6px; }
+}
+
+.mobile-tabs {
+  display: none; gap: 4px; background: var(--dark3); border-radius: 12px;
+  padding: 4px; margin-bottom: 20px; width: 100%; max-width: 480px;
+}
+.mobile-tabs .nav-tab { flex: 1; text-align: center; }
+
+/* Token icon placeholder colors */
+.token-icon {
+  width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem; font-weight: 700; flex-shrink: 0;
+}
+.token-icon.lg { width: 36px; height: 36px; font-size: 1.1rem; }
+.ti-funs { background: linear-gradient(135deg, #FF6B35, #ff9a00); }
+.ti-eth { background: linear-gradient(135deg, #627EEA, #8799f0); }
+.ti-bnb { background: linear-gradient(135deg, #F3BA2F, #f5cb5c); color: #333; }
+.ti-usdt { background: linear-gradient(135deg, #26A17B, #50c9a3); }
+.ti-matic { background: linear-gradient(135deg, #8247E5, #a06ef0); }
+.ti-usdc { background: linear-gradient(135deg, #2775CA, #5a9fe0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="dex-nav">
+  <a href="../index.html" class="logo">
+    <img src="../funs nugi.png" alt="FunS">
+    <span>FunSwap</span>
+    <span class="sub">DEX</span>
+  </a>
+  <div class="nav-tabs">
+    <button class="nav-tab active" data-tab="swap">스왑</button>
+    <button class="nav-tab" data-tab="pool">유동성</button>
+  </div>
+  <div class="nav-right">
+    <button class="chain-btn">
+      <span style="font-size:1rem;">🟡</span>
+      <span class="chain-name">BNB Chain</span>
+      <span style="font-size:0.6rem;">▼</span>
+    </button>
+    <button class="connect-btn" id="connectWallet">지갑 연결</button>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="dex-main">
+
+  <!-- Price Ticker -->
+  <div class="price-ticker">
+    <div class="ticker-chip">
+      <img src="../funs nugi.png" style="width:20px;height:20px;border-radius:50%;">
+      <span>FUNS</span>
+      <span class="price">$1.24</span>
+      <span class="change up">+8.0%</span>
+    </div>
+    <div class="ticker-chip">
+      <img src="icons/bnb.svg" style="width:20px;height:20px;border-radius:50%;">
+      <span>BNB</span>
+      <span class="price">$612</span>
+      <span class="change up">+2.1%</span>
+    </div>
+    <div class="ticker-chip">
+      <img src="icons/usdt.svg" style="width:20px;height:20px;border-radius:50%;">
+      <span>USDT</span>
+      <span class="price">$1.00</span>
+      <span class="change up">+0.01%</span>
+    </div>
+  </div>
+
+  <!-- Mobile Tabs -->
+  <div class="mobile-tabs">
+    <button class="nav-tab active" data-tab="swap">스왑</button>
+    <button class="nav-tab" data-tab="pool">유동성</button>
+  </div>
+
+  <!-- SWAP CARD -->
+  <div class="swap-card active" id="swapCard">
+    <div class="swap-header">
+      <h2>스왑</h2>
+      <button class="settings-btn" id="openSettings">⚙️</button>
+    </div>
+
+    <!-- From Token -->
+    <div class="token-input-wrap" id="fromWrap">
+      <div class="token-row-top">
+        <span class="label">보내는 토큰</span>
+        <span class="balance">잔액: 0.00 <span id="maxFrom">MAX</span></span>
+      </div>
+      <div class="token-row">
+        <input type="text" class="token-amount" id="fromAmount" placeholder="0" inputmode="decimal">
+        <div class="token-select" id="fromSelect" data-side="from">
+          <img src="icons/bnb.svg" class="token-img" style="width:28px;height:28px;border-radius:50%;">
+          <span class="token-symbol">BNB</span>
+          <span class="arrow">▼</span>
+        </div>
+      </div>
+      <div class="token-usd" id="fromUsd">≈ $0.00</div>
+    </div>
+
+    <!-- Swap Arrow -->
+    <div class="swap-arrow-wrap">
+      <div class="swap-arrow" id="swapDirection">↓</div>
+    </div>
+
+    <!-- To Token -->
+    <div class="token-input-wrap" id="toWrap">
+      <div class="token-row-top">
+        <span class="label">받는 토큰</span>
+        <span class="balance">잔액: 0.00</span>
+      </div>
+      <div class="token-row">
+        <input type="text" class="token-amount" id="toAmount" placeholder="0" inputmode="decimal" readonly>
+        <div class="token-select" id="toSelect" data-side="to">
+          <img src="../funs nugi.png" class="token-img" style="width:28px;height:28px;border-radius:50%;">
+          <span class="token-symbol">FUNS</span>
+          <span class="arrow">▼</span>
+        </div>
+      </div>
+      <div class="token-usd" id="toUsd">≈ $0.00</div>
+    </div>
+
+    <!-- Swap Details -->
+    <div class="swap-details" id="swapDetails" style="display:none;">
+      <div class="detail-row">
+        <span>환율</span>
+        <span class="val" id="rateDisplay">1 ETH = 91,476 FUNS</span>
+      </div>
+      <div class="detail-row">
+        <span>가격 영향</span>
+        <span class="val" style="color:var(--green);" id="priceImpact">&lt; 0.01%</span>
+      </div>
+      <div class="detail-row">
+        <span>슬리피지 허용</span>
+        <span class="val" id="slippageDisplay">0.5%</span>
+      </div>
+      <div class="detail-row">
+        <span>수수료</span>
+        <span class="val">0.3%</span>
+      </div>
+    </div>
+
+    <!-- Swap Button -->
+    <button class="swap-btn connect" id="swapBtn">지갑 연결</button>
+  </div>
+
+  <!-- POOL CARD -->
+  <div class="pool-card" id="poolCard">
+    <div class="swap-header">
+      <h2>유동성 풀</h2>
+      <button class="settings-btn" id="openSettingsPool">⚙️</button>
+    </div>
+    <div class="pool-empty">
+      <div class="icon">💧</div>
+      <h3>유동성 포지션이 없습니다</h3>
+      <p>유동성을 제공하고 거래 수수료를 받으세요.<br>지갑을 먼저 연결해주세요.</p>
+      <button class="pool-btn" onclick="document.getElementById('connectWallet').click()">지갑 연결하기</button>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<div class="dex-footer">
+  <a href="../index.html">FunS Platform</a> · <a href="../about.html">About</a> · <a href="../download.html">Download</a>
+  <br>© 2026 FunS Platform. All rights reserved.
+</div>
+
+<!-- TOKEN MODAL -->
+<div class="modal-overlay" id="tokenModal">
+  <div class="token-modal">
+    <div class="modal-header">
+      <h3>토큰 선택</h3>
+      <button class="modal-close" id="closeTokenModal">✕</button>
+    </div>
+    <input type="text" class="modal-search" placeholder="토큰 이름 또는 주소 검색..." id="tokenSearch">
+    <div class="token-list" id="tokenList"></div>
+  </div>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div class="modal-overlay" id="settingsModal">
+  <div class="settings-modal">
+    <div class="modal-header">
+      <h3>거래 설정</h3>
+      <button class="modal-close" id="closeSettings">✕</button>
+    </div>
+    <p style="font-size:0.85rem; color:var(--muted); margin-top:8px;">슬리피지 허용 범위</p>
+    <div class="slippage-options">
+      <button class="slip-btn" data-slip="0.1">0.1%</button>
+      <button class="slip-btn active" data-slip="0.5">0.5%</button>
+      <button class="slip-btn" data-slip="1.0">1.0%</button>
+    </div>
+    <div class="slip-custom">
+      <input type="text" placeholder="직접 입력" id="customSlippage">
+      <span>%</span>
+    </div>
+    <p style="font-size:0.85rem; color:var(--muted); margin-top:20px;">거래 마감 시간</p>
+    <div class="slip-custom">
+      <input type="text" value="30" id="deadline">
+      <span>분</span>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Token Data ──
+const TOKENS = [
+  { symbol: 'BNB', name: 'BNB', img: 'icons/bnb.svg', price: 612, balance: 2.45 },
+  { symbol: 'FUNS', name: 'FunS Token', img: '../funs nugi.png', price: 1.24, balance: 1840 },
+  { symbol: 'USDT', name: 'Tether USD (BEP-20)', img: 'icons/usdt.svg', price: 1.00, balance: 500 },
+  { symbol: 'USDC', name: 'USD Coin (BEP-20)', img: 'icons/usdc.svg', price: 1.00, balance: 250 },
+  { symbol: 'ETH', name: 'Ethereum (BEP-20)', img: 'icons/eth.svg', price: 3842, balance: 0.12 },
+  { symbol: 'CAKE', name: 'PancakeSwap', img: 'icons/cake.svg', price: 2.85, balance: 340 },
+];
+
+// ── State ──
+let fromToken = TOKENS[0]; // BNB
+let toToken = TOKENS[1];   // FUNS
+let slippage = 0.5;
+let selectingSide = 'from';
+let walletConnected = false;
+
+// ── DOM ──
+const fromAmount = document.getElementById('fromAmount');
+const toAmount = document.getElementById('toAmount');
+const swapBtn = document.getElementById('swapBtn');
+const swapDetails = document.getElementById('swapDetails');
+
+// ── Tab Switching ──
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    // Activate all tabs with same data-tab value
+    document.querySelectorAll(`.nav-tab[data-tab="${tab.dataset.tab}"]`).forEach(t => t.classList.add('active'));
+    document.getElementById('swapCard').style.display = tab.dataset.tab === 'swap' ? 'block' : 'none';
+    document.getElementById('poolCard').style.display = tab.dataset.tab === 'pool' ? 'block' : 'none';
+  });
+});
+
+// ── Swap Direction ──
+document.getElementById('swapDirection').addEventListener('click', () => {
+  [fromToken, toToken] = [toToken, fromToken];
+  updateTokenDisplays();
+  if (fromAmount.value) calculateSwap();
+});
+
+// ── Token Selection ──
+function openTokenModal(side) {
+  selectingSide = side;
+  document.getElementById('tokenModal').classList.add('open');
+  document.getElementById('tokenSearch').value = '';
+  renderTokenList('');
+  document.getElementById('tokenSearch').focus();
+}
+
+document.getElementById('fromSelect').addEventListener('click', () => openTokenModal('from'));
+document.getElementById('toSelect').addEventListener('click', () => openTokenModal('to'));
+document.getElementById('closeTokenModal').addEventListener('click', () => {
+  document.getElementById('tokenModal').classList.remove('open');
+});
+document.getElementById('tokenModal').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) e.currentTarget.classList.remove('open');
+});
+
+document.getElementById('tokenSearch').addEventListener('input', (e) => {
+  renderTokenList(e.target.value);
+});
+
+function renderTokenList(query) {
+  const list = document.getElementById('tokenList');
+  const q = query.toLowerCase();
+  const filtered = TOKENS.filter(t =>
+    t.symbol.toLowerCase().includes(q) || t.name.toLowerCase().includes(q)
+  );
+  list.innerHTML = filtered.map(t => `
+    <div class="token-list-item" data-symbol="${t.symbol}">
+      <img src="${t.img}" style="width:36px;height:36px;border-radius:50%;">
+      <div class="info">
+        <div class="name">${t.symbol}</div>
+        <div class="fullname">${t.name}</div>
+      </div>
+      <div class="item-balance">${walletConnected ? t.balance.toLocaleString() : '—'}</div>
+    </div>
+  `).join('');
+
+  list.querySelectorAll('.token-list-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const sym = item.dataset.symbol;
+      const token = TOKENS.find(t => t.symbol === sym);
+      if (selectingSide === 'from') {
+        if (token.symbol === toToken.symbol) toToken = fromToken;
+        fromToken = token;
+      } else {
+        if (token.symbol === fromToken.symbol) fromToken = toToken;
+        toToken = token;
+      }
+      updateTokenDisplays();
+      if (fromAmount.value) calculateSwap();
+      document.getElementById('tokenModal').classList.remove('open');
+    });
+  });
+}
+
+function updateTokenIcon(selector, token) {
+  const container = document.querySelector(selector);
+  const existing = container.querySelector('.token-icon, .token-img');
+  const newEl = Object.assign(document.createElement('img'), { src: token.img, className: 'token-img', style: 'width:28px;height:28px;border-radius:50%;' });
+  existing.replaceWith(newEl);
+}
+function updateTokenDisplays() {
+  updateTokenIcon('#fromSelect', fromToken);
+  document.querySelector('#fromSelect .token-symbol').textContent = fromToken.symbol;
+  updateTokenIcon('#toSelect', toToken);
+  document.querySelector('#toSelect .token-symbol').textContent = toToken.symbol;
+  // Rate
+  const rate = fromToken.price / toToken.price;
+  document.getElementById('rateDisplay').textContent = `1 ${fromToken.symbol} = ${rate.toLocaleString(undefined, {maximumFractionDigits: 2})} ${toToken.symbol}`;
+}
+
+// ── Swap Calculation ──
+fromAmount.addEventListener('input', calculateSwap);
+
+function calculateSwap() {
+  const val = parseFloat(fromAmount.value);
+  if (!val || val <= 0) {
+    toAmount.value = '';
+    swapDetails.style.display = 'none';
+    document.getElementById('fromUsd').textContent = '≈ $0.00';
+    document.getElementById('toUsd').textContent = '≈ $0.00';
+    updateSwapBtn();
+    return;
+  }
+  const rate = fromToken.price / toToken.price;
+  const fee = 0.003;
+  const output = val * rate * (1 - fee);
+  toAmount.value = output.toLocaleString(undefined, { maximumFractionDigits: 6 });
+
+  document.getElementById('fromUsd').textContent = `≈ $${(val * fromToken.price).toLocaleString(undefined, {maximumFractionDigits: 2})}`;
+  document.getElementById('toUsd').textContent = `≈ $${(output * toToken.price).toLocaleString(undefined, {maximumFractionDigits: 2})}`;
+
+  const impact = val * fromToken.price > 10000 ? '0.12%' : '< 0.01%';
+  document.getElementById('priceImpact').textContent = impact;
+  document.getElementById('rateDisplay').textContent = `1 ${fromToken.symbol} = ${rate.toLocaleString(undefined, {maximumFractionDigits: 2})} ${toToken.symbol}`;
+  document.getElementById('slippageDisplay').textContent = slippage + '%';
+
+  swapDetails.style.display = 'block';
+  updateSwapBtn();
+}
+
+function updateSwapBtn() {
+  if (!walletConnected) {
+    swapBtn.textContent = '지갑 연결';
+    swapBtn.className = 'swap-btn connect';
+    return;
+  }
+  const val = parseFloat(fromAmount.value);
+  if (!val || val <= 0) {
+    swapBtn.textContent = '금액을 입력하세요';
+    swapBtn.className = 'swap-btn disabled';
+  } else if (val > fromToken.balance) {
+    swapBtn.textContent = `${fromToken.symbol} 잔액 부족`;
+    swapBtn.className = 'swap-btn disabled';
+  } else {
+    swapBtn.textContent = '스왑';
+    swapBtn.className = 'swap-btn connect';
+  }
+}
+
+// ── Wallet Connect (demo) ──
+document.getElementById('connectWallet').addEventListener('click', toggleWallet);
+swapBtn.addEventListener('click', () => {
+  if (!walletConnected) toggleWallet();
+});
+
+function toggleWallet() {
+  walletConnected = !walletConnected;
+  const btn = document.getElementById('connectWallet');
+  if (walletConnected) {
+    btn.textContent = '0x1a2b...9f3e';
+    btn.style.background = 'var(--dark3)';
+    btn.style.border = '1px solid var(--border)';
+  } else {
+    btn.textContent = '지갑 연결';
+    btn.style.background = 'linear-gradient(135deg, var(--primary), #ff9a00)';
+    btn.style.border = 'none';
+  }
+  updateSwapBtn();
+}
+
+// ── MAX button ──
+document.getElementById('maxFrom').addEventListener('click', () => {
+  if (walletConnected) {
+    fromAmount.value = fromToken.balance;
+    calculateSwap();
+  }
+});
+
+// ── Settings Modal ──
+document.getElementById('openSettings').addEventListener('click', () => {
+  document.getElementById('settingsModal').classList.add('open');
+});
+document.getElementById('openSettingsPool').addEventListener('click', () => {
+  document.getElementById('settingsModal').classList.add('open');
+});
+document.getElementById('closeSettings').addEventListener('click', () => {
+  document.getElementById('settingsModal').classList.remove('open');
+});
+document.getElementById('settingsModal').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) e.currentTarget.classList.remove('open');
+});
+
+document.querySelectorAll('.slip-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.slip-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    slippage = parseFloat(btn.dataset.slip);
+    document.getElementById('customSlippage').value = '';
+    if (fromAmount.value) calculateSwap();
+  });
+});
+
+document.getElementById('customSlippage').addEventListener('input', (e) => {
+  const val = parseFloat(e.target.value);
+  if (val > 0) {
+    slippage = val;
+    document.querySelectorAll('.slip-btn').forEach(b => b.classList.remove('active'));
+    if (fromAmount.value) calculateSwap();
+  }
+});
+
+// Init
+updateTokenDisplays();
+updateSwapBtn();
+</script>
+</body>
+</html>
