@@ -6,6 +6,453 @@
 <title>About — FunS Platform</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/common.css">
+<style>
+  /* Hero Section Enhancements */
+  .page-hero {
+    padding: 120px 5%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-hero .section-title span {
+    background: linear-gradient(135deg, var(--primary), #ff9a00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Team Section */
+  .team-section {
+    padding: 100px 5%;
+    background: var(--dark2);
+  }
+
+  .team-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .team-card {
+    text-align: center;
+    opacity: 0;
+    animation: slideInUp 0.6s ease forwards;
+  }
+
+  .team-card:nth-child(1) { animation-delay: 0.1s; }
+  .team-card:nth-child(2) { animation-delay: 0.2s; }
+  .team-card:nth-child(3) { animation-delay: 0.3s; }
+  .team-card:nth-child(4) { animation-delay: 0.4s; }
+
+  .team-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(0, 255, 200, 0.2), rgba(255, 154, 0, 0.2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    margin: 0 auto 20px;
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 20px rgba(0, 255, 200, 0.3);
+  }
+
+  .team-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+
+  .team-card .role {
+    font-size: 14px;
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .team-card p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* Roadmap Section */
+  .roadmap-section {
+    padding: 100px 5%;
+  }
+
+  .roadmap-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .timeline {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--primary), transparent);
+    transform: translateX(-1px);
+  }
+
+  .timeline-item {
+    margin-bottom: 50px;
+    opacity: 0;
+    animation: slideInUp 0.6s ease forwards;
+  }
+
+  .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+  .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+  .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+  .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+
+  .timeline-item:nth-child(odd) {
+    text-align: right;
+    padding-right: 52%;
+  }
+
+  .timeline-item:nth-child(even) {
+    text-align: left;
+    padding-left: 52%;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--dark);
+    border: 3px solid var(--primary);
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+
+  .timeline-item.completed .timeline-dot {
+    background: var(--primary);
+    box-shadow: 0 0 20px rgba(0, 255, 200, 0.6);
+  }
+
+  .timeline-content {
+    padding: 20px;
+    background: rgba(0, 255, 200, 0.05);
+    border: 1px solid rgba(0, 255, 200, 0.2);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+  }
+
+  .timeline-item.completed .timeline-content {
+    background: rgba(0, 255, 200, 0.1);
+    border-color: rgba(0, 255, 200, 0.4);
+  }
+
+  .timeline-quarter {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 8px;
+  }
+
+  .timeline-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .timeline-desc {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .timeline-status {
+    display: inline-block;
+    font-size: 12px;
+    margin-top: 10px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+
+  .timeline-item.completed .timeline-status {
+    background: rgba(0, 255, 200, 0.2);
+    color: var(--primary);
+  }
+
+  .timeline-item.in-progress .timeline-status {
+    background: rgba(255, 154, 0, 0.2);
+    color: #ff9a00;
+  }
+
+  .timeline-item.upcoming .timeline-status {
+    background: rgba(155, 155, 155, 0.2);
+    color: var(--muted);
+  }
+
+  /* Animations */
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Mission Card Enhancements */
+  .info-card {
+    background: rgba(0, 255, 200, 0.05);
+    border: 1px solid rgba(0, 255, 200, 0.2);
+    border-radius: 12px;
+    padding: 40px 30px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+
+  .info-card:hover {
+    background: rgba(0, 255, 200, 0.1);
+    border-color: rgba(0, 255, 200, 0.4);
+    transform: translateY(-5px);
+  }
+
+  .info-card .icon {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .info-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+
+  .info-card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* Tech Stack Enhancements */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .stat-box {
+    padding: 30px;
+    background: linear-gradient(135deg, rgba(0, 255, 200, 0.1), rgba(255, 154, 0, 0.05));
+    border: 1px solid rgba(0, 255, 200, 0.2);
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .stat-box:hover {
+    background: linear-gradient(135deg, rgba(0, 255, 200, 0.15), rgba(255, 154, 0, 0.1));
+    border-color: rgba(0, 255, 200, 0.4);
+    transform: translateY(-5px);
+  }
+
+  .stat-box .num {
+    font-size: 28px;
+    font-weight: 900;
+    font-family: 'Orbitron', monospace;
+    background: linear-gradient(135deg, var(--primary), #ff9a00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+
+  .stat-box .label {
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 80px 5%;
+    text-align: center;
+    background: var(--dark2);
+  }
+
+  .cta-title {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 900;
+    margin-bottom: 20px;
+  }
+
+  .cta-btn {
+    background: linear-gradient(135deg, var(--primary), #ff9a00);
+    color: #fff;
+    padding: 16px 40px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 255, 200, 0.3);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+
+    .timeline::before {
+      left: 20px;
+    }
+
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+      text-align: left;
+      padding-left: 80px;
+      padding-right: 0;
+    }
+
+    .timeline-dot {
+      left: 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .page-hero {
+      padding: 80px 5%;
+    }
+
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .team-avatar {
+      width: 100px;
+      height: 100px;
+      font-size: 40px;
+    }
+
+    .team-card h3 {
+      font-size: 18px;
+    }
+
+    .stat-row {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .timeline {
+      padding-left: 30px;
+    }
+
+    .timeline::before {
+      left: 10px;
+    }
+
+    .timeline-dot {
+      left: 10px;
+    }
+
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+      padding-left: 50px;
+      text-align: left;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .page-hero {
+      padding: 60px 5%;
+    }
+
+    .team-grid {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+
+    .team-avatar {
+      width: 90px;
+      height: 90px;
+      font-size: 36px;
+    }
+
+    .stat-row {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+
+    .info-card {
+      padding: 30px 20px;
+    }
+
+    .cta-title {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+    }
+  }
+
+  @media (max-width: 380px) {
+    .page-hero {
+      padding: 40px 5%;
+    }
+
+    .team-grid {
+      gap: 10px;
+    }
+
+    .team-avatar {
+      width: 80px;
+      height: 80px;
+      font-size: 32px;
+    }
+
+    .team-card h3 {
+      font-size: 16px;
+    }
+
+    .team-card .role {
+      font-size: 12px;
+    }
+
+    .team-card p {
+      font-size: 12px;
+    }
+  }
+</style>
 </head>
 <body>
 
@@ -20,7 +467,7 @@
     <li><a href="games/index.html">Games</a></li>
     <li><a href="dex/index.html">DEX</a></li>
     <li><a href="nft/index.html">NFT</a></li>
-    <li><a href="index.html#roadmap">Roadmap</a></li>
+    <li><a href="staking/index.html">Staking</a></li>
     <li><a href="about.html" class="active">About</a></li>
   </ul>
   <a href="download.html" class="nav-cta">Download</a>
@@ -30,9 +477,9 @@
 <!-- PAGE HERO -->
 <section class="page-hero">
   <div class="hero-bg"></div>
-  <span class="section-tag">About FunS</span>
-  <h2 class="section-title">게임과 블록체인의<br><span>새로운 만남</span></h2>
-  <p class="section-desc" style="margin:0 auto;">FunS는 Web3 기술 위에 세워진 글로벌 게임 플랫폼입니다.<br>플레이어와 개발자 모두를 위한 공정하고 투명한 생태계를 만듭니다.</p>
+  <span class="section-tag">About</span>
+  <h2 class="section-title">About <span>FunS</span></h2>
+  <p class="section-desc" style="margin:0 auto;">Web3 게이밍의 새로운 기준을 만들어갑니다</p>
 </section>
 
 <!-- MISSION -->
@@ -57,6 +504,86 @@
       <span class="icon">🌍</span>
       <h3>글로벌 접근성</h3>
       <p>전 세계 어디서든, 어떤 기기에서든 접근할 수 있는 크로스 플랫폼 환경을 구축합니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section">
+  <div class="team-header reveal">
+    <span class="section-tag">팀</span>
+    <h2 class="section-title">FunS <span>Team</span></h2>
+  </div>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-avatar">🧑‍💼</div>
+      <h3>Alex Kim</h3>
+      <p class="role">CEO</p>
+      <p>10년+ 게임 산업 경험</p>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">👩‍💻</div>
+      <h3>Sarah Park</h3>
+      <p class="role">CTO</p>
+      <p>블록체인 & 스마트 컨트랙트 전문가</p>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">🎮</div>
+      <h3>Mike Lee</h3>
+      <p class="role">Game Director</p>
+      <p>AAA 게임 스튜디오 출신</p>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">🌍</div>
+      <h3>Jina Choi</h3>
+      <p class="role">Community Lead</p>
+      <p>Web3 커뮤니티 빌더</p>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="roadmap-section">
+  <div class="roadmap-header reveal">
+    <span class="section-tag">로드맵</span>
+    <h2 class="section-title">Roadmap <span>2026</span></h2>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item completed">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-quarter">Q1 2026</div>
+        <div class="timeline-title">플랫폼 런칭 ✅</div>
+        <div class="timeline-desc">FunS 플랫폼 공식 런칭 및 초기 게임 3종 출시</div>
+        <span class="timeline-status">완료됨</span>
+      </div>
+    </div>
+    <div class="timeline-item in-progress">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-quarter">Q2 2026</div>
+        <div class="timeline-title">FunSwap DEX & 게임 확장 🔄</div>
+        <div class="timeline-desc">탈중앙화 거래소 FunSwap 출시, 5개 신규 게임 추가</div>
+        <span class="timeline-status">진행 중</span>
+      </div>
+    </div>
+    <div class="timeline-item upcoming">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-quarter">Q3 2026</div>
+        <div class="timeline-title">NFT 마켓플레이스 & 모바일</div>
+        <div class="timeline-desc">NFT 마켓플레이스 오픈, 모바일 앱 (iOS/Android) 출시</div>
+        <span class="timeline-status">예정됨</span>
+      </div>
+    </div>
+    <div class="timeline-item upcoming">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-quarter">Q4 2026</div>
+        <div class="timeline-title">거버넌스 & 글로벌 확장</div>
+        <div class="timeline-desc">거버넌스 토큰 (GOV) 런칭, 글로벌 파트너십 확대</div>
+        <span class="timeline-status">예정됨</span>
+      </div>
     </div>
   </div>
 </section>
@@ -88,10 +615,10 @@
 </section>
 
 <!-- CTA -->
-<section style="padding:80px 5%; text-align:center; background:var(--dark2);">
-  <h2 class="cta-title" style="font-family:'Orbitron',monospace; font-size:clamp(1.8rem,4vw,3rem); font-weight:900; margin-bottom:20px;">FunS와 함께<br>Web3의 미래를 경험하세요</h2>
-  <p style="color:var(--muted); max-width:500px; margin:0 auto 40px;">게임을 즐기고, 자산을 거래하고, 커뮤니티에 참여하세요.</p>
-  <a href="download.html" style="background:linear-gradient(135deg,var(--primary),#ff9a00); color:#fff; padding:16px 40px; border-radius:50px; font-weight:700; text-decoration:none; display:inline-block;">시작하기</a>
+<section class="cta-section">
+  <h2 class="cta-title">함께 미래를 <span style="background:linear-gradient(135deg,var(--primary),#ff9a00); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">만들어갑시다</span></h2>
+  <p style="color:var(--muted); max-width:500px; margin:0 auto 40px;">지금 바로 시작하고, FunS 커뮤니티의 일원이 되세요.</p>
+  <a href="download.html" class="cta-btn">지금 시작하기</a>
 </section>
 
 <!-- FOOTER -->

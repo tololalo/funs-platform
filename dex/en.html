@@ -383,6 +383,228 @@ body {
   font-size: 0.9rem; font-weight: 700; flex-shrink: 0;
 }
 .token-icon.lg { width: 36px; height: 36px; font-size: 1.1rem; }
+
+/* ── PRICE CHART ── */
+.chart-card {
+  width: 100%; max-width: 480px;
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 20px;
+  margin-top: 20px;
+}
+.chart-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 16px;
+}
+.chart-title h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+.chart-price {
+  font-size: 1.6rem; font-weight: 700; font-family: 'Orbitron', monospace;
+  color: var(--text); margin-bottom: 4px;
+}
+.chart-change {
+  font-size: 0.8rem; font-weight: 600;
+}
+.chart-change.up { color: var(--green); }
+.chart-change.down { color: var(--red); }
+.chart-stats {
+  display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+}
+.stat {
+  display: flex; flex-direction: column; align-items: flex-end;
+  font-size: 0.75rem;
+}
+.stat-label { color: var(--muted); }
+.stat-value { color: var(--text); font-weight: 600; margin-top: 2px; }
+
+.chart-period-tabs {
+  display: flex; gap: 8px; margin-bottom: 16px;
+}
+.period-tab {
+  padding: 8px 16px; border-radius: 10px;
+  background: var(--dark3); border: 1px solid transparent;
+  color: var(--muted); font-size: 0.8rem; font-weight: 600;
+  cursor: pointer; transition: all .2s; font-family: inherit;
+}
+.period-tab.active {
+  background: var(--card2); color: var(--text);
+  border-color: var(--border);
+}
+.period-tab:hover:not(.active) { border-color: var(--primary); color: var(--text); }
+
+.chart-canvas {
+  width: 100%; height: 140px; margin-bottom: 12px;
+  display: flex; align-items: center; justify-content: center;
+}
+.chart-svg {
+  width: 100%; height: 100%;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+/* ── TRANSACTIONS TABLE ── */
+.transactions-card {
+  width: 100%; max-width: 480px;
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 20px;
+  margin-top: 20px;
+}
+.transactions-header {
+  margin-bottom: 16px;
+}
+.transactions-header h3 { font-size: 0.95rem; font-weight: 700; }
+
+.transactions-table-wrap {
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+.transactions-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 0.8rem;
+}
+.transactions-table thead {
+  border-bottom: 1px solid var(--border);
+}
+.transactions-table th {
+  text-align: left; padding: 12px 8px;
+  color: var(--muted); font-weight: 600; white-space: nowrap;
+  font-size: 0.75rem;
+}
+.transactions-table td {
+  padding: 12px 8px; color: var(--text); white-space: nowrap;
+  border-bottom: 1px solid rgba(255,107,53,0.08);
+}
+.tx-time { color: var(--muted); }
+.tx-type {
+  font-weight: 600; padding: 2px 8px; border-radius: 6px; display: inline-block;
+}
+.tx-type.swap {
+  background: rgba(79,195,247,0.15); color: var(--accent);
+}
+.tx-type.add {
+  background: rgba(79,195,247,0.15); color: #4FC3F7;
+}
+.tx-status {
+  display: flex; align-items: center; gap: 4px;
+}
+.status-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green);
+}
+
+/* ── POOLS SECTION ── */
+.pools-section {
+  width: 100%; max-width: 480px;
+  margin-top: 20px;
+}
+.pools-title {
+  font-size: 0.95rem; font-weight: 700; margin-bottom: 12px;
+}
+.pools-grid {
+  display: grid; grid-template-columns: 1fr;
+  gap: 12px;
+}
+.pool-item {
+  background: var(--dark2); border: 1px solid var(--border);
+  border-radius: 20px; padding: 16px; transition: all .2s;
+  cursor: pointer;
+}
+.pool-item:hover {
+  border-color: var(--primary);
+  box-shadow: 0 8px 24px rgba(255,107,53,0.1);
+}
+.pool-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 12px;
+}
+.pool-pair {
+  display: flex; align-items: center; gap: 8px;
+}
+.pool-icons {
+  display: flex; align-items: center; position: relative; width: 44px; height: 24px;
+}
+.pool-icon {
+  width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.9rem;
+}
+.pool-icon:nth-child(2) {
+  margin-left: -10px; border: 2px solid var(--dark2);
+}
+.pool-name {
+  font-weight: 600; font-size: 0.9rem;
+}
+.pool-add-btn {
+  background: var(--primary); color: #fff;
+  border: none; padding: 6px 12px; border-radius: 8px;
+  font-size: 0.75rem; font-weight: 600; cursor: pointer;
+  transition: all .2s; font-family: inherit;
+}
+.pool-add-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255,107,53,0.3);
+}
+.pool-stats {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.pool-stat {
+  font-size: 0.75rem;
+}
+.pool-stat-label {
+  color: var(--muted); margin-bottom: 4px; display: block;
+}
+.pool-stat-value {
+  color: var(--text); font-weight: 600; font-size: 0.85rem;
+  display: block;
+}
+
+/* ── RESPONSIVE CHART/POOLS ── */
+@media(max-width:768px) {
+  .chart-card, .transactions-card, .pools-section {
+    max-width: 100%;
+  }
+  .pools-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media(max-width:600px) {
+  .chart-card, .transactions-card, .pools-section {
+    border-radius: 16px; padding: 14px;
+  }
+  .chart-canvas { height: 120px; }
+  .chart-price { font-size: 1.4rem; }
+  .chart-header {
+    flex-direction: column;
+  }
+  .chart-stats {
+    align-items: flex-start; margin-top: 8px;
+  }
+  .chart-period-tabs {
+    gap: 6px;
+  }
+  .period-tab {
+    padding: 6px 12px; font-size: 0.75rem;
+  }
+
+  .transactions-table {
+    font-size: 0.75rem;
+  }
+  .transactions-table th, .transactions-table td {
+    padding: 10px 6px;
+  }
+}
+
+@media(max-width:380px) {
+  .chart-price { font-size: 1.2rem; }
+  .chart-period-tabs {
+    grid-template-columns: 2fr 2fr;
+  }
+  .period-tab {
+    padding: 5px 10px; font-size: 0.7rem;
+  }
+}
 </style>
 </head>
 <body>
@@ -520,6 +742,82 @@ body {
       <h3>No liquidity positions found</h3>
       <p>Provide liquidity and earn trading fees.<br>Please connect your wallet first.</p>
       <button class="pool-btn" onclick="document.getElementById('connectWallet').click()">Connect Wallet</button>
+    </div>
+  </div>
+
+  <!-- PRICE CHART SECTION -->
+  <div class="chart-card">
+    <div class="chart-header">
+      <div class="chart-title">
+        <h3>FUNS/BNB</h3>
+        <div class="chart-price">$1.24</div>
+        <div class="chart-change up">+8.0% (24h)</div>
+      </div>
+      <div class="chart-stats">
+        <div class="stat">
+          <span class="stat-label">24h Volume</span>
+          <span class="stat-value">$2.4M</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-period-tabs">
+      <button class="period-tab active" data-period="1d">1D</button>
+      <button class="period-tab" data-period="7d">7D</button>
+      <button class="period-tab" data-period="30d">30D</button>
+      <button class="period-tab" data-period="all">All</button>
+    </div>
+
+    <div class="chart-canvas" id="chartCanvas">
+      <svg viewBox="0 0 300 120" preserveAspectRatio="xMidYMid meet" class="chart-svg">
+        <defs>
+          <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:rgba(255,107,53,0.3);stop-opacity:1" />
+            <stop offset="100%" style="stop-color:rgba(255,107,53,0);stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <!-- Grid lines -->
+        <line x1="0" y1="30" x2="300" y2="30" stroke="var(--border)" stroke-width="0.5" opacity="0.3" />
+        <line x1="0" y1="60" x2="300" y2="60" stroke="var(--border)" stroke-width="0.5" opacity="0.3" />
+        <line x1="0" y1="90" x2="300" y2="90" stroke="var(--border)" stroke-width="0.5" opacity="0.3" />
+        <!-- Price line -->
+        <polyline points="10,80 40,60 70,40 100,50 130,35 160,45 190,30 220,40 250,25 280,35"
+                  fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <!-- Area under line -->
+        <polygon points="10,80 40,60 70,40 100,50 130,35 160,45 190,30 220,40 250,25 280,35 280,120 10,120"
+                 fill="url(#chartGradient)" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- RECENT TRANSACTIONS TABLE -->
+  <div class="transactions-card">
+    <div class="transactions-header">
+      <h3>Recent Transactions</h3>
+    </div>
+    <div class="transactions-table-wrap">
+      <table class="transactions-table">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Type</th>
+            <th>Tokens</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="transactionsBody">
+          <!-- Populated by JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TOP POOLS SECTION -->
+  <div class="pools-section">
+    <h3 class="pools-title">Top Liquidity Pools</h3>
+    <div class="pools-grid" id="poolsGrid">
+      <!-- Populated by JS -->
     </div>
   </div>
 
@@ -793,9 +1091,100 @@ document.getElementById('customSlippage').addEventListener('input', (e) => {
   }
 });
 
+// ── Price Chart Data & Tabs ──
+const chartData = {
+  '1d': [90, 85, 75, 80, 70, 65, 60, 55, 50, 45, 40, 35, 30],
+  '7d': [80, 60, 40, 50, 35, 45, 30, 25, 35],
+  '30d': [100, 90, 85, 95, 70, 60, 75, 50, 65, 55, 40],
+  'all': [110, 100, 90, 95, 85, 75, 70, 80, 60, 50, 40, 35, 25]
+};
+
+document.querySelectorAll('.period-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.period-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    updateChart(tab.dataset.period);
+  });
+});
+
+function updateChart(period) {
+  // For now, just show visual feedback - SVG is static for demo
+  console.log('Chart period switched to:', period);
+}
+
+// ── Transactions Data ──
+const transactionsData = [
+  { time: '10m ago', type: 'swap', tokens: 'BNB → FUNS', amount: '2.5 BNB', status: 'Done' },
+  { time: '25m ago', type: 'add', tokens: 'BNB + FUNS', amount: '$1,200', status: 'Done' },
+  { time: '1h ago', type: 'swap', tokens: 'USDT → FUNS', amount: '500 USDT', status: 'Done' },
+  { time: '2h ago', type: 'swap', tokens: 'BNB → USDT', amount: '1.2 BNB', status: 'Done' },
+  { time: '5h ago', type: 'add', tokens: 'FUNS + USDT', amount: '$800', status: 'Done' },
+  { time: '8h ago', type: 'swap', tokens: 'CAKE → BNB', amount: '50 CAKE', status: 'Done' }
+];
+
+function renderTransactions() {
+  const tbody = document.getElementById('transactionsBody');
+  tbody.innerHTML = transactionsData.map((tx, idx) => `
+    <tr>
+      <td class="tx-time">${tx.time}</td>
+      <td><span class="tx-type ${tx.type === 'swap' ? 'swap' : 'add'}">${tx.type === 'swap' ? 'Swap' : 'Add Liquidity'}</span></td>
+      <td>${tx.tokens}</td>
+      <td>${tx.amount}</td>
+      <td>
+        <span class="tx-status">
+          <span class="status-dot"></span>
+          ${tx.status}
+        </span>
+      </td>
+    </tr>
+  `).join('');
+}
+
+// ── Pools Data ──
+const poolsData = [
+  { pair: 'BNB/FUNS', icons: ['🟡', '🔥'], tvl: '$4.2M', apr: '128%', volume24h: '$1.2M' },
+  { pair: 'FUNS/USDT', icons: ['🔥', '💵'], tvl: '$2.8M', apr: '95%', volume24h: '$890K' },
+  { pair: 'BNB/USDT', icons: ['🟡', '💵'], tvl: '$5.6M', apr: '42%', volume24h: '$2.1M' },
+  { pair: 'FUNS/CAKE', icons: ['🔥', '🎂'], tvl: '$1.5M', apr: '156%', volume24h: '$420K' }
+];
+
+function renderPools() {
+  const grid = document.getElementById('poolsGrid');
+  grid.innerHTML = poolsData.map(pool => `
+    <div class="pool-item">
+      <div class="pool-header">
+        <div class="pool-pair">
+          <div class="pool-icons">
+            <div class="pool-icon" style="background: linear-gradient(135deg, #FF6B35, #ff9a00);">${pool.icons[0]}</div>
+            <div class="pool-icon" style="background: linear-gradient(135deg, #FFD700, #ffd700);">${pool.icons[1]}</div>
+          </div>
+          <span class="pool-name">${pool.pair}</span>
+        </div>
+        <button class="pool-add-btn">Add Liquidity</button>
+      </div>
+      <div class="pool-stats">
+        <div class="pool-stat">
+          <span class="pool-stat-label">TVL</span>
+          <span class="pool-stat-value">${pool.tvl}</span>
+        </div>
+        <div class="pool-stat">
+          <span class="pool-stat-label">APR</span>
+          <span class="pool-stat-value">${pool.apr}</span>
+        </div>
+        <div class="pool-stat">
+          <span class="pool-stat-label">24h Volume</span>
+          <span class="pool-stat-value">${pool.volume24h}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
 // Init
 updateTokenDisplays();
 updateSwapBtn();
+renderTransactions();
+renderPools();
 </script>
 </body>
 </html>

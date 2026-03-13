@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/common.css">
 <style>
+  /* Download Cards */
   .dl-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 32px; max-width: 900px; margin: 48px auto 0;
@@ -36,6 +37,8 @@
     border: 2px solid var(--accent); color: var(--accent);
     background: rgba(79,195,247,.05);
   }
+
+  /* Install Steps */
   .install-steps {
     max-width: 600px; margin: 0 auto;
   }
@@ -50,6 +53,141 @@
   }
   .install-step p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
   .install-step strong { color: var(--text); }
+
+  /* App Stats */
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px; max-width: 1000px; margin: 48px auto 0;
+  }
+  .stat-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 32px 24px; text-align: center;
+    transition: transform .2s, border-color .2s;
+  }
+  .stat-card:hover { transform: translateY(-4px); border-color: rgba(255,107,53,.4); }
+  .stat-card .stat-value {
+    font-family: 'Orbitron', monospace; font-size: 2rem; font-weight: 900;
+    background: linear-gradient(135deg, var(--primary), #ff9a00);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; margin-bottom: 12px;
+  }
+  .stat-card .stat-label {
+    color: var(--muted); font-size: 0.95rem; font-weight: 500;
+  }
+
+  /* Preview Cards */
+  .preview-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px; max-width: 1000px; margin: 48px auto 0;
+    overflow-x: auto; padding-bottom: 12px;
+  }
+  .preview-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; overflow: hidden; min-width: 260px;
+    transition: transform .2s, border-color .2s;
+  }
+  .preview-card:hover { transform: translateY(-6px); border-color: rgba(255,107,53,.4); }
+  .preview-card .preview-img {
+    width: 100%; height: 280px; background: linear-gradient(135deg, rgba(255,107,53,.1), rgba(79,195,247,.1));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3.5rem; border-bottom: 1px solid var(--border);
+  }
+  .preview-card .preview-content {
+    padding: 24px;
+  }
+  .preview-card .preview-title {
+    font-weight: 700; color: var(--text); margin-bottom: 8px; font-size: 1rem;
+  }
+  .preview-card .preview-desc {
+    color: var(--muted); font-size: 0.85rem; line-height: 1.6;
+  }
+
+  /* Review Cards */
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px; max-width: 1000px; margin: 48px auto 0;
+  }
+  .review-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px; transition: transform .2s, border-color .2s;
+  }
+  .review-card:hover { transform: translateY(-4px); border-color: rgba(255,107,53,.4); }
+  .review-stars {
+    font-size: 0.95rem; margin-bottom: 16px; letter-spacing: 2px;
+  }
+  .review-text {
+    color: var(--text); font-size: 0.95rem; line-height: 1.7;
+    font-style: italic; margin-bottom: 16px;
+  }
+  .review-author {
+    color: var(--muted); font-size: 0.85rem; font-weight: 500;
+  }
+
+  /* FAQ Section */
+  .faq-container {
+    max-width: 700px; margin: 48px auto 0;
+  }
+  .faq-item {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; margin-bottom: 16px; overflow: hidden;
+    transition: border-color .2s;
+  }
+  .faq-item.active { border-color: rgba(255,107,53,.5); }
+  .faq-question {
+    padding: 24px; cursor: pointer; display: flex;
+    justify-content: space-between; align-items: center;
+    color: var(--text); font-weight: 600; font-size: 0.95rem;
+    transition: color .2s;
+  }
+  .faq-question:hover { color: var(--primary); }
+  .faq-toggle {
+    display: inline-block; font-size: 1.2rem; transition: transform .3s;
+    font-weight: 300;
+  }
+  .faq-item.active .faq-toggle { transform: rotate(45deg); }
+  .faq-answer {
+    max-height: 0; overflow: hidden; transition: max-height .3s ease;
+    padding: 0 24px;
+  }
+  .faq-item.active .faq-answer {
+    max-height: 300px; padding: 0 24px 24px;
+  }
+  .faq-answer p {
+    color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .preview-grid {
+      grid-template-columns: 1fr;
+    }
+    .reviews-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 600px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+    .stat-card .stat-value {
+      font-size: 1.6rem;
+    }
+    .preview-card .preview-img {
+      height: 200px; font-size: 2.5rem;
+    }
+    .faq-question {
+      padding: 18px;
+    }
+    .faq-answer {
+      padding: 0 18px;
+    }
+    .faq-item.active .faq-answer {
+      padding: 0 18px 18px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -73,11 +211,19 @@
 </nav>
 
 <!-- PAGE HERO -->
-<section class="page-hero">
+<section class="page-hero" style="position: relative;">
   <div class="hero-bg"></div>
-  <span class="section-tag">Download</span>
-  <h2 class="section-title">FunS 앱<br><span>다운로드</span></h2>
-  <p class="section-desc" style="margin:0 auto;">게임, DEX, 지갑까지 하나의 앱으로. 지금 다운로드하고 시작하세요.</p>
+  <div style="text-align: center; position: relative; z-index: 1;">
+    <div style="font-size: 5rem; margin-bottom: 24px; animation: bounce 2s infinite;">⬇️</div>
+    <h1 style="font-family: 'Orbitron', monospace; font-size: clamp(2rem, 8vw, 3.5rem); font-weight: 900; margin: 0 0 16px; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">FunS 다운로드</h1>
+    <p style="font-size: clamp(1rem, 3vw, 1.3rem); color: var(--muted); margin: 0 auto; max-width: 600px;">어디서든 Web3 게임을 즐기세요</p>
+  </div>
+  <style>
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+  </style>
 </section>
 
 <!-- DOWNLOAD OPTIONS -->
@@ -94,6 +240,63 @@
       <h3>Web Browser</h3>
       <p>설치 없이 웹 브라우저에서 바로 이용하세요. PC, 모바일 모두 지원합니다.</p>
       <a href="https://funsworld.com/" class="dl-link outline">웹에서 시작</a>
+    </div>
+  </div>
+</section>
+
+<!-- APP STATS -->
+<section style="padding:80px 5%; background:var(--dark2);">
+  <div class="reveal" style="text-align:center; margin-bottom: 48px;">
+    <span class="section-tag">App Stats</span>
+    <h2 class="section-title">FunS <span>통계</span></h2>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-card reveal">
+      <div class="stat-value">50K+</div>
+      <div class="stat-label">다운로드</div>
+    </div>
+    <div class="stat-card reveal">
+      <div class="stat-value">4.6★</div>
+      <div class="stat-label">평균 평점</div>
+    </div>
+    <div class="stat-card reveal">
+      <div class="stat-value">98MB</div>
+      <div class="stat-label">앱 크기</div>
+    </div>
+    <div class="stat-card reveal">
+      <div class="stat-value">8.0+</div>
+      <div class="stat-label">지원 기기</div>
+    </div>
+  </div>
+</section>
+
+<!-- APP SCREENSHOTS/PREVIEW -->
+<section style="padding:80px 5%;">
+  <div class="reveal" style="text-align:center; margin-bottom: 48px;">
+    <span class="section-tag">Preview</span>
+    <h2 class="section-title">앱 <span>미리보기</span></h2>
+  </div>
+  <div class="preview-grid">
+    <div class="preview-card reveal">
+      <div class="preview-img">🎮</div>
+      <div class="preview-content">
+        <div class="preview-title">게임 로비</div>
+        <div class="preview-desc">다양한 Web3 게임을 한눈에</div>
+      </div>
+    </div>
+    <div class="preview-card reveal">
+      <div class="preview-img">💰</div>
+      <div class="preview-content">
+        <div class="preview-title">지갑 & 보상</div>
+        <div class="preview-desc">FUNS 토큰 관리와 보상 확인</div>
+      </div>
+    </div>
+    <div class="preview-card reveal">
+      <div class="preview-img">🔄</div>
+      <div class="preview-content">
+        <div class="preview-title">DEX 거래</div>
+        <div class="preview-desc">앱에서 바로 토큰 스왑</div>
+      </div>
     </div>
   </div>
 </section>
@@ -147,6 +350,77 @@
     <div class="stat-box reveal">
       <div class="num">Wi-Fi</div>
       <div class="label">인터넷 연결</div>
+    </div>
+  </div>
+</section>
+
+<!-- USER REVIEWS -->
+<section style="padding:80px 5%; background:var(--dark2);">
+  <div class="reveal" style="text-align:center; margin-bottom: 48px;">
+    <span class="section-tag">Reviews</span>
+    <h2 class="section-title">유저 <span>리뷰</span></h2>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <div class="review-stars">⭐⭐⭐⭐⭐</div>
+      <div class="review-text">"게임하면서 토큰도 벌 수 있어서 좋아요!"</div>
+      <div class="review-author">— 김OO</div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-stars">⭐⭐⭐⭐⭐</div>
+      <div class="review-text">"DEX가 앱 안에 있어서 편리합니다"</div>
+      <div class="review-author">— 이OO</div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-stars">⭐⭐⭐⭐</div>
+      <div class="review-text">"게임 종류가 더 많아지면 좋겠어요"</div>
+      <div class="review-author">— 박OO</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="padding:80px 5%;">
+  <div class="reveal" style="text-align:center; margin-bottom: 48px;">
+    <span class="section-tag">FAQ</span>
+    <h2 class="section-title">자주 묻는 <span>질문</span></h2>
+  </div>
+  <div class="faq-container">
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+        <span>FunS 앱은 무료인가요?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>네, FunS 앱은 완전히 무료로 다운로드하고 사용할 수 있습니다. 앱 내 구매나 숨겨진 비용은 없으며, 게임을 즐기고 토큰을 획득할 수 있습니다.</p>
+      </div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+        <span>어떤 기기에서 사용 가능한가요?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>FunS 앱은 Android 8.0 이상을 지원합니다. APK를 직접 설치하거나 웹 브라우저에서 접속하여 PC와 모바일 모두에서 이용할 수 있습니다.</p>
+      </div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+        <span>게임에서 획득한 토큰은 어떻게 사용하나요?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>게임에서 획득한 FUNS 토큰은 앱 내 FunSwap DEX에서 다른 암호화폐로 스왑하거나, 지갑에 보관했다가 필요할 때 사용할 수 있습니다.</p>
+      </div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+        <span>보안은 안전한가요?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>FunS 앱은 블록체인 기술을 기반으로 하며, 사용자의 지갑과 자산을 안전하게 보호합니다. 개인 키는 사용자의 기기에만 저장되며, 우리는 접근할 수 없습니다.</p>
+      </div>
     </div>
   </div>
 </section>
