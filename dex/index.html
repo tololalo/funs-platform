@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FunSwap — Decentralized Exchange</title>
+<meta name="description" content="FunSwap DEX에서 암호화폐를 교환하세요. 탈중앙화 거래소, 낮은 수수료, 다양한 토큰 지원.">
+<meta name="keywords" content="DEX, 탈중앙화 거래소, 암호화폐 교환, FunSwap, FUNS 토큰">
+<meta property="og:title" content="FunSwap — Decentralized Exchange">
+<meta property="og:description" content="FunSwap DEX에서 암호화폐를 교환하세요. 탈중앙화 거래소, 낮은 수수료, 다양한 토큰 지원.">
+<meta property="og:image" content="https://tololalo.github.io/funs-platform/funs nugi.png">
+<meta property="og:url" content="https://tololalo.github.io/funs-platform/dex/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -611,6 +619,12 @@ body {
     padding: 5px 10px; font-size: 0.7rem;
   }
 }
+
+
+.lang-switch { display: flex; gap: 2px; background: var(--dark3); border-radius: 8px; padding: 2px; }
+.lang-btn { padding: 4px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; color: var(--muted); text-decoration: none; transition: all .2s; }
+.lang-btn.active { background: var(--primary); color: #fff; }
+.lang-btn:hover:not(.active) { color: var(--text); }
 </style>
 </head>
 <body>
@@ -632,6 +646,10 @@ body {
       <span class="chain-name">BNB Chain</span>
       <span style="font-size:0.6rem;">▼</span>
     </button>
+    <div class="lang-switch">
+      <a href="index.html" class="lang-btn active">KR</a>
+      <a href="en.html" class="lang-btn">EN</a>
+    </div>
     <button class="connect-btn" id="connectWallet">지갑 연결</button>
   </div>
 </header>
@@ -1115,8 +1133,55 @@ document.querySelectorAll('.period-tab').forEach(tab => {
 });
 
 function updateChart(period) {
-  // For now, just show visual feedback - SVG is static for demo
-  console.log('Chart period switched to:', period);
+  const data = chartData[period];
+  if (!data) return;
+
+  // Get the SVG elements
+  const svg = document.querySelector('.chart-svg');
+  const polyline = svg.querySelector('polyline');
+  const polygon = svg.querySelector('polygon');
+
+  // Calculate points (map data values to SVG coordinates)
+  // ViewBox is 300x120, we'll use x: 10 to 280 (270px width), y: 10 to 100 (90px height)
+  const xStart = 10;
+  const xEnd = 280;
+  const yTop = 10;
+  const yBottom = 100;
+  const xWidth = xEnd - xStart;
+  const yHeight = yBottom - yTop;
+
+  // Find min and max values for scaling
+  const minVal = Math.min(...data);
+  const maxVal = Math.max(...data);
+  const valRange = maxVal - minVal || 1;
+
+  // Generate points
+  const points = data.map((val, idx) => {
+    const x = xStart + (idx / (data.length - 1)) * xWidth;
+    const y = yBottom - ((val - minVal) / valRange) * yHeight;
+    return `${x},${y}`;
+  }).join(' ');
+
+  // Update polyline
+  polyline.setAttribute('points', points);
+
+  // Update polygon (same points + bottom corners)
+  const polygonPoints = points + ` ${xEnd},120 ${xStart},120`;
+  polygon.setAttribute('points', polygonPoints);
+
+  // Add smooth transition
+  polyline.style.transition = 'none';
+  polygon.style.transition = 'none';
+  polyline.style.opacity = '0.5';
+  polygon.style.opacity = '0.5';
+
+  // Trigger animation
+  setTimeout(() => {
+    polyline.style.transition = 'all 0.4s ease-out';
+    polygon.style.transition = 'all 0.4s ease-out';
+    polyline.style.opacity = '1';
+    polygon.style.opacity = '1';
+  }, 10);
 }
 
 // ── Transactions Data ──
@@ -1149,10 +1214,10 @@ function renderTransactions() {
 
 // ── Pools Data ──
 const poolsData = [
-  { pair: 'BNB/FUNS', icons: ['🟡', '🔥'], tvl: '$4.2M', apr: '128%', volume24h: '$1.2M' },
-  { pair: 'FUNS/USDT', icons: ['🔥', '💵'], tvl: '$2.8M', apr: '95%', volume24h: '$890K' },
-  { pair: 'BNB/USDT', icons: ['🟡', '💵'], tvl: '$5.6M', apr: '42%', volume24h: '$2.1M' },
-  { pair: 'FUNS/CAKE', icons: ['🔥', '🎂'], tvl: '$1.5M', apr: '156%', volume24h: '$420K' }
+  { pair: 'BNB/FUNS', icons: ['icons/bnb.svg', '../funs nugi.png'], tvl: '$4.2M', apr: '128%', volume24h: '$1.2M' },
+  { pair: 'FUNS/USDT', icons: ['../funs nugi.png', 'icons/usdt.svg'], tvl: '$2.8M', apr: '95%', volume24h: '$890K' },
+  { pair: 'BNB/USDT', icons: ['icons/bnb.svg', 'icons/usdt.svg'], tvl: '$5.6M', apr: '42%', volume24h: '$2.1M' },
+  { pair: 'FUNS/CAKE', icons: ['../funs nugi.png', 'icons/cake.svg'], tvl: '$1.5M', apr: '156%', volume24h: '$420K' }
 ];
 
 function renderPools() {
@@ -1162,8 +1227,8 @@ function renderPools() {
       <div class="pool-header">
         <div class="pool-pair">
           <div class="pool-icons">
-            <div class="pool-icon" style="background: linear-gradient(135deg, #FF6B35, #ff9a00);">${pool.icons[0]}</div>
-            <div class="pool-icon" style="background: linear-gradient(135deg, #FFD700, #ffd700);">${pool.icons[1]}</div>
+            <img src="${pool.icons[0]}" style="width:28px;height:28px;border-radius:50%;">
+            <img src="${pool.icons[1]}" style="width:28px;height:28px;border-radius:50%;margin-left:-10px;border:2px solid var(--dark2);">
           </div>
           <span class="pool-name">${pool.pair}</span>
         </div>

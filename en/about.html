@@ -1,20 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — FunS Platform</title>
-<meta name="description" content="FunS Platform에 대해 알아보세요. Web3 게이밍의 새로운 기준을 만들어가는 팀, 미션, 비전을 소개합니다.">
-<meta name="keywords" content="FunS About, Web3 게임 회사, 블록체인 플랫폼, DEX, 게이밍 생태계">
-<meta property="og:title" content="About — FunS Platform">
-<meta property="og:description" content="FunS Platform 팀, 미션, 로드맵 및 기술 스택에 대해 알아보세요.">
-<meta property="og:image" content="https://tololalo.github.io/funs-platform/funs nugi.png">
-<meta property="og:url" content="https://tololalo.github.io/funs-platform/about.html">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/png" href="funs nugi.png">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/common.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/common.css">
 <style>
   /* Hero Section Enhancements */
   .page-hero {
@@ -435,236 +426,51 @@
   }
 
   @media (max-width: 380px) {
-    html { font-size: 14px; }
-
     .page-hero {
-      padding: 40px 4%;
-    }
-
-    .page-hero .section-tag {
-      font-size: 0.65rem;
-      padding: 3px 10px;
-    }
-
-    .page-hero .section-title {
-      font-size: 1.2rem;
-    }
-
-    .page-hero .section-desc {
-      font-size: 0.8rem;
-    }
-
-    section {
-      padding: 40px 4%;
-    }
-
-    .reveal {
-      text-align: center;
-      margin-bottom: 12px;
-    }
-
-    .section-tag {
-      font-size: 0.65rem;
-      padding: 3px 10px;
-      margin-bottom: 8px;
-    }
-
-    .section-title {
-      font-size: 1.2rem;
-      margin-bottom: 8px;
-    }
-
-    .section-desc {
-      font-size: 0.8rem;
-    }
-
-    .info-grid {
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-top: 32px;
-    }
-
-    .info-card {
-      padding: 16px 12px;
-    }
-
-    .info-card .icon {
-      font-size: 2rem;
-      margin-bottom: 12px;
-    }
-
-    .info-card h3 {
-      font-size: 0.9rem;
-      margin-bottom: 6px;
-    }
-
-    .info-card p {
-      font-size: 0.75rem;
-      line-height: 1.5;
-    }
-
-    .team-header {
-      margin-bottom: 32px;
+      padding: 40px 5%;
     }
 
     .team-grid {
-      grid-template-columns: 1fr;
-      gap: 12px;
+      gap: 10px;
     }
 
     .team-avatar {
-      width: 70px;
-      height: 70px;
-      font-size: 28px;
-      margin-bottom: 12px;
-    }
-
-    .team-card {
-      text-align: center;
-      opacity: 1 !important;
-      animation: none !important;
+      width: 80px;
+      height: 80px;
+      font-size: 32px;
     }
 
     .team-card h3 {
-      font-size: 0.9rem;
-      margin-bottom: 4px;
+      font-size: 16px;
     }
 
     .team-card .role {
-      font-size: 0.7rem;
-      margin-bottom: 6px;
+      font-size: 12px;
     }
 
     .team-card p {
-      font-size: 0.75rem;
-      line-height: 1.5;
-    }
-
-    .roadmap-section {
-      padding: 40px 4%;
-    }
-
-    .roadmap-header {
-      margin-bottom: 32px;
-    }
-
-    .timeline {
-      padding-left: 0;
-      margin-left: 0;
-    }
-
-    .timeline::before {
-      left: 0;
-      display: none;
-    }
-
-    .timeline-item {
-      margin-bottom: 24px;
-      opacity: 1 !important;
-      animation: none !important;
-    }
-
-    .timeline-item:nth-child(odd),
-    .timeline-item:nth-child(even) {
-      text-align: left;
-      padding-left: 0;
-      padding-right: 0;
-    }
-
-    .timeline-dot {
-      display: none;
-    }
-
-    .timeline-content {
-      padding: 12px;
-      border-radius: 8px;
-      background: rgba(0, 255, 200, 0.02) !important;
-    }
-
-    .timeline-quarter {
-      font-size: 0.7rem;
-    }
-
-    .timeline-title {
-      font-size: 0.9rem;
-    }
-
-    .timeline-desc {
-      font-size: 0.75rem;
-    }
-
-    .timeline-status {
-      font-size: 0.65rem;
-      padding: 2px 6px;
-      margin-top: 6px;
-    }
-
-    .stat-row {
-      grid-template-columns: 1fr;
-      gap: 12px;
-      margin-top: 32px;
-    }
-
-    .stat-box {
-      padding: 16px 12px;
-      border-radius: 12px;
-    }
-
-    .stat-box .num {
-      font-size: 1.4rem;
-    }
-
-    .stat-box .label {
-      font-size: 0.7rem;
-      margin-top: 4px;
-    }
-
-    .cta-section {
-      padding: 60px 4%;
-    }
-
-    .cta-title {
-      font-size: clamp(1rem, 3vw, 1.5rem);
-      margin-bottom: 8px;
-    }
-
-    .cta-btn {
-      padding: 10px 20px;
-      font-size: 0.85rem;
-    }
-
-    footer {
-      padding: 24px 4%;
+      font-size: 12px;
     }
   }
-
-  .lang-switch { display: flex; gap: 2px; background: var(--dark3); border-radius: 8px; padding: 2px; }
-  .lang-btn { padding: 4px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; color: var(--muted); text-decoration: none; transition: all .2s; }
-  .lang-btn.active { background: var(--primary); color: #fff; }
-  .lang-btn:hover:not(.active) { color: var(--text); }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-logo">
-    <img src="funs nugi.png" alt="FunS Logo" height="44">
+  <a href="../index.html" class="nav-logo">
+    <img src="../funs nugi.png" alt="FunS Logo" height="44">
     <span>FunS</span>
   </a>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
+    <li><a href="../index.html">Home</a></li>
     <li><a href="games/index.html">Games</a></li>
-    <li><a href="dex/index.html">DEX</a></li>
+    <li><a href="../dex/en.html">DEX</a></li>
     <li><a href="nft/index.html">NFT</a></li>
     <li><a href="staking/index.html">Staking</a></li>
     <li><a href="about.html" class="active">About</a></li>
   </ul>
-  <div class="lang-switch">
-    <a href="about.html" class="lang-btn active">KR</a>
-    <a href="en/about.html" class="lang-btn">EN</a>
-  </div>
-  <a href="download.html" class="nav-cta">앱 다운로드</a>
+  <a href="download.html" class="nav-cta">Download App</a>
   <button class="menu-toggle">☰</button>
 </nav>
 
@@ -673,31 +479,31 @@
   <div class="hero-bg"></div>
   <span class="section-tag">About</span>
   <h2 class="section-title">About <span>FunS</span></h2>
-  <p class="section-desc" style="margin:0 auto;">Web3 게이밍의 새로운 기준을 만들어갑니다</p>
+  <p class="section-desc" style="margin:0 auto;">Setting new standards for Web3 gaming</p>
 </section>
 
 <!-- MISSION -->
 <section style="padding:100px 5%; background:var(--dark2);">
   <div class="reveal" style="text-align:center;">
     <span class="section-tag">Mission</span>
-    <h2 class="section-title">우리의 <span>미션</span></h2>
-    <p class="section-desc" style="margin:0 auto 48px;">게임을 통해 누구나 블록체인 경제에 자연스럽게 참여할 수 있는 세상을 만듭니다.</p>
+    <h2 class="section-title">Our <span>Mission</span></h2>
+    <p class="section-desc" style="margin:0 auto 48px;">We create a world where anyone can naturally participate in the blockchain economy through gaming.</p>
   </div>
   <div class="info-grid" style="max-width:1100px; margin:0 auto;">
     <div class="info-card reveal">
       <span class="icon">🎮</span>
-      <h3>게임 중심 생태계</h3>
-      <p>복잡한 블록체인 기술을 게임이라는 친숙한 형태로 제공합니다. 누구나 쉽게 시작하고 즐길 수 있습니다.</p>
+      <h3>Game-Centric Ecosystem</h3>
+      <p>We provide complex blockchain technology in a familiar gaming format. Anyone can easily get started and enjoy.</p>
     </div>
     <div class="info-card reveal">
       <span class="icon">⚖️</span>
-      <h3>공정한 경제 구조</h3>
-      <p>스마트 컨트랙트 기반의 투명한 운영으로, 모든 거래와 보상이 블록체인에 기록됩니다.</p>
+      <h3>Fair Economic Structure</h3>
+      <p>Transparent operations based on smart contracts ensure all transactions and rewards are recorded on the blockchain.</p>
     </div>
     <div class="info-card reveal">
       <span class="icon">🌍</span>
-      <h3>글로벌 접근성</h3>
-      <p>전 세계 어디서든, 어떤 기기에서든 접근할 수 있는 크로스 플랫폼 환경을 구축합니다.</p>
+      <h3>Global Accessibility</h3>
+      <p>We build a cross-platform environment accessible from anywhere in the world, on any device.</p>
     </div>
   </div>
 </section>
@@ -705,7 +511,7 @@
 <!-- TEAM -->
 <section class="team-section">
   <div class="team-header reveal">
-    <span class="section-tag">팀</span>
+    <span class="section-tag">Team</span>
     <h2 class="section-title">FunS <span>Team</span></h2>
   </div>
   <div class="team-grid">
@@ -713,25 +519,25 @@
       <div class="team-avatar">🧑‍💼</div>
       <h3>Alex Kim</h3>
       <p class="role">CEO</p>
-      <p>10년+ 게임 산업 경험</p>
+      <p>10+ years of gaming industry experience</p>
     </div>
     <div class="team-card reveal">
       <div class="team-avatar">👩‍💻</div>
       <h3>Sarah Park</h3>
       <p class="role">CTO</p>
-      <p>블록체인 & 스마트 컨트랙트 전문가</p>
+      <p>Blockchain & smart contract expert</p>
     </div>
     <div class="team-card reveal">
       <div class="team-avatar">🎮</div>
       <h3>Mike Lee</h3>
       <p class="role">Game Director</p>
-      <p>AAA 게임 스튜디오 출신</p>
+      <p>AAA game studio veteran</p>
     </div>
     <div class="team-card reveal">
       <div class="team-avatar">🌍</div>
       <h3>Jina Choi</h3>
       <p class="role">Community Lead</p>
-      <p>Web3 커뮤니티 빌더</p>
+      <p>Web3 community builder</p>
     </div>
   </div>
 </section>
@@ -739,7 +545,7 @@
 <!-- ROADMAP -->
 <section class="roadmap-section">
   <div class="roadmap-header reveal">
-    <span class="section-tag">로드맵</span>
+    <span class="section-tag">Roadmap</span>
     <h2 class="section-title">Roadmap <span>2026</span></h2>
   </div>
   <div class="timeline">
@@ -747,36 +553,36 @@
       <div class="timeline-dot"></div>
       <div class="timeline-content">
         <div class="timeline-quarter">Q1 2026</div>
-        <div class="timeline-title">플랫폼 런칭 ✅</div>
-        <div class="timeline-desc">FunS 플랫폼 공식 런칭 및 초기 게임 3종 출시</div>
-        <span class="timeline-status">완료됨</span>
+        <div class="timeline-title">Platform Launch ✅</div>
+        <div class="timeline-desc">Official FunS platform launch and release of 3 initial games</div>
+        <span class="timeline-status">Completed</span>
       </div>
     </div>
     <div class="timeline-item in-progress">
       <div class="timeline-dot"></div>
       <div class="timeline-content">
         <div class="timeline-quarter">Q2 2026</div>
-        <div class="timeline-title">FunSwap DEX & 게임 확장 🔄</div>
-        <div class="timeline-desc">탈중앙화 거래소 FunSwap 출시, 5개 신규 게임 추가</div>
-        <span class="timeline-status">진행 중</span>
+        <div class="timeline-title">FunSwap DEX & Game Expansion 🔄</div>
+        <div class="timeline-desc">Launch decentralized exchange FunSwap, add 5 new games</div>
+        <span class="timeline-status">In Progress</span>
       </div>
     </div>
     <div class="timeline-item upcoming">
       <div class="timeline-dot"></div>
       <div class="timeline-content">
         <div class="timeline-quarter">Q3 2026</div>
-        <div class="timeline-title">NFT 마켓플레이스 & 모바일</div>
-        <div class="timeline-desc">NFT 마켓플레이스 오픈, 모바일 앱 (iOS/Android) 출시</div>
-        <span class="timeline-status">예정됨</span>
+        <div class="timeline-title">NFT Marketplace & Mobile</div>
+        <div class="timeline-desc">Launch NFT marketplace, release mobile apps (iOS/Android)</div>
+        <span class="timeline-status">Upcoming</span>
       </div>
     </div>
     <div class="timeline-item upcoming">
       <div class="timeline-dot"></div>
       <div class="timeline-content">
         <div class="timeline-quarter">Q4 2026</div>
-        <div class="timeline-title">거버넌스 & 글로벌 확장</div>
-        <div class="timeline-desc">거버넌스 토큰 (GOV) 런칭, 글로벌 파트너십 확대</div>
-        <span class="timeline-status">예정됨</span>
+        <div class="timeline-title">Governance & Global Expansion</div>
+        <div class="timeline-desc">Launch governance token (GOV), expand global partnerships</div>
+        <span class="timeline-status">Upcoming</span>
       </div>
     </div>
   </div>
@@ -786,58 +592,58 @@
 <section style="padding:100px 5%;">
   <div class="reveal" style="text-align:center;">
     <span class="section-tag">Technology</span>
-    <h2 class="section-title">기술 <span>스택</span></h2>
+    <h2 class="section-title">Tech <span>Stack</span></h2>
   </div>
   <div class="stat-row">
     <div class="stat-box reveal">
       <div class="num">EVM</div>
-      <div class="label">스마트 컨트랙트</div>
+      <div class="label">Smart Contracts</div>
     </div>
     <div class="stat-box reveal">
       <div class="num">IPFS</div>
-      <div class="label">분산 스토리지</div>
+      <div class="label">Distributed Storage</div>
     </div>
     <div class="stat-box reveal">
       <div class="num">WebGL</div>
-      <div class="label">게임 렌더링</div>
+      <div class="label">Game Rendering</div>
     </div>
     <div class="stat-box reveal">
       <div class="num">AMM</div>
-      <div class="label">DEX 프로토콜</div>
+      <div class="label">DEX Protocol</div>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
 <section class="cta-section">
-  <h2 class="cta-title">함께 미래를 <span style="background:linear-gradient(135deg,var(--primary),#ff9a00); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">만들어갑시다</span></h2>
-  <p style="color:var(--muted); max-width:500px; margin:0 auto 40px;">지금 바로 시작하고, FunS 커뮤니티의 일원이 되세요.</p>
-  <a href="download.html" class="cta-btn">지금 시작하기</a>
+  <h2 class="cta-title">Let's Build the Future <span style="background:linear-gradient(135deg,var(--primary),#ff9a00); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Together</span></h2>
+  <p style="color:var(--muted); max-width:500px; margin:0 auto 40px;">Start now and become part of the FunS community.</p>
+  <a href="download.html" class="cta-btn">Get Started</a>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <a href="index.html" class="nav-logo">
-        <img src="funs nugi.png" alt="FunS" height="44">
+      <a href="../index.html" class="nav-logo">
+        <img src="../funs nugi.png" alt="FunS" height="44">
         <span>FunS</span>
       </a>
-      <p>차세대 Web3 게임 & DEX 플랫폼. 블록체인 기반의 게임과 탈중앙화 거래소를 경험하세요.</p>
+      <p>Next-generation Web3 gaming & DEX platform. Experience blockchain-based games and decentralized exchange.</p>
     </div>
     <div class="footer-col">
       <h4>Platform</h4>
       <ul>
-        <li><a href="index.html#features">게임 소개</a></li>
-        <li><a href="dex/index.html">FunSwap DEX</a></li>
-        <li><a href="download.html">앱 다운로드</a></li>
+        <li><a href="../index.html#features">Games</a></li>
+        <li><a href="../dex/en.html">FunSwap DEX</a></li>
+        <li><a href="download.html">Download App</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Company</h4>
       <ul>
         <li><a href="about.html">About</a></li>
-        <li><a href="index.html#roadmap">Roadmap</a></li>
+        <li><a href="../index.html#roadmap">Roadmap</a></li>
         <li><a href="#">Privacy Policy</a></li>
         <li><a href="#">Terms & Conditions</a></li>
       </ul>
@@ -861,6 +667,6 @@
   </div>
 </footer>
 
-<script src="js/common.js"></script>
+<script src="../js/common.js"></script>
 </body>
 </html>
