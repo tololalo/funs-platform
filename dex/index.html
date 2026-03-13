@@ -39,42 +39,148 @@ body {
   overflow-x: hidden;
 }
 
-/* ── NAV ── */
-.dex-nav {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 24px; height: 64px;
-  background: rgba(8,11,20,0.9);
-  backdrop-filter: blur(16px);
+/* ── NAVIGATION ── */
+nav {
+  background: rgba(13, 17, 32, 0.8);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
-  position: sticky; top: 0; z-index: 100;
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
-.dex-nav .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.dex-nav .logo img { height: 36px; width: 36px; object-fit: contain; }
-.dex-nav .logo span { font-family: 'Orbitron', monospace; font-weight: 700; font-size: 1rem; color: var(--secondary); letter-spacing: 2px; }
-.dex-nav .logo .sub { font-size: 0.7rem; color: var(--muted); letter-spacing: 1px; margin-left: 4px; }
-.nav-tabs { display: flex; gap: 4px; background: var(--dark3); border-radius: 12px; padding: 4px; }
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-logo {
+  height: 40px;
+  width: auto;
+}
+
+.nav-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #FF6B35;
+  letter-spacing: 2px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.back-link {
+  color: #4FC3F7;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 8px 12px;
+  border: 1px solid rgba(79, 195, 247, 0.3);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.back-link:hover {
+  background: rgba(79, 195, 247, 0.1);
+  border-color: #4FC3F7;
+}
+
+.wallet-btn {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #FF6B35, #ff8c42);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+
+.wallet-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+}
+
+.lang-switch {
+  display: flex;
+  gap: 2px;
+  background: #141828;
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.lang-btn {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #8892b0;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.lang-btn.active {
+  background: #FF6B35;
+  color: #fff;
+}
+
+.lang-btn:hover:not(.active) {
+  color: #e8eaf0;
+}
+
+/* ── TABS (moved below nav) ── */
+.tab-bar {
+  display: flex;
+  gap: 4px;
+  background: var(--dark3);
+  border-radius: 12px;
+  padding: 4px;
+  max-width: fit-content;
+  margin-bottom: 32px;
+}
+
 .nav-tab {
-  padding: 8px 20px; border-radius: 10px; border: none;
-  background: transparent; color: var(--muted); font-size: 0.85rem; font-weight: 600;
-  cursor: pointer; transition: all .2s; font-family: inherit;
+  padding: 8px 20px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: inherit;
 }
-.nav-tab.active { background: var(--card2); color: var(--text); }
-.nav-tab:hover:not(.active) { color: var(--text); }
-.nav-right { display: flex; align-items: center; gap: 12px; }
-.chain-btn {
-  display: flex; align-items: center; gap: 6px;
-  background: var(--dark3); border: 1px solid var(--border); border-radius: 12px;
-  padding: 8px 14px; color: var(--text); font-size: 0.8rem; font-weight: 600;
-  cursor: pointer; transition: border-color .2s; font-family: inherit;
+
+.nav-tab.active {
+  background: var(--card2);
+  color: var(--text);
 }
-.chain-btn:hover { border-color: var(--primary); }
-.connect-btn {
-  background: linear-gradient(135deg, var(--primary), #ff9a00);
-  color: #fff; border: none; padding: 10px 22px; border-radius: 12px;
-  font-weight: 700; font-size: 0.85rem; cursor: pointer;
-  transition: transform .2s, box-shadow .2s; font-family: inherit;
+
+.nav-tab:hover:not(.active) {
+  color: var(--text);
 }
-.connect-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,107,53,.4); }
+
+/* Wallet button connected state */
+.wallet-btn.connected {
+  background: linear-gradient(135deg, #4caf50, #66bb6a);
+}
 
 /* ── MAIN LAYOUT ── */
 .dex-main {
@@ -310,7 +416,12 @@ body {
 /* ── RESPONSIVE ── */
 
 /* Tablet */
+/* ── RESPONSIVE NAV ── */
 @media(max-width:768px) {
+  .nav-title { font-size: 18px; letter-spacing: 1px; }
+  .nav-right { gap: 12px; }
+  .back-link { padding: 6px 10px; font-size: 12px; }
+  .wallet-btn { padding: 8px 16px; font-size: 0.8rem; }
   .dex-main { padding: 32px 16px 60px; }
   .swap-card, .pool-card { max-width: 100%; }
   .price-ticker { gap: 12px; margin-bottom: 24px; }
@@ -319,15 +430,17 @@ body {
 /* Mobile */
 @media(max-width:600px) {
   html { font-size: 15px; }
-  .dex-nav { padding: 0 10px; height: 56px; }
-  .dex-nav .logo img { height: 28px; width: 28px; }
-  .dex-nav .logo span { font-size: 0.85rem; letter-spacing: 1px; }
-  .dex-nav .logo .sub { display: none; }
-  .nav-tabs { display: none; }
-  .mobile-tabs { display: flex !important; }
-  .connect-btn { padding: 8px 14px; font-size: 0.75rem; }
-  .chain-btn { padding: 6px 10px; font-size: 0.75rem; }
-  .chain-btn span.chain-name { display: none; }
+  nav { padding: 10px 0; }
+  .nav-content { padding: 0 10px; }
+  .nav-left { gap: 12px; }
+  .nav-logo { height: 32px; }
+  .nav-title { font-size: 14px; letter-spacing: 1px; }
+  .nav-right { gap: 8px; }
+  .back-link { display: none; }
+  .wallet-btn { padding: 8px 14px; font-size: 0.75rem; }
+  .lang-btn { padding: 3px 8px; font-size: 0.65rem; }
+  .tab-bar { flex-wrap: wrap; margin-bottom: 20px; }
+  .nav-tab { padding: 6px 14px; font-size: 0.75rem; }
 
   .dex-main { padding: 20px 12px 60px; }
   .price-ticker { gap: 8px; margin-bottom: 20px; }
@@ -371,18 +484,12 @@ body {
 /* Small Mobile */
 @media(max-width:380px) {
   html { font-size: 14px; }
-  .dex-nav { gap: 4px; }
+  .nav-right { gap: 4px; }
   .connect-btn { padding: 7px 10px; font-size: 0.7rem; }
-  .chain-btn { padding: 5px 8px; }
+  .wallet-btn { padding: 7px 10px; font-size: 0.7rem; }
   .token-amount { font-size: 1.2rem; }
   .price-ticker { flex-direction: column; align-items: center; gap: 6px; }
 }
-
-.mobile-tabs {
-  display: none; gap: 4px; background: var(--dark3); border-radius: 12px;
-  padding: 4px; margin-bottom: 20px; width: 100%; max-width: 480px;
-}
-.mobile-tabs .nav-tab { flex: 1; text-align: center; }
 
 /* Token icon placeholder colors */
 .token-icon {
@@ -630,30 +737,22 @@ body {
 <body>
 
 <!-- NAV -->
-<header class="dex-nav">
-  <a href="../index.html" class="logo">
-    <img src="../funs nugi.png" alt="FunS">
-    <span>FunSwap</span>
-    <span class="sub">DEX</span>
-  </a>
-  <div class="nav-tabs">
-    <button class="nav-tab active" data-tab="swap">스왑</button>
-    <button class="nav-tab" data-tab="pool">유동성</button>
-    <a href="../dashboard/index.html" class="nav-tab" style="text-decoration: none;">대시보드</a>
-  </div>
-  <div class="nav-right">
-    <button class="chain-btn">
-      <span style="font-size:1rem;">🟡</span>
-      <span class="chain-name">BNB Chain</span>
-      <span style="font-size:0.6rem;">▼</span>
-    </button>
-    <div class="lang-switch">
-      <a href="index.html" class="lang-btn active">KR</a>
-      <a href="en.html" class="lang-btn">EN</a>
+<nav>
+  <div class="nav-content">
+    <div class="nav-left">
+      <img src="../funs nugi.png" alt="FunS Logo" class="nav-logo">
+      <div class="nav-title">FunSwap DEX</div>
     </div>
-    <button class="connect-btn" id="connectWallet">지갑 연결</button>
+    <div class="nav-right">
+      <a href="../index.html" class="back-link">← FunS Platform</a>
+      <div class="lang-switch">
+        <a href="index.html" class="lang-btn active">KR</a>
+        <a href="../en/dex/index.html" class="lang-btn">EN</a>
+      </div>
+      <button class="wallet-btn" id="connectWallet">지갑 연결</button>
+    </div>
   </div>
-</header>
+</nav>
 
 <!-- MAIN -->
 <main class="dex-main">
@@ -680,10 +779,11 @@ body {
     </div>
   </div>
 
-  <!-- Mobile Tabs -->
-  <div class="mobile-tabs">
+  <!-- Tab Bar -->
+  <div class="tab-bar">
     <button class="nav-tab active" data-tab="swap">스왑</button>
     <button class="nav-tab" data-tab="pool">유동성</button>
+    <a href="../dashboard/index.html" class="nav-tab" style="text-decoration: none;">대시보드</a>
   </div>
 
   <!-- SWAP CARD -->
