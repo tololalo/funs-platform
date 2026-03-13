@@ -1029,6 +1029,51 @@
                 max-width: 150px;
             }
         }
+
+        /* ── FOOTER STYLES ── */
+        footer {
+            margin-top: 80px;
+            padding: 40px 0 60px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-family: var(--font-heading);
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-link {
+            display: block;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 13px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
@@ -1036,7 +1081,7 @@
     <nav>
         <div class="nav-content">
             <div class="nav-left">
-                <img src="../../funs nugi.png" alt="FunS Logo" class="nav-logo">
+                <img src="../../funs-nugi.png" alt="FunS Logo" class="nav-logo">
                 <div class="nav-title">FunS Dashboard</div>
             </div>
             <div class="nav-right">
@@ -1045,7 +1090,7 @@
                     <a href="index.html" class="lang-btn active">EN</a>
                     <a href="../../dashboard/index.html" class="lang-btn">KR</a>
                 </div>
-                <button class="wallet-btn" id="walletBtn" onclick="toggleWallet()">Connect Wallet</button>
+                <button class="wallet-btn" id="walletBtn">Connect Wallet</button>
             </div>
         </div>
     </nav>
@@ -1170,7 +1215,7 @@
                 value: '$1,472.00',
                 change: '+12.5%',
                 changeNum: 12.5,
-                icon: '../../funs nugi.png'
+                icon: '../../funs-nugi.png'
             },
             {
                 name: 'BNB',
@@ -1276,18 +1321,9 @@
         // ── WALLET CONNECTION ──
         let walletConnected = false;
 
-        function toggleWallet() {
+        function checkWalletState() {
             const btn = document.getElementById('walletBtn');
-
-            if (!walletConnected) {
-                walletConnected = true;
-                btn.textContent = '0x1234...5678';
-                btn.classList.add('connected');
-            } else {
-                walletConnected = false;
-                btn.textContent = 'Connect Wallet';
-                btn.classList.remove('connected');
-            }
+            walletConnected = btn.classList.contains('connected');
         }
 
         // ── RENDER TOKEN LIST ──
@@ -1384,7 +1420,57 @@
             renderTokens();
             renderActivity();
             renderStaking();
+            checkWalletState();
         });
     </script>
+
+    <!-- Unified Wallet Connection -->
+    <script>
+    (function() {
+      const btn = document.getElementById('walletBtn');
+      if (!btn) return;
+
+      const saved = sessionStorage.getItem('funsPlatformWallet');
+      if (saved) {
+        btn.textContent = saved;
+        btn.classList.add('connected');
+      }
+
+      btn.addEventListener('click', function() {
+        if (btn.classList.contains('connected')) {
+          sessionStorage.removeItem('funsPlatformWallet');
+          btn.textContent = 'Connect Wallet';
+          btn.classList.remove('connected');
+        } else {
+          // Simulate wallet connection
+          const addr = '0x1a2B...3c4D';
+          sessionStorage.setItem('funsPlatformWallet', addr);
+          btn.textContent = addr;
+          btn.classList.add('connected');
+        }
+      });
+    })();
+    </script>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FunS Platform</h3>
+                    <a href="../index.html" class="footer-link">FunS Platform</a>
+                    <a href="../dex/" class="footer-link">DEX</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="../games/" class="footer-link">Games</a>
+                    <a href="../staking/" class="footer-link">Staking</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 FunS Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

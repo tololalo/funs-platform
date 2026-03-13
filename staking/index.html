@@ -8,7 +8,7 @@
 <meta name="keywords" content="FUNS 스테이킹, 토큰 스테이킹, 블록체인 수익, DeFi">
 <meta property="og:title" content="FunS Staking - FUNS 토큰 스테이킹 플랫폼">
 <meta property="og:description" content="FunS Staking에서 FUNS 토큰을 스테이킹하고 수익을 얻으세요. 블록체인 기반 스테이킹 플랫폼.">
-<meta property="og:image" content="https://tololalo.github.io/funs-platform/funs nugi.png">
+<meta property="og:image" content="https://tololalo.github.io/funs-platform/funs-nugi.png">
 <meta property="og:url" content="https://tololalo.github.io/funs-platform/staking/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -1144,7 +1144,7 @@
     <nav>
         <div class="nav-content">
             <div class="nav-left">
-                <img src="../funs nugi.png" alt="FunS Logo" class="nav-logo">
+                <img src="../funs-nugi.png" alt="FunS Logo" class="nav-logo">
                 <div class="nav-title">FunS Staking</div>
             </div>
             <div class="nav-right">
@@ -1356,16 +1356,21 @@
     </footer>
 
     <script>
-        // Wallet connection
-        const walletBtn = document.getElementById('walletBtn');
+        // Check wallet connection state (handled by unified script)
         let isConnected = false;
 
-        walletBtn.addEventListener('click', () => {
-            isConnected = !isConnected;
-            walletBtn.textContent = isConnected ? '지갑 연결됨' : '지갑 연결';
-            walletBtn.classList.toggle('connected');
+        function checkWalletState() {
+            const walletBtn = document.getElementById('walletBtn');
+            isConnected = walletBtn.classList.contains('connected');
             updateStakingInfo();
+        }
+
+        // Monitor wallet button changes
+        const walletBtn = document.getElementById('walletBtn');
+        const observer = new MutationObserver(() => {
+            checkWalletState();
         });
+        observer.observe(walletBtn, { attributes: true, attributeFilter: ['class'] });
 
         // Tab switching
         const tabs = document.querySelectorAll('.tab');
@@ -1454,7 +1459,35 @@
         }
 
         // Initialize
-        updateStakingInfo();
+        checkWalletState();
+    </script>
+
+    <!-- Unified Wallet Connection -->
+    <script>
+    (function() {
+      const btn = document.getElementById('walletBtn');
+      if (!btn) return;
+
+      const saved = sessionStorage.getItem('funsPlatformWallet');
+      if (saved) {
+        btn.textContent = saved;
+        btn.classList.add('connected');
+      }
+
+      btn.addEventListener('click', function() {
+        if (btn.classList.contains('connected')) {
+          sessionStorage.removeItem('funsPlatformWallet');
+          btn.textContent = '지갑 연결';
+          btn.classList.remove('connected');
+        } else {
+          // Simulate wallet connection
+          const addr = '0x1a2B...3c4D';
+          sessionStorage.setItem('funsPlatformWallet', addr);
+          btn.textContent = addr;
+          btn.classList.add('connected');
+        }
+      });
+    })();
     </script>
 </body>
 </html>

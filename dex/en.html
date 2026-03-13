@@ -8,7 +8,7 @@
 <meta name="keywords" content="DEX, Decentralized Exchange, Cryptocurrency Swap, FunSwap, FUNS Token">
 <meta property="og:title" content="FunSwap — Decentralized Exchange">
 <meta property="og:description" content="Swap cryptocurrencies on FunSwap DEX. Decentralized exchange, low fees, multiple token support.">
-<meta property="og:image" content="https://tololalo.github.io/funs-platform/funs nugi.png">
+<meta property="og:image" content="https://tololalo.github.io/funs-platform/funs-nugi.png">
 <meta property="og:url" content="https://tololalo.github.io/funs-platform/dex/en.html">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -68,13 +68,16 @@ body {
   cursor: pointer; transition: border-color .2s; font-family: inherit;
 }
 .chain-btn:hover { border-color: var(--primary); }
-.connect-btn {
+.wallet-btn {
   background: linear-gradient(135deg, var(--primary), #ff9a00);
   color: #fff; border: none; padding: 10px 22px; border-radius: 12px;
   font-weight: 700; font-size: 0.85rem; cursor: pointer;
   transition: transform .2s, box-shadow .2s; font-family: inherit;
 }
-.connect-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,107,53,.4); }
+.wallet-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,107,53,.4); }
+.wallet-btn.connected {
+  background: linear-gradient(135deg, #4caf50, #66bb6a);
+}
 
 /* ── MAIN LAYOUT ── */
 .dex-main {
@@ -325,7 +328,7 @@ body {
   .dex-nav .logo .sub { display: none; }
   .nav-tabs { display: none; }
   .mobile-tabs { display: flex !important; }
-  .connect-btn { padding: 8px 14px; font-size: 0.75rem; }
+  .wallet-btn { padding: 8px 14px; font-size: 0.75rem; }
   .chain-btn { padding: 6px 10px; font-size: 0.75rem; }
   .chain-btn span.chain-name { display: none; }
 
@@ -372,7 +375,7 @@ body {
 @media(max-width:380px) {
   html { font-size: 14px; }
   .dex-nav { gap: 4px; }
-  .connect-btn { padding: 7px 10px; font-size: 0.7rem; }
+  .wallet-btn { padding: 7px 10px; font-size: 0.7rem; }
   .chain-btn { padding: 5px 8px; }
   .token-amount { font-size: 1.2rem; }
   .price-ticker { flex-direction: column; align-items: center; gap: 6px; }
@@ -626,7 +629,7 @@ body {
 <!-- NAV -->
 <header class="dex-nav">
   <a href="../index.html" class="logo">
-    <img src="../funs nugi.png" alt="FunS">
+    <img src="../funs-nugi.png" alt="FunS">
     <span>FunSwap</span>
     <span class="sub">DEX</span>
   </a>
@@ -645,7 +648,7 @@ body {
       <a href="index.html" class="lang-btn">KR</a>
       <a href="en.html" class="lang-btn active">EN</a>
     </div>
-    <button class="connect-btn" id="connectWallet">Connect Wallet</button>
+    <button class="wallet-btn" id="walletBtn">Connect Wallet</button>
   </div>
 </header>
 
@@ -655,7 +658,7 @@ body {
   <!-- Price Ticker -->
   <div class="price-ticker">
     <div class="ticker-chip">
-      <img src="../funs nugi.png" style="width:20px;height:20px;border-radius:50%;">
+      <img src="../funs-nugi.png" style="width:20px;height:20px;border-radius:50%;">
       <span>FUNS</span>
       <span class="price">$1.24</span>
       <span class="change up">+8.0%</span>
@@ -718,7 +721,7 @@ body {
       <div class="token-row">
         <input type="text" class="token-amount" id="toAmount" placeholder="0" inputmode="decimal" readonly>
         <div class="token-select" id="toSelect" data-side="to">
-          <img src="../funs nugi.png" class="token-img" style="width:28px;height:28px;border-radius:50%;">
+          <img src="../funs-nugi.png" class="token-img" style="width:28px;height:28px;border-radius:50%;">
           <span class="token-symbol">FUNS</span>
           <span class="arrow">▼</span>
         </div>
@@ -760,7 +763,7 @@ body {
       <div class="icon">💧</div>
       <h3>No liquidity positions found</h3>
       <p>Provide liquidity and earn trading fees.<br>Please connect your wallet first.</p>
-      <button class="pool-btn" onclick="document.getElementById('connectWallet').click()">Connect Wallet</button>
+      <button class="pool-btn" onclick="document.getElementById('walletBtn').click()">Connect Wallet</button>
     </div>
   </div>
 
@@ -889,7 +892,7 @@ body {
 // ── Token Data ──
 const TOKENS = [
   { symbol: 'BNB', name: 'BNB', img: 'icons/bnb.svg', price: 612, balance: 2.45 },
-  { symbol: 'FUNS', name: 'FunS Token', img: '../funs nugi.png', price: 1.24, balance: 1840 },
+  { symbol: 'FUNS', name: 'FunS Token', img: '../funs-nugi.png', price: 1.24, balance: 1840 },
   { symbol: 'USDT', name: 'Tether USD (BEP-20)', img: 'icons/usdt.svg', price: 1.00, balance: 500 },
   { symbol: 'USDC', name: 'USD Coin (BEP-20)', img: 'icons/usdc.svg', price: 1.00, balance: 250 },
   { symbol: 'ETH', name: 'Ethereum (BEP-20)', img: 'icons/eth.svg', price: 3842, balance: 0.12 },
@@ -1049,25 +1052,16 @@ function updateSwapBtn() {
 }
 
 // ── Wallet Connect (demo) ──
-document.getElementById('connectWallet').addEventListener('click', toggleWallet);
 swapBtn.addEventListener('click', () => {
-  if (!walletConnected) toggleWallet();
-});
-
-function toggleWallet() {
-  walletConnected = !walletConnected;
-  const btn = document.getElementById('connectWallet');
-  if (walletConnected) {
-    btn.textContent = '0x1a2b...9f3e';
-    btn.style.background = 'var(--dark3)';
-    btn.style.border = '1px solid var(--border)';
-  } else {
-    btn.textContent = 'Connect Wallet';
-    btn.style.background = 'linear-gradient(135deg, var(--primary), #ff9a00)';
-    btn.style.border = 'none';
+  const btn = document.getElementById('walletBtn');
+  if (!btn.classList.contains('connected')) {
+    const addr = '0x1a2B...3c4D';
+    sessionStorage.setItem('funsPlatformWallet', addr);
+    btn.textContent = addr;
+    btn.classList.add('connected');
   }
   updateSwapBtn();
-}
+});
 
 // ── MAX button ──
 document.getElementById('maxFrom').addEventListener('click', () => {
@@ -1208,10 +1202,10 @@ function renderTransactions() {
 
 // ── Pools Data ──
 const poolsData = [
-  { pair: 'BNB/FUNS', icons: ['icons/bnb.svg', '../funs nugi.png'], tvl: '$4.2M', apr: '128%', volume24h: '$1.2M' },
-  { pair: 'FUNS/USDT', icons: ['../funs nugi.png', 'icons/usdt.svg'], tvl: '$2.8M', apr: '95%', volume24h: '$890K' },
+  { pair: 'BNB/FUNS', icons: ['icons/bnb.svg', '../funs-nugi.png'], tvl: '$4.2M', apr: '128%', volume24h: '$1.2M' },
+  { pair: 'FUNS/USDT', icons: ['../funs-nugi.png', 'icons/usdt.svg'], tvl: '$2.8M', apr: '95%', volume24h: '$890K' },
   { pair: 'BNB/USDT', icons: ['icons/bnb.svg', 'icons/usdt.svg'], tvl: '$5.6M', apr: '42%', volume24h: '$2.1M' },
-  { pair: 'FUNS/CAKE', icons: ['../funs nugi.png', 'icons/cake.svg'], tvl: '$1.5M', apr: '156%', volume24h: '$420K' }
+  { pair: 'FUNS/CAKE', icons: ['../funs-nugi.png', 'icons/cake.svg'], tvl: '$1.5M', apr: '156%', volume24h: '$420K' }
 ];
 
 function renderPools() {
@@ -1252,5 +1246,34 @@ updateSwapBtn();
 renderTransactions();
 renderPools();
 </script>
+
+<!-- Unified Wallet Connection -->
+<script>
+(function() {
+  const btn = document.getElementById('walletBtn');
+  if (!btn) return;
+
+  const saved = sessionStorage.getItem('funsPlatformWallet');
+  if (saved) {
+    btn.textContent = saved;
+    btn.classList.add('connected');
+  }
+
+  btn.addEventListener('click', function() {
+    if (btn.classList.contains('connected')) {
+      sessionStorage.removeItem('funsPlatformWallet');
+      btn.textContent = 'Connect Wallet';
+      btn.classList.remove('connected');
+    } else {
+      // Simulate wallet connection
+      const addr = '0x1a2B...3c4D';
+      sessionStorage.setItem('funsPlatformWallet', addr);
+      btn.textContent = addr;
+      btn.classList.add('connected');
+    }
+  });
+})();
+</script>
+
 </body>
 </html>

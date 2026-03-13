@@ -8,7 +8,7 @@
 <meta name="keywords" content="NFT, NFT 마켓플레이스, Web3 게임 NFT, 디지털 자산">
 <meta property="og:title" content="FunS NFT Marketplace — Coming Soon">
 <meta property="og:description" content="FunS NFT 마켓플레이스. Web3 게임 NFT, 게임 캐릭터, 디지털 자산을 거래하세요.">
-<meta property="og:image" content="https://tololalo.github.io/funs-platform/funs nugi.png">
+<meta property="og:image" content="https://tololalo.github.io/funs-platform/funs-nugi.png">
 <meta property="og:url" content="https://tololalo.github.io/funs-platform/nft/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -706,7 +706,7 @@ nav {
 <nav>
   <div class="nav-content">
     <div class="nav-left">
-      <img src="../funs nugi.png" alt="FunS Logo" class="nav-logo">
+      <img src="../funs-nugi.png" alt="FunS Logo" class="nav-logo">
       <div class="nav-title">FunS NFT</div>
     </div>
     <div class="nav-right">
@@ -902,6 +902,34 @@ document.addEventListener('DOMContentLoaded', function() {
   updateCountdown();
   animateCounter();
 });
+</script>
+
+<!-- Unified Wallet Connection -->
+<script>
+(function() {
+  const btn = document.getElementById('walletBtn');
+  if (!btn) return;
+
+  const saved = sessionStorage.getItem('funsPlatformWallet');
+  if (saved) {
+    btn.textContent = saved;
+    btn.classList.add('connected');
+  }
+
+  btn.addEventListener('click', function() {
+    if (btn.classList.contains('connected')) {
+      sessionStorage.removeItem('funsPlatformWallet');
+      btn.textContent = '지갑 연결';
+      btn.classList.remove('connected');
+    } else {
+      // Simulate wallet connection
+      const addr = '0x1a2B...3c4D';
+      sessionStorage.setItem('funsPlatformWallet', addr);
+      btn.textContent = addr;
+      btn.classList.add('connected');
+    }
+  });
+})();
 </script>
 
 </body>
