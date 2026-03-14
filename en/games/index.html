@@ -303,6 +303,20 @@ nav {
   font-weight: 600;
 }
 
+.hero-mascot {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 20px rgba(255,107,53,0.4));
+  animation: mascotFloat 3s ease-in-out infinite;
+}
+
+@keyframes mascotFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
 /* ── SEARCH & FILTER SECTION ── */
 .search-filter {
   width: 100%;
@@ -490,6 +504,24 @@ nav {
   height: 200%;
   background: linear-gradient(45deg, transparent 30%, rgba(255,107,53,.1) 50%, transparent 70%);
   animation: shimmer 3s infinite;
+}
+
+.game-logo-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  z-index: 2;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.game-card:hover .game-logo-badge {
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 .game-content {
@@ -690,6 +722,26 @@ nav {
 .featured-cta:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(255,107,53,.4);
+}
+
+.featured-powered {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  opacity: 0.7;
+}
+
+.featured-funs-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.featured-powered span {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 600;
 }
 
 /* ── HOW TO PLAY ── */
@@ -953,6 +1005,11 @@ footer {
     padding: 40px 12px;
   }
 
+  .hero-mascot {
+    width: 80px;
+    height: 80px;
+  }
+
   .hero-content h1 {
     font-size: 1.4rem;
     margin-bottom: 12px;
@@ -960,6 +1017,13 @@ footer {
 
   .hero-content p {
     font-size: 0.9rem;
+  }
+
+  .game-logo-badge {
+    width: 32px;
+    height: 32px;
+    top: 8px;
+    right: 8px;
   }
 
   .search-filter {
@@ -1056,8 +1120,18 @@ footer {
     letter-spacing: 0.5px;
   }
 
+  .hero-mascot {
+    width: 60px;
+    height: 60px;
+  }
+
   .hero-content h1 {
     font-size: 1.1rem;
+  }
+
+  .game-logo-badge {
+    width: 28px;
+    height: 28px;
   }
 
   .filter-buttons {
@@ -1470,6 +1544,7 @@ footer {
 <section class="hero">
   <div class="hero-particles"></div>
   <div class="hero-content">
+    <img src="../../funs-nugi.png" alt="FunS" class="hero-mascot">
     <div class="hero-badge">🎮 Web3 Play-to-Earn Gaming</div>
     <h1>FunS <span class="text-gradient">Game Hub</span></h1>
     <p>Play blockchain-based Web3 games and earn FUNS tokens</p>
@@ -1514,6 +1589,10 @@ footer {
         <li>5x reward multiplier daily</li>
       </ul>
       <button class="featured-cta">Play Now</button>
+      <div class="featured-powered">
+        <img src="../../funs-nugi.png" alt="FunS" class="featured-funs-logo">
+        <span>Powered by FunS</span>
+      </div>
     </div>
   </div>
 </section>
@@ -1557,7 +1636,7 @@ footer {
     <button class="modal-close-btn" id="closeGameModal">✕</button>
     <div class="game-modal-content">
       <div class="game-modal-header">
-        <div class="game-modal-icon">🎮</div>
+        <div class="game-modal-icon"><img src="../../funs-nugi.png" alt="FunS" style="width:48px;height:48px;object-fit:contain;"></div>
         <div class="game-modal-info">
           <h2 id="modalGameTitle">Game Title</h2>
           <span class="game-modal-genre" id="modalGameGenre">Genre</span>
@@ -1768,7 +1847,10 @@ function renderGames() {
     }
 
     gameCard.innerHTML = `
-      <div class="game-thumbnail"><img src="${game.image}" alt="${game.title}"></div>
+      <div class="game-thumbnail">
+        <img src="${game.image}" alt="${game.title}">
+        <img src="../../funs-nugi.png" alt="FunS" class="game-logo-badge">
+      </div>
       <div class="game-content">
         <div class="game-header">
           <div class="game-title">${game.title}</div>
