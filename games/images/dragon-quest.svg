@@ -1,0 +1,106 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="dragonBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1A0F2E;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#080B14;stop-opacity:1" />
+    </linearGradient>
+    <filter id="dragonGlow">
+      <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="fireGlow">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+    <radialGradient id="fireGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#FF6B35;stop-opacity:0.3" />
+    </radialGradient>
+  </defs>
+
+  <rect width="400" height="300" fill="url(#dragonBg)"/>
+
+  <!-- Mountain/cave silhouette background -->
+  <polygon points="0,120 50,80 100,100 150,60 200,85 250,50 300,90 350,70 400,110 400,300 0,300" fill="#0A0617" opacity="0.6"/>
+  <polygon points="0,150 80,110 160,130 240,95 320,140 400,120 400,300 0,300" fill="#050308" opacity="0.4"/>
+
+  <!-- Dragon silhouette -->
+  <g filter="url(#dragonGlow)">
+    <!-- Body -->
+    <ellipse cx="180" cy="150" rx="50" ry="35" fill="#FF6B35" opacity="0.9"/>
+
+    <!-- Dragon head -->
+    <circle cx="240" cy="130" r="25" fill="#FF6B35" opacity="0.9"/>
+
+    <!-- Horns -->
+    <polygon points="245,105 255,85 250,100" fill="#FFD700" opacity="0.8"/>
+    <polygon points="235,105 225,80 230,100" fill="#FFD700" opacity="0.8"/>
+
+    <!-- Snout -->
+    <ellipse cx="260" cy="135" rx="15" ry="12" fill="#FF6B35" opacity="0.85"/>
+
+    <!-- Eye glow -->
+    <circle cx="250" cy="125" r="5" fill="#FFD700" opacity="0.9"/>
+    <circle cx="250" cy="125" r="3" fill="#FFD700" opacity="0.5" filter="url(#fireGlow)"/>
+
+    <!-- Wings -->
+    <polygon points="160,120 120,80 140,140" fill="#4FC3F7" opacity="0.7"/>
+    <polygon points="200,120 240,70 220,140" fill="#4FC3F7" opacity="0.7"/>
+
+    <!-- Tail -->
+    <path d="M 130 160 Q 90 165 60 145" stroke="#FF6B35" stroke-width="12" fill="none" opacity="0.85" stroke-linecap="round"/>
+
+    <!-- Back spikes -->
+    <polygon points="170,115 165,95 175,115" fill="#FFD700" opacity="0.75"/>
+    <polygon points="190,110 188,88 198,110" fill="#FFD700" opacity="0.75"/>
+    <polygon points="210,115 208,93 218,115" fill="#FFD700" opacity="0.75"/>
+  </g>
+
+  <!-- Fire breath -->
+  <g filter="url(#fireGlow)">
+    <!-- Main fire stream -->
+    <ellipse cx="285" cy="125" rx="30" ry="25" fill="url(#fireGrad)"/>
+    <polygon points="270,110 310,100 300,150 280,140" fill="#FFD700" opacity="0.7"/>
+    <polygon points="280,115 320,105 310,145 290,135" fill="#FF6B35" opacity="0.8"/>
+
+    <!-- Secondary flames -->
+    <path d="M 295 115 Q 320 95 330 110" stroke="#FFD700" stroke-width="3" fill="none" opacity="0.6" stroke-linecap="round"/>
+    <path d="M 290 125 Q 325 115 340 135" stroke="#FF6B35" stroke-width="2" fill="none" opacity="0.7" stroke-linecap="round"/>
+    <path d="M 300 135 Q 330 140 340 160" stroke="#FFD700" stroke-width="2" fill="none" opacity="0.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Treasure/loot at bottom -->
+  <g filter="url(#dragonGlow)">
+    <!-- Treasure chest -->
+    <rect x="80" y="220" width="50" height="40" fill="#FFD700" opacity="0.8" rx="3"/>
+    <ellipse cx="105" cy="220" rx="25" ry="8" fill="#FFD700" opacity="0.6"/>
+
+    <!-- Coins spilling out -->
+    <circle cx="70" cy="250" r="6" fill="#FFD700" opacity="0.8"/>
+    <circle cx="150" cy="255" r="5" fill="#FFD700" opacity="0.7"/>
+    <circle cx="60" cy="265" r="5" fill="#FFD700" opacity="0.75"/>
+    <circle cx="160" cy="270" r="4" fill="#FFD700" opacity="0.6"/>
+
+    <!-- Gem -->
+    <polygon points="125,210 135,230 115,230" fill="#4FC3F7" opacity="0.9"/>
+  </g>
+
+  <!-- Magical glow effects -->
+  <g opacity="0.6" filter="url(#fireGlow)">
+    <circle cx="150" cy="140" r="40" fill="none" stroke="#FF6B35" stroke-width="1" opacity="0.4"/>
+    <circle cx="150" cy="140" r="50" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.3"/>
+  </g>
+
+  <!-- Floating particles around treasure -->
+  <g filter="url(#fireGlow)">
+    <circle cx="115" cy="195" r="2" fill="#FFD700" opacity="0.7"/>
+    <circle cx="95" cy="200" r="1.5" fill="#4FC3F7" opacity="0.6"/>
+    <circle cx="140" cy="190" r="1.8" fill="#FF6B35" opacity="0.65"/>
+    <circle cx="75" cy="210" r="1.5" fill="#FFD700" opacity="0.6"/>
+  </g>
+
+  <!-- Title -->
+  <text x="200" y="30" font-size="18" fill="#FF6B35" text-anchor="middle" font-weight="bold" filter="url(#dragonGlow)">DRAGON QUEST</text>
+</svg>

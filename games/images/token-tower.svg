@@ -1,0 +1,105 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="towerBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0D1120;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#080B14;stop-opacity:1" />
+    </linearGradient>
+    <filter id="towerGlow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="sparkle">
+      <feGaussianBlur stdDeviation="1"/>
+    </filter>
+    <linearGradient id="blockGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#FF6B35;stop-opacity:0.8" />
+    </linearGradient>
+    <linearGradient id="blockGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#4FC3F7;stop-opacity:0.8" />
+    </linearGradient>
+    <linearGradient id="blockGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4FC3F7;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#FFD700;stop-opacity:0.8" />
+    </linearGradient>
+  </defs>
+
+  <rect width="400" height="300" fill="url(#towerBg)"/>
+
+  <!-- City skyline background -->
+  <polygon points="0,180 60,140 100,155 150,120 200,135 250,100 300,140 350,110 400,155 400,300 0,300" fill="#0A0D18" opacity="0.5"/>
+
+  <!-- Height markers on left -->
+  <g stroke="#4FC3F7" stroke-width="1" opacity="0.4">
+    <line x1="30" y1="80" x2="50" y2="80"/>
+    <line x1="30" y1="120" x2="50" y2="120"/>
+    <line x1="30" y1="160" x2="50" y2="160"/>
+    <line x1="30" y1="200" x2="50" y2="200"/>
+  </g>
+
+  <!-- Height numbers -->
+  <g fill="#4FC3F7" font-size="10" opacity="0.6" text-anchor="end">
+    <text x="25" y="85">100m</text>
+    <text x="25" y="125">75m</text>
+    <text x="25" y="165">50m</text>
+    <text x="25" y="205">25m</text>
+  </g>
+
+  <!-- Tower blocks stacked with glow -->
+  <g filter="url(#towerGlow)">
+    <!-- Bottom block -->
+    <rect x="150" y="200" width="100" height="25" fill="url(#blockGrad1)" opacity="0.95" rx="3"/>
+    <rect x="150" y="200" width="100" height="25" fill="none" stroke="#FFD700" stroke-width="2" opacity="0.6" rx="3"/>
+
+    <!-- Second block -->
+    <rect x="160" y="170" width="80" height="25" fill="url(#blockGrad2)" opacity="0.95" rx="3"/>
+    <rect x="160" y="170" width="80" height="25" fill="none" stroke="#FF6B35" stroke-width="2" opacity="0.6" rx="3"/>
+
+    <!-- Third block -->
+    <rect x="170" y="140" width="60" height="25" fill="url(#blockGrad3)" opacity="0.95" rx="3"/>
+    <rect x="170" y="140" width="60" height="25" fill="none" stroke="#4FC3F7" stroke-width="2" opacity="0.6" rx="3"/>
+
+    <!-- Fourth block (wobbling) -->
+    <rect x="180" y="110" width="40" height="25" fill="url(#blockGrad1)" opacity="0.95" rx="3"/>
+    <rect x="180" y="110" width="40" height="25" fill="none" stroke="#FFD700" stroke-width="2" opacity="0.6" rx="3"/>
+  </g>
+
+  <!-- Falling block indicator -->
+  <g opacity="0.7" filter="url(#towerGlow)">
+    <rect x="175" y="70" width="50" height="25" fill="url(#blockGrad2)" opacity="0.7" rx="3"/>
+    <rect x="175" y="70" width="50" height="25" fill="none" stroke="#FF6B35" stroke-width="2" opacity="0.5" stroke-dasharray="5,5" rx="3"/>
+  </g>
+
+  <!-- Sparkle effects at top -->
+  <g filter="url(#sparkle)">
+    <circle cx="185" cy="85" r="2.5" fill="#FFD700" opacity="0.8"/>
+    <circle cx="185" cy="85" r="4" fill="#FFD700" opacity="0.3"/>
+
+    <circle cx="205" cy="75" r="2" fill="#4FC3F7" opacity="0.7"/>
+    <circle cx="205" cy="75" r="3.5" fill="#4FC3F7" opacity="0.25"/>
+
+    <circle cx="195" cy="50" r="2.2" fill="#FF6B35" opacity="0.75"/>
+    <circle cx="195" cy="50" r="4" fill="#FF6B35" opacity="0.3"/>
+
+    <circle cx="215" cy="95" r="1.8" fill="#FFD700" opacity="0.6"/>
+    <circle cx="215" cy="95" r="3" fill="#FFD700" opacity="0.2"/>
+
+    <circle cx="170" cy="60" r="2" fill="#4FC3F7" opacity="0.65"/>
+    <circle cx="170" cy="60" r="3.5" fill="#4FC3F7" opacity="0.2"/>
+  </g>
+
+  <!-- Connecting lines for structure -->
+  <line x1="145" y1="195" x2="250" y2="195" stroke="#FFD700" stroke-width="1" opacity="0.2"/>
+  <line x1="155" y1="165" x2="240" y2="165" stroke="#FF6B35" stroke-width="1" opacity="0.2"/>
+  <line x1="165" y1="135" x2="230" y2="135" stroke="#4FC3F7" stroke-width="1" opacity="0.2"/>
+
+  <!-- Title -->
+  <text x="200" y="30" font-size="18" fill="#FFD700" text-anchor="middle" font-weight="bold" filter="url(#towerGlow)">TOKEN TOWER</text>
+
+  <!-- Score display -->
+  <text x="200" y="270" font-size="16" fill="#FF6B35" text-anchor="middle" font-weight="bold" filter="url(#towerGlow)">STACK: 4</text>
+</svg>

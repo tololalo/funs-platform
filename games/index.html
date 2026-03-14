@@ -209,37 +209,97 @@ nav {
 
 /* ── HERO SECTION ── */
 .hero {
-  width: 100%;
-  padding: 80px 20px;
+  position: relative;
+  padding: 80px 20px 60px;
   text-align: center;
-  background:
-    radial-gradient(ellipse at 50% 0%, rgba(255,107,53,.08), transparent 50%),
-    radial-gradient(ellipse at 80% 80%, rgba(79,195,247,.04), transparent 40%);
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(255,107,53,0.08) 0%, rgba(8,11,20,1) 40%, rgba(79,195,247,0.08) 100%);
   border-bottom: 1px solid var(--border);
 }
 
-.hero-content h1 {
-  font-family: 'Orbitron', monospace;
-  font-size: 3.5rem;
-  font-weight: 900;
-  background: linear-gradient(135deg, var(--secondary), var(--primary));
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,107,53,0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: heroGrid 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes heroGrid {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+.hero-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  background: rgba(255,107,53,0.15);
+  border: 1px solid rgba(255,107,53,0.3);
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.hero-content h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  font-weight: 900;
   margin-bottom: 16px;
-  letter-spacing: 2px;
-  animation: fadeInDown 0.8s ease-out;
+  color: var(--text);
+  position: relative;
+  z-index: 1;
 }
 
 .hero-content p {
-  font-size: 1.2rem;
   color: var(--muted);
-  margin-bottom: 32px;
-  max-width: 600px;
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+  max-width: 500px;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
+  z-index: 1;
   line-height: 1.6;
-  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.hero-stats-mini {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-stats-mini span {
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
 /* ── SEARCH & FILTER SECTION ── */
@@ -407,24 +467,32 @@ nav {
 
 .game-thumbnail {
   width: 100%;
-  aspect-ratio: 16/9;
-  background: linear-gradient(135deg, var(--dark3), var(--card2));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  color: rgba(255,255,255,0.1);
-  position: relative;
+  height: 200px;
   overflow: hidden;
+  border-radius: 12px 12px 0 0;
+  position: relative;
 }
 
-.game-thumbnail::before {
+.game-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.game-card:hover .game-thumbnail img {
+  transform: scale(1.05);
+}
+
+.game-thumbnail::after {
   content: '';
   position: absolute;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, transparent 30%, rgba(255,107,53,.1) 50%, transparent 70%);
-  animation: shimmer 3s infinite;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(transparent, var(--card));
+  pointer-events: none;
 }
 
 .game-content {
@@ -449,15 +517,17 @@ nav {
 }
 
 .game-genre {
-  background: var(--dark3);
-  border: 1px solid var(--border);
-  color: var(--primary);
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  white-space: nowrap;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
 }
+
+.game-genre[data-genre="액션"] { background: rgba(255,107,53,0.2); color: #FF6B35; }
+.game-genre[data-genre="퍼즐"] { background: rgba(79,195,247,0.2); color: #4FC3F7; }
+.game-genre[data-genre="카드"] { background: rgba(255,215,0,0.2); color: #FFD700; }
+.game-genre[data-genre="RPG"] { background: rgba(156,39,176,0.2); color: #CE93D8; }
+.game-genre[data-genre="캐주얼"] { background: rgba(76,175,80,0.2); color: #81C784; }
 
 .game-description {
   color: var(--muted);
@@ -545,16 +615,18 @@ nav {
 }
 
 .featured-image {
-  width: 100%;
-  aspect-ratio: 16/9;
-  background: linear-gradient(135deg, rgba(255,107,53,.2), rgba(79,195,247,.1));
+  flex: 1;
+  min-height: 300px;
   border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 5rem;
-  color: rgba(255,255,255,0.15);
-  border: 1px solid var(--border);
+  overflow: hidden;
+  position: relative;
+}
+
+.featured-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
 }
 
 .featured-content h3 {
@@ -1354,19 +1426,36 @@ footer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
 .screenshot-box {
-  aspect-ratio: 16 / 9;
-  background: linear-gradient(135deg, rgba(255, 107, 53, 0.15), rgba(79, 195, 247, 0.1));
-  border: 1px solid var(--border);
+  aspect-ratio: 16/10;
   border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--dark3);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.screenshot-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.screenshot-label {
+  font-size: 0.7rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.screenshot-icon {
   font-size: 2rem;
-  color: rgba(255, 255, 255, 0.1);
 }
 
 .game-modal-stats {
@@ -1495,6 +1584,10 @@ footer {
     padding: 24px 16px 20px;
   }
 
+  .game-screenshots {
+    grid-template-columns: 1fr;
+  }
+
   .game-modal-icon {
     font-size: 3rem;
     width: 70px;
@@ -1578,9 +1671,16 @@ footer {
 
 <!-- HERO SECTION -->
 <section class="hero">
+  <div class="hero-particles"></div>
   <div class="hero-content">
-    <h1>FunS 게임 허브</h1>
-    <p>블록체인 기반 Web3 게임을 지금 바로 플레이하세요</p>
+    <div class="hero-badge">🎮 Web3 Play-to-Earn Gaming</div>
+    <h1>FunS <span class="text-gradient">게임 허브</span></h1>
+    <p>블록체인 기반 Web3 게임을 플레이하고 FUNS 토큰을 획득하세요</p>
+    <div class="hero-stats-mini">
+      <span>🎯 8+ 게임</span>
+      <span>👥 12.4K 유저</span>
+      <span>💰 $2.1M 보상</span>
+    </div>
   </div>
 </section>
 
@@ -1600,30 +1700,12 @@ footer {
   </div>
 </section>
 
-<!-- STATS BAR -->
-<section class="stats-bar">
-  <div class="stat-item">
-    <div class="stat-number">8+</div>
-    <div class="stat-label">총 게임</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-number">12.4K</div>
-    <div class="stat-label">일일 활성 유저</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-number">$2.1M</div>
-    <div class="stat-label">총 보상 지급</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-number">4.6★</div>
-    <div class="stat-label">평균 평점</div>
-  </div>
-</section>
-
 <!-- FEATURED GAME -->
 <section class="featured-section">
   <div class="featured-game">
-    <div class="featured-image">🚀</div>
+    <div class="featured-image">
+      <img src="images/space-miner.svg" alt="스페이스 마이너">
+    </div>
     <div class="featured-content">
       <h3>스페이스 마이너</h3>
       <span class="featured-genre">RPG</span>
@@ -1751,6 +1833,15 @@ footer {
 </footer>
 
 <script>
+// Genre colors for modal
+const genreColors = {
+  '액션': 'rgba(255,107,53,0.2)',
+  '퍼즐': 'rgba(79,195,247,0.2)',
+  '카드': 'rgba(255,215,0,0.2)',
+  'RPG': 'rgba(156,39,176,0.2)',
+  '캐주얼': 'rgba(76,175,80,0.2)'
+};
+
 // Game data
 const games = [
   {
@@ -1762,6 +1853,7 @@ const games = [
     players: '12K',
     rating: 4.8,
     emoji: '🏃',
+    image: 'images/funs-runner.svg',
     reward: '최대 50 FUNS'
   },
   {
@@ -1773,6 +1865,7 @@ const games = [
     players: '8.2K',
     rating: 4.5,
     emoji: '🧩',
+    image: 'images/crypto-puzzle.svg',
     reward: '최대 35 FUNS'
   },
   {
@@ -1784,6 +1877,7 @@ const games = [
     players: '15K',
     rating: 4.7,
     emoji: '🃏',
+    image: 'images/card-battle.svg',
     reward: '최대 100 FUNS'
   },
   {
@@ -1795,6 +1889,7 @@ const games = [
     players: '6.8K',
     rating: 4.3,
     emoji: '⭐',
+    image: 'images/space-miner.svg',
     reward: '최대 150 FUNS'
   },
   {
@@ -1806,6 +1901,7 @@ const games = [
     players: '9.1K',
     rating: 4.2,
     emoji: '🏗️',
+    image: 'images/token-tower.svg',
     reward: '최대 25 FUNS'
   },
   {
@@ -1817,6 +1913,7 @@ const games = [
     players: '11K',
     rating: 4.6,
     emoji: '🐉',
+    image: 'images/dragon-quest.svg',
     reward: '최대 75 FUNS'
   },
   {
@@ -1828,6 +1925,7 @@ const games = [
     players: '7.5K',
     rating: 4.1,
     emoji: '🫧',
+    image: 'images/bubble-blast.svg',
     reward: '최대 120 FUNS'
   },
   {
@@ -1839,6 +1937,7 @@ const games = [
     players: '5.3K',
     rating: 4.4,
     emoji: '♟️',
+    image: 'images/chess-master.svg',
     reward: '최대 40 FUNS'
   }
 ];
@@ -1872,11 +1971,11 @@ function renderGames() {
     }
 
     gameCard.innerHTML = `
-      <div class="game-thumbnail">${game.emoji}</div>
+      <div class="game-thumbnail"><img src="${game.image}" alt="${game.title}" loading="lazy"></div>
       <div class="game-content">
         <div class="game-header">
           <div class="game-title">${game.title}</div>
-          <span class="game-genre">${game.genre}</span>
+          <span class="game-genre" data-genre="${game.genre}">${game.genre}</span>
         </div>
         <p class="game-description">${game.description}</p>
         <div class="game-stats">
@@ -1913,9 +2012,34 @@ function openGameModal(game) {
   const modal = document.getElementById('gameModal');
   document.getElementById('modalGameTitle').textContent = game.title;
   document.getElementById('modalGameGenre').textContent = game.genre;
+  document.getElementById('modalGameGenre').style.background = genreColors[game.genre] || 'rgba(255,107,53,0.2)';
   document.getElementById('modalGameDescription').textContent = game.fullDescription;
   document.getElementById('modalGamePlayers').textContent = game.players;
   document.getElementById('modalGameReward').textContent = game.reward;
+
+  // Update modal icon with game emoji
+  document.querySelector('.game-modal-icon').innerHTML = game.emoji;
+
+  // Generate screenshots
+  const colors = {
+    'FunS 런너': ['#FF6B35', '#FF9A00', '#FFD700'],
+    '크립토 퍼즐': ['#4FC3F7', '#29B6F6', '#0288D1'],
+    '카드 배틀': ['#FFD700', '#FF6B35', '#CE93D8'],
+    '스페이스 마이너': ['#4FC3F7', '#0D1120', '#FF6B35'],
+    '토큰 타워': ['#FF6B35', '#FFD700', '#4FC3F7'],
+    '드래곤 퀘스트': ['#FF6B35', '#CE93D8', '#FFD700'],
+    '버블 블라스트': ['#4FC3F7', '#FF6B35', '#81C784'],
+    '체스 마스터': ['#8892b0', '#FFD700', '#4FC3F7']
+  };
+  const gameColors = colors[game.title] || ['#FF6B35', '#4FC3F7', '#FFD700'];
+  const screenshotContainer = document.querySelector('.game-screenshots');
+  screenshotContainer.innerHTML = gameColors.map((c, i) => `
+    <div class="screenshot-box" style="background: linear-gradient(135deg, ${c}22, ${c}44); border-color: ${c}44;">
+      <div class="screenshot-label">스크린샷 ${i + 1}</div>
+      <div class="screenshot-icon" style="color: ${c}">${['🎮', '⚔️', '🏆'][i]}</div>
+    </div>
+  `).join('');
+
 
   // Generate star rating
   let starsHTML = '';

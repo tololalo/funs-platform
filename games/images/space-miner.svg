@@ -1,0 +1,100 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="spaceMinerBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A0817;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#080B14;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shipGlow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="miningBeam">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <radialGradient id="asteroidGlow" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#FF6B35;stop-opacity:0.2" />
+    </radialGradient>
+  </defs>
+
+  <rect width="400" height="300" fill="url(#spaceMinerBg)"/>
+
+  <!-- Stars field -->
+  <circle cx="40" cy="30" r="1.2" fill="#4FC3F7" opacity="0.7"/>
+  <circle cx="100" cy="50" r="0.8" fill="#FFD700" opacity="0.5"/>
+  <circle cx="180" cy="25" r="1.5" fill="#4FC3F7" opacity="0.8"/>
+  <circle cx="280" cy="40" r="1" fill="#FFD700" opacity="0.6"/>
+  <circle cx="350" cy="60" r="1.3" fill="#4FC3F7" opacity="0.7"/>
+  <circle cx="120" cy="80" r="0.9" fill="#FFD700" opacity="0.5"/>
+  <circle cx="300" cy="95" r="1" fill="#4FC3F7" opacity="0.6"/>
+  <circle cx="60" cy="200" r="1.2" fill="#4FC3F7" opacity="0.7"/>
+  <circle cx="350" cy="240" r="0.8" fill="#FFD700" opacity="0.5"/>
+
+  <!-- Spaceship/Rocket body -->
+  <g filter="url(#shipGlow)">
+    <!-- Main fuselage -->
+    <ellipse cx="200" cy="140" rx="20" ry="35" fill="#FF6B35" opacity="0.9"/>
+
+    <!-- Cockpit -->
+    <circle cx="200" cy="110" r="8" fill="#4FC3F7" opacity="0.85"/>
+    <circle cx="200" cy="110" r="6" fill="#4FC3F7" opacity="0.6"/>
+
+    <!-- Wings -->
+    <polygon points="200,130 170,145 180,155" fill="#FFD700" opacity="0.8"/>
+    <polygon points="200,130 230,145 220,155" fill="#FFD700" opacity="0.8"/>
+
+    <!-- Tail fins -->
+    <polygon points="190,172 185,195 200,175" fill="#4FC3F7" opacity="0.7"/>
+    <polygon points="210,172 215,195 200,175" fill="#4FC3F7" opacity="0.7"/>
+
+    <!-- Engine glow -->
+    <ellipse cx="200" cy="185" rx="12" ry="15" fill="#FFD700" opacity="0.6" filter="url(#miningBeam)"/>
+  </g>
+
+  <!-- Mining beam (cyan) -->
+  <g opacity="0.7" filter="url(#miningBeam)">
+    <line x1="200" y1="160" x2="200" y2="240" stroke="#4FC3F7" stroke-width="4"/>
+    <line x1="195" y1="165" x2="190" y2="240" stroke="#4FC3F7" stroke-width="2" opacity="0.5"/>
+    <line x1="205" y1="165" x2="210" y2="240" stroke="#4FC3F7" stroke-width="2" opacity="0.5"/>
+  </g>
+
+  <!-- Asteroid 1 - Large with glow -->
+  <g>
+    <circle cx="280" cy="150" r="25" fill="url(#asteroidGlow)" filter="url(#shipGlow)"/>
+    <circle cx="280" cy="150" r="25" fill="none" stroke="#FFD700" stroke-width="2" opacity="0.5"/>
+
+    <!-- Mineral chunks -->
+    <polygon points="280,125 295,135 285,150" fill="#FFD700" opacity="0.8"/>
+    <polygon points="270,140 280,160 265,155" fill="#FFD700" opacity="0.7"/>
+    <polygon points="290,160 305,150 300,165" fill="#FFD700" opacity="0.75"/>
+
+    <!-- Glow effect -->
+    <circle cx="280" cy="150" r="20" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.3"/>
+  </g>
+
+  <!-- Asteroid 2 - Small -->
+  <g>
+    <circle cx="100" cy="180" r="15" fill="url(#asteroidGlow)" opacity="0.7"/>
+    <polygon points="100,170 110,180 105,190" fill="#FFD700" opacity="0.75"/>
+    <polygon points="95,175 105,185 90,185" fill="#FFD700" opacity="0.65"/>
+    <circle cx="100" cy="180" r="12" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.3"/>
+  </g>
+
+  <!-- Asteroid 3 - Medium -->
+  <g>
+    <circle cx="320" cy="230" r="18" fill="url(#asteroidGlow)" opacity="0.75"/>
+    <polygon points="320,215 335,225 330,240" fill="#FFD700" opacity="0.7"/>
+    <polygon points="310,220 325,235 305,235" fill="#FFD700" opacity="0.65"/>
+  </g>
+
+  <!-- Mining particles -->
+  <circle cx="205" cy="200" r="2" fill="#FFD700" opacity="0.8" filter="url(#miningBeam)"/>
+  <circle cx="195" cy="215" r="1.5" fill="#4FC3F7" opacity="0.7" filter="url(#miningBeam)"/>
+  <circle cx="210" cy="225" r="1.8" fill="#FFD700" opacity="0.6" filter="url(#miningBeam)"/>
+
+  <!-- Title -->
+  <text x="200" y="30" font-size="18" fill="#4FC3F7" text-anchor="middle" font-weight="bold" filter="url(#shipGlow)">SPACE MINER</text>
+</svg>

@@ -1,0 +1,123 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bubbleBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0D1120;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#080B14;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0A0D18;stop-opacity:1" />
+    </linearGradient>
+    <filter id="bubbleGlow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="popGlow">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <radialGradient id="orangeBubble" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.7" />
+      <stop offset="100%" style="stop-color:#FF6B35;stop-opacity:0.9" />
+    </radialGradient>
+    <radialGradient id="cyanBubble" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" style="stop-color:#88E0F0;stop-opacity:0.7" />
+      <stop offset="100%" style="stop-color:#4FC3F7;stop-opacity:0.9" />
+    </radialGradient>
+    <radialGradient id="goldBubble" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" style="stop-color:#FFED4E;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#FFD700;stop-opacity:0.9" />
+    </radialGradient>
+    <radialGradient id="whiteBubble" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#E0E0E0;stop-opacity:0.9" />
+    </radialGradient>
+  </defs>
+
+  <rect width="400" height="300" fill="url(#bubbleBg)"/>
+
+  <!-- Large orange bubble - center left -->
+  <g filter="url(#bubbleGlow)">
+    <circle cx="100" cy="100" r="35" fill="url(#orangeBubble)" opacity="0.95"/>
+    <circle cx="100" cy="100" r="35" fill="none" stroke="#FF6B35" stroke-width="2" opacity="0.5"/>
+    <!-- Shine -->
+    <circle cx="88" cy="88" r="10" fill="white" opacity="0.3"/>
+  </g>
+
+  <!-- Large cyan bubble - center -->
+  <g filter="url(#bubbleGlow)">
+    <circle cx="200" cy="140" r="40" fill="url(#cyanBubble)" opacity="0.95"/>
+    <circle cx="200" cy="140" r="40" fill="none" stroke="#4FC3F7" stroke-width="2" opacity="0.5"/>
+    <!-- Shine -->
+    <circle cx="185" cy="125" r="12" fill="white" opacity="0.35"/>
+  </g>
+
+  <!-- Large gold bubble - right -->
+  <g filter="url(#bubbleGlow)">
+    <circle cx="310" cy="90" r="32" fill="url(#goldBubble)" opacity="0.95"/>
+    <circle cx="310" cy="90" r="32" fill="none" stroke="#FFD700" stroke-width="2" opacity="0.5"/>
+    <!-- Shine -->
+    <circle cx="300" cy="78" r="9" fill="white" opacity="0.3"/>
+  </g>
+
+  <!-- Medium cyan bubble - lower left -->
+  <g filter="url(#bubbleGlow)">
+    <circle cx="140" cy="210" r="25" fill="url(#cyanBubble)" opacity="0.92"/>
+    <circle cx="140" cy="210" r="25" fill="none" stroke="#4FC3F7" stroke-width="1.5" opacity="0.4"/>
+    <!-- Shine -->
+    <circle cx="130" cy="200" r="7" fill="white" opacity="0.25"/>
+  </g>
+
+  <!-- Medium orange bubble - bottom center -->
+  <g filter="url(#bubbleGlow)">
+    <circle cx="280" cy="220" r="28" fill="url(#orangeBubble)" opacity="0.92"/>
+    <circle cx="280" cy="220" r="28" fill="none" stroke="#FF6B35" stroke-width="1.5" opacity="0.4"/>
+    <!-- Shine -->
+    <circle cx="270" cy="210" r="8" fill="white" opacity="0.28"/>
+  </g>
+
+  <!-- Small white bubble - top -->
+  <g filter="url(#bubbleGlow)">
+    <circle cx="250" cy="50" r="18" fill="url(#whiteBubble)" opacity="0.9"/>
+    <circle cx="250" cy="50" r="18" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.3"/>
+    <!-- Shine -->
+    <circle cx="242" cy="42" r="5" fill="white" opacity="0.35"/>
+  </g>
+
+  <!-- Small gold bubble - upper right -->
+  <g filter="url(#bubbleGlow)">
+    <circle cx="70" cy="50" r="16" fill="url(#goldBubble)" opacity="0.88"/>
+    <circle cx="70" cy="50" r="16" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.3"/>
+  </g>
+
+  <!-- Tiny bubble - scattered -->
+  <circle cx="320" cy="160" r="12" fill="url(#cyanBubble)" opacity="0.85" filter="url(#bubbleGlow)"/>
+  <circle cx="320" cy="160" r="12" fill="none" stroke="#4FC3F7" stroke-width="1" opacity="0.3"/>
+
+  <!-- Pop effects - burst patterns -->
+  <g opacity="0.8" filter="url(#popGlow)">
+    <!-- Burst near left bubble -->
+    <line x1="50" y1="100" x2="30" y2="90" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"/>
+    <line x1="55" y1="80" x2="40" y2="60" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"/>
+    <line x1="70" y1="75" x2="60" y2="50" stroke="#FFD700" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="50" cy="85" r="2" fill="#FF6B35" opacity="0.6"/>
+    <circle cx="45" cy="70" r="1.5" fill="#FFD700" opacity="0.5"/>
+  </g>
+
+  <!-- Pop effects - bottom right -->
+  <g opacity="0.7" filter="url(#popGlow)">
+    <line x1="340" y1="240" x2="360" y2="250" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"/>
+    <line x1="350" y1="255" x2="370" y2="270" stroke="#FF6B35" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="355" cy="250" r="1.5" fill="#FF6B35" opacity="0.6"/>
+  </g>
+
+  <!-- Score numbers floating -->
+  <g font-weight="bold" filter="url(#bubbleGlow)" opacity="0.8">
+    <text x="120" y="95" font-size="14" fill="#FFD700" text-anchor="middle">+50</text>
+    <text x="220" y="175" font-size="16" fill="#FF6B35" text-anchor="middle">+100</text>
+    <text x="290" y="190" font-size="12" fill="#4FC3F7" text-anchor="middle">+25</text>
+    <text x="70" y="140" font-size="13" fill="#FFD700" text-anchor="middle">+75</text>
+  </g>
+
+  <!-- Title -->
+  <text x="200" y="30" font-size="18" fill="#4FC3F7" text-anchor="middle" font-weight="bold" filter="url(#bubbleGlow)">BUBBLE BLAST</text>
+</svg>
