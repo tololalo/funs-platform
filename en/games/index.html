@@ -556,6 +556,12 @@ nav {
   white-space: nowrap;
 }
 
+.game-genre[data-genre="Puzzle"] { background: rgba(79,195,247,0.2); color: #4FC3F7; }
+.game-genre[data-genre="Arcade"] { background: rgba(255,107,53,0.2); color: #FF6B35; }
+.game-genre[data-genre="Board"] { background: rgba(255,215,0,0.2); color: #FFD700; }
+.game-genre[data-genre="Quiz"] { background: rgba(156,39,176,0.2); color: #CE93D8; }
+.game-genre[data-genre="Casual"] { background: rgba(76,175,80,0.2); color: #81C784; }
+
 .game-description {
   color: var(--muted);
   font-size: 0.9rem;
@@ -677,6 +683,18 @@ nav {
   font-size: 0.85rem;
   font-weight: 600;
   margin-bottom: 20px;
+}
+
+.featured-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(255,107,53,0.2);
+  border: 1px solid rgba(255,107,53,0.4);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 12px;
 }
 
 .featured-description {
@@ -1547,11 +1565,10 @@ footer {
     <img src="../../funs-nugi.png" alt="FunS" class="hero-mascot">
     <div class="hero-badge">🎮 Web3 Play-to-Earn Gaming</div>
     <h1>FunS <span class="text-gradient">Game Hub</span></h1>
-    <p>Play blockchain-based Web3 games and earn FUNS tokens</p>
+    <p>Play simple casual games and earn FUNS tokens</p>
     <div class="hero-stats-mini">
-      <span>🎯 8+ Games</span>
-      <span>👥 12.4K Users</span>
-      <span>💰 $2.1M Rewards</span>
+      <span>👥 357K+ Users</span>
+      <span>💰 $5.2M Rewards</span>
     </div>
   </div>
 </section>
@@ -1564,11 +1581,11 @@ footer {
   </div>
   <div class="filter-buttons" id="filterButtons">
     <button class="filter-btn active" data-filter="All">All</button>
-    <button class="filter-btn" data-filter="Action">Action</button>
     <button class="filter-btn" data-filter="Puzzle">Puzzle</button>
-    <button class="filter-btn" data-filter="Card">Card</button>
+    <button class="filter-btn" data-filter="Arcade">Arcade</button>
+    <button class="filter-btn" data-filter="Board">Board</button>
+    <button class="filter-btn" data-filter="Quiz">Quiz</button>
     <button class="filter-btn" data-filter="Casual">Casual</button>
-    <button class="filter-btn" data-filter="RPG">RPG</button>
   </div>
 </section>
 
@@ -1576,22 +1593,22 @@ footer {
 <section class="featured-section">
   <div class="featured-game">
     <div class="featured-image">
-      <img src="../games/images/space-miner.svg" alt="Space Miner">
+      <img src="../../games/images/funs-tetris.svg" alt="FunS Tetris">
+      <span class="featured-badge">🔥 #1 Popular</span>
     </div>
     <div class="featured-content">
-      <h3>Space Miner</h3>
-      <span class="featured-genre">RPG</span>
-      <p class="featured-description">Explore space to mine rare resources, upgrade your spaceship, and compete with other players. Earn FUNS tokens through daily login bonuses and quest rewards.</p>
+      <h3>FunS Tetris</h3>
+      <span class="featured-genre">Puzzle</span>
+      <p class="featured-description">The #1 casual game on FunS with 45,000+ players! Classic Tetris meets Play-to-Earn. Stack blocks, clear lines, and earn FUNS tokens.</p>
       <ul class="featured-features">
-        <li>Unlimited space exploration content</li>
-        <li>Collect and trade NFT spaceships</li>
-        <li>Co-op gameplay and PvP battles</li>
-        <li>5x reward multiplier daily</li>
+        <li>FUNS tokens per line clear</li>
+        <li>Weekly TOP 100 rewards</li>
+        <li>3 free daily challenges</li>
+        <li>Real-time battle mode</li>
       </ul>
-      <button class="featured-cta">Play Now</button>
+      <button class="featured-cta" onclick="openGameModal(games[0])">Play Now</button>
       <div class="featured-powered">
-        <img src="../../funs-nugi.png" alt="FunS" class="featured-funs-logo">
-        <span>Powered by FunS</span>
+        <span>P2E on BNB Chain</span>
       </div>
     </div>
   </div>
@@ -1711,111 +1728,55 @@ footer {
 <script>
 // Genre colors for modal
 const genreColors = {
-  'Action': 'rgba(255,107,53,0.2)',
   'Puzzle': 'rgba(79,195,247,0.2)',
-  'Card': 'rgba(255,215,0,0.2)',
-  'RPG': 'rgba(156,39,176,0.2)',
+  'Arcade': 'rgba(255,107,53,0.2)',
+  'Board': 'rgba(255,215,0,0.2)',
+  'Quiz': 'rgba(156,39,176,0.2)',
   'Casual': 'rgba(76,175,80,0.2)'
 };
 
 // Game data
 const games = [
-  {
-    id: 1,
-    title: 'FunS Runner',
-    genre: 'Action',
-    description: 'Run and jump to earn FUNS',
-    fullDescription: 'Run endlessly, jump over obstacles, and collect coins. Each stage gets harder, and beating high scores gives extra rewards. Compete with friends and climb the leaderboard!',
-    players: '12K',
-    rating: 4.8,
-    emoji: '🏃',
-    image: '../games/images/funs-runner.svg',
-    reward: 'Up to 50 FUNS'
-  },
-  {
-    id: 2,
-    title: 'Crypto Puzzle',
-    genre: 'Puzzle',
-    description: 'Match blocks and earn rewards',
-    fullDescription: 'Match falling blocks to complete lines and maximize combos. The more you complete, the more FUNS you earn. Take on new daily challenges and unlock achievements!',
-    players: '8.2K',
-    rating: 4.5,
-    emoji: '🧩',
-    image: '../games/images/crypto-puzzle.svg',
-    reward: 'Up to 35 FUNS'
-  },
-  {
-    id: 3,
-    title: 'Card Battle',
-    genre: 'Card',
-    description: 'Strategic card combat game',
-    fullDescription: 'Collect unique cards and build powerful decks. Battle other players in real-time PvP matches and climb the rankings. Rare cards can be traded as NFTs!',
-    players: '15K',
-    rating: 4.7,
-    emoji: '🃏',
-    image: '../games/images/card-battle.svg',
-    reward: 'Up to 100 FUNS'
-  },
-  {
-    id: 4,
-    title: 'Space Miner',
-    genre: 'RPG',
-    description: 'Explore space and mine resources',
-    fullDescription: 'Pilot your spaceship through the cosmos to mine rare minerals. Upgrade your ship with mined resources to explore deeper areas. Cooperate with other explorers to share rewards!',
-    players: '6.8K',
-    rating: 4.3,
-    emoji: '⭐',
-    image: '../games/images/space-miner.svg',
-    reward: 'Up to 150 FUNS'
-  },
-  {
-    id: 5,
-    title: 'Token Tower',
-    genre: 'Casual',
-    description: 'Build towers and earn FUNS',
-    fullDescription: 'Stack blocks to build the highest tower without falling. Unlock power-ups and reach new heights. Daily bonuses keep the rewards flowing!',
-    players: '9.1K',
-    rating: 4.2,
-    emoji: '🏗️',
-    image: '../games/images/token-tower.svg',
-    reward: 'Up to 25 FUNS'
-  },
-  {
-    id: 6,
-    title: 'Dragon Quest',
-    genre: 'RPG',
-    description: 'Battle dragons and collect NFT gear',
-    fullDescription: 'Slay dragons, collect powerful gear, and become a legendary warrior. Trade your rare armor and weapons as NFTs. Join guilds and raid with other players!',
-    players: '11K',
-    rating: 4.6,
-    emoji: '🐉',
-    image: '../games/images/dragon-quest.svg',
-    reward: 'Up to 75 FUNS'
-  },
-  {
-    id: 7,
-    title: 'Bubble Blast',
-    genre: 'Casual',
-    description: 'Pop bubbles and earn rewards',
-    fullDescription: 'Blast bubbles to clear the board and earn points. Create combos for massive damage. Unlock special power-ups and beat your friends\' high scores!',
-    players: '7.5K',
-    rating: 4.1,
-    emoji: '🫧',
-    image: '../games/images/bubble-blast.svg',
-    reward: 'Up to 120 FUNS'
-  },
-  {
-    id: 8,
-    title: 'Chess Master',
-    genre: 'Card',
-    description: 'On-chain chess battles',
-    fullDescription: 'Play chess on-chain against players worldwide. Participate in tournaments to win prizes. Verify all moves on the blockchain!',
-    players: '5.3K',
-    rating: 4.4,
-    emoji: '♟️',
-    image: '../games/images/chess-master.svg',
-    reward: 'Up to 40 FUNS'
-  }
+  { id: 1, title: 'FunS Tetris', genre: 'Puzzle',
+    description: 'Stack blocks and earn FUNS tokens',
+    fullDescription: 'Play classic Tetris on FunS! Earn FUNS tokens every time you clear a line. Chain combos for bonus rewards! Weekly ranking TOP 100 gets special prizes.',
+    players: '45.2K', rating: 4.9, emoji: '🧱',
+    image: '../../games/images/funs-tetris.svg', reward: 'Up to 50 FUNS' },
+  { id: 2, title: 'Mahjong Match', genre: 'Board',
+    description: 'Find and match identical tiles',
+    fullDescription: 'Classic Mahjong Solitaire goes Web3! Find matching tiles and clear the board. Complete within time limit to earn FUNS rewards! Higher difficulty means bigger rewards.',
+    players: '38.7K', rating: 4.8, emoji: '🀄',
+    image: '../../games/images/mahjong.svg', reward: 'Up to 40 FUNS' },
+  { id: 3, title: '2048 Crypto', genre: 'Puzzle',
+    description: 'Merge numbers to reach 2048',
+    fullDescription: 'Addictive 2048 gameplay! Slide and merge number tiles for the highest score. Hit 2048 for a big bonus, 4096+ for legendary rewards! 3 free daily challenges.',
+    players: '52.1K', rating: 4.7, emoji: '🔢',
+    image: '../../games/images/2048-crypto.svg', reward: 'Up to 60 FUNS' },
+  { id: 4, title: 'FunS Quiz Show', genre: 'Quiz',
+    description: 'Test your knowledge and earn tokens',
+    fullDescription: 'Daily quiz challenges across trivia, crypto, science, history and more! Answer 10 in a row for jackpot bonus. Challenge friends in real-time quiz battles!',
+    players: '28.4K', rating: 4.6, emoji: '❓',
+    image: '../../games/images/quiz-show.svg', reward: 'Up to 100 FUNS' },
+  { id: 5, title: 'Bubble Pop', genre: 'Casual',
+    description: 'Pop bubbles of the same color',
+    fullDescription: 'Shoot colorful bubbles and match 3+ of the same color to pop them! Build chain combos for bigger rewards. Complete daily missions for bonus FUNS.',
+    players: '61.3K', rating: 4.5, emoji: '🫧',
+    image: '../../games/images/bubble-pop.svg', reward: 'Up to 30 FUNS' },
+  { id: 6, title: 'Sudoku Master', genre: 'Puzzle',
+    description: 'Solve number puzzles with logic',
+    fullDescription: 'Brain training at its finest! Solve Sudoku puzzles from Easy to Expert. Faster completion means more FUNS earned. Daily challenge streaks unlock bonus rewards!',
+    players: '22.8K', rating: 4.4, emoji: '🔠',
+    image: '../../games/images/sudoku.svg', reward: 'Up to 45 FUNS' },
+  { id: 7, title: 'Card Match', genre: 'Board',
+    description: 'Test your memory with card matching',
+    fullDescription: 'Flip cards and remember positions to find matching pairs! Stages get harder with more cards and bigger rewards. Perfect clear (0 mistakes) earns 2x bonus!',
+    players: '33.5K', rating: 4.3, emoji: '🃏',
+    image: '../../games/images/card-match.svg', reward: 'Up to 35 FUNS' },
+  { id: 8, title: 'Runner Dash', genre: 'Arcade',
+    description: 'Run, jump, and collect coins',
+    fullDescription: 'Endless runner fun! Dodge obstacles and collect FUNS coins. Grab power-ups for magnet, shield, and 2x coin effects. Beat your daily distance record for special rewards!',
+    players: '55.7K', rating: 4.6, emoji: '🏃',
+    image: '../../games/images/runner-dash.svg', reward: 'Up to 55 FUNS' }
 ];
 
 let currentFilter = 'All';
@@ -1854,7 +1815,7 @@ function renderGames() {
       <div class="game-content">
         <div class="game-header">
           <div class="game-title">${game.title}</div>
-          <span class="game-genre">${game.genre}</span>
+          <span class="game-genre" data-genre="${game.genre}">${game.genre}</span>
         </div>
         <p class="game-description">${game.description}</p>
         <div class="game-stats">
