@@ -1189,7 +1189,7 @@
                     <div class="chart-header">
                         <div class="chart-info">
                             <h3 id="chartToken">FUNS</h3>
-                            <div class="chart-price">$<span class="counter" data-target="1.24">0</span>.02</div>
+                            <div class="chart-price">$<span class="counter" data-target="1.24">1.24</span></div>
                         </div>
                         <div class="time-range">
                             <button class="time-btn active" data-range="1h">1H</button>
@@ -1840,12 +1840,13 @@
                 const price = item.dataset.price;
                 document.getElementById('chartToken').textContent = tokenName;
 
-                // Update chart (simplified)
+                // Update chart with fixed upward trending data
                 const chartLine = document.getElementById('chartLine');
-                const randomOffset = Math.random() * 50;
-                chartLine.setAttribute('points',
-                    `0,${200-randomOffset} 100,${180-randomOffset} 200,${160-randomOffset} 300,${150-randomOffset} 400,${170-randomOffset} 500,${140-randomOffset} 600,${130-randomOffset} 700,${145-randomOffset} 800,${120-randomOffset} 900,${100-randomOffset} 1000,${80-randomOffset}`
-                );
+                const chartFill = document.getElementById('chartFill');
+                // Fixed upward trend from $0.45 to $1.24
+                const upwardTrendPoints = '0,220 50,210 100,195 150,180 200,165 250,150 300,135 350,125 400,110 450,95 500,80 550,70 600,60 650,50 700,45 750,40 800,35 850,30 900,25 950,15 1000,10';
+                chartLine.setAttribute('points', upwardTrendPoints);
+                chartFill.setAttribute('points', upwardTrendPoints + ' 1000,250 0,250');
             });
         });
 

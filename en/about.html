@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — FunS Platform</title>
-<meta name="description" content="Learn about FunS Platform's mission, vision, and team. Discover how we're building the future of Web3 gaming and blockchain technology.">
-<meta name="keywords" content="Web3 gaming, FunS platform, blockchain gaming, mission, vision, team, cryptocurrency, decentralized gaming">
+<meta name="description" content="Learn about FunS Platform's mission, vision, and values. Discover how we're building the future of Web3 gaming and blockchain technology.">
+<meta name="keywords" content="Web3 gaming, FunS platform, blockchain gaming, mission, vision, cryptocurrency, decentralized gaming">
 <meta property="og:title" content="About FunS Platform">
-<meta property="og:description" content="Learn about FunS Platform's mission, vision, and team. Discover how we're building the future of Web3 gaming and blockchain technology.">
+<meta property="og:description" content="Learn about FunS Platform's mission, vision, and values. Discover how we're building the future of Web3 gaming and blockchain technology.">
 <meta property="og:image" content="https://tololalo.github.io/funs-platform/funs-nugi.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tololalo.github.io/funs-platform/en/about.html">
@@ -29,70 +29,6 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-  }
-
-  /* Team Section */
-  .team-section {
-    padding: 100px 5%;
-    background: var(--dark2);
-  }
-
-  .team-header {
-    text-align: center;
-    margin-bottom: 60px;
-  }
-
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .team-card {
-    text-align: center;
-    opacity: 0;
-    animation: slideInUp 0.6s ease forwards;
-  }
-
-  .team-card:nth-child(1) { animation-delay: 0.1s; }
-  .team-card:nth-child(2) { animation-delay: 0.2s; }
-  .team-card:nth-child(3) { animation-delay: 0.3s; }
-  .team-card:nth-child(4) { animation-delay: 0.4s; }
-
-  .team-avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, rgba(0, 255, 200, 0.2), rgba(255, 154, 0, 0.2));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 48px;
-    margin: 0 auto 20px;
-    border: 2px solid var(--primary);
-    box-shadow: 0 0 20px rgba(0, 255, 200, 0.3);
-  }
-
-  .team-card h3 {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: #fff;
-  }
-
-  .team-card .role {
-    font-size: 14px;
-    color: var(--primary);
-    font-weight: 600;
-    margin-bottom: 12px;
-  }
-
-  .team-card p {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.5;
   }
 
   /* Roadmap Section */
@@ -339,11 +275,6 @@
 
   /* Responsive Design */
   @media (max-width: 1024px) {
-    .team-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 30px;
-    }
-
     .timeline::before {
       left: 20px;
     }
@@ -363,21 +294,6 @@
   @media (max-width: 768px) {
     .page-hero {
       padding: 80px 5%;
-    }
-
-    .team-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-
-    .team-avatar {
-      width: 100px;
-      height: 100px;
-      font-size: 40px;
-    }
-
-    .team-card h3 {
-      font-size: 18px;
     }
 
     .stat-row {
@@ -409,17 +325,6 @@
       padding: 60px 5%;
     }
 
-    .team-grid {
-      grid-template-columns: 1fr;
-      gap: 15px;
-    }
-
-    .team-avatar {
-      width: 90px;
-      height: 90px;
-      font-size: 36px;
-    }
-
     .stat-row {
       grid-template-columns: 1fr;
       gap: 15px;
@@ -437,28 +342,6 @@
   @media (max-width: 380px) {
     .page-hero {
       padding: 40px 5%;
-    }
-
-    .team-grid {
-      gap: 10px;
-    }
-
-    .team-avatar {
-      width: 80px;
-      height: 80px;
-      font-size: 32px;
-    }
-
-    .team-card h3 {
-      font-size: 16px;
-    }
-
-    .team-card .role {
-      font-size: 12px;
-    }
-
-    .team-card p {
-      font-size: 12px;
     }
   }
 </style>
@@ -515,40 +398,6 @@
       <span class="icon">🌍</span>
       <h3>Global Accessibility</h3>
       <p>We build a cross-platform environment accessible from anywhere in the world, on any device.</p>
-    </div>
-  </div>
-</section>
-
-<!-- TEAM -->
-<section class="team-section">
-  <div class="team-header reveal">
-    <span class="section-tag">Team</span>
-    <h2 class="section-title">FunS <span>Team</span></h2>
-  </div>
-  <div class="team-grid">
-    <div class="team-card reveal">
-      <div class="team-avatar">🧑‍💼</div>
-      <h3>Alex Kim</h3>
-      <p class="role">CEO</p>
-      <p>10+ years of gaming industry experience</p>
-    </div>
-    <div class="team-card reveal">
-      <div class="team-avatar">👩‍💻</div>
-      <h3>Sarah Park</h3>
-      <p class="role">CTO</p>
-      <p>Blockchain & smart contract expert</p>
-    </div>
-    <div class="team-card reveal">
-      <div class="team-avatar">🎮</div>
-      <h3>Mike Lee</h3>
-      <p class="role">Game Director</p>
-      <p>AAA game studio veteran</p>
-    </div>
-    <div class="team-card reveal">
-      <div class="team-avatar">🌍</div>
-      <h3>Jina Choi</h3>
-      <p class="role">Community Lead</p>
-      <p>Web3 community builder</p>
     </div>
   </div>
 </section>
