@@ -89,79 +89,6 @@
   border-color: rgba(0, 255, 136, 0.5);
 }
 
-/* Partner Cards */
-.partners-section {
-  position: relative;
-  overflow: hidden;
-}
-
-.partners-scroll {
-  display: flex;
-  gap: 24px;
-  overflow-x: auto;
-  padding: 20px 0;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-}
-
-.partners-scroll::-webkit-scrollbar {
-  height: 6px;
-}
-
-.partners-scroll::-webkit-scrollbar-track {
-  background: rgba(0, 255, 136, 0.1);
-  border-radius: 3px;
-}
-
-.partners-scroll::-webkit-scrollbar-thumb {
-  background: rgba(0, 255, 136, 0.3);
-  border-radius: 3px;
-}
-
-.partners-scroll::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 255, 136, 0.5);
-}
-
-.partner-card {
-  flex: 0 0 200px;
-  min-height: 140px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(15, 25, 45, 0.8);
-  border: 1px solid rgba(0, 255, 136, 0.2);
-  border-radius: 12px;
-  font-weight: 600;
-  color: #00ff88;
-  font-size: 14px;
-  text-align: center;
-  padding: 20px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.partner-card:hover {
-  background: rgba(15, 25, 45, 0.95);
-  border-color: rgba(0, 255, 136, 0.5);
-  box-shadow: 0 0 25px rgba(0, 255, 136, 0.25), inset 0 0 20px rgba(0, 255, 136, 0.1);
-  transform: translateY(-4px);
-}
-
-.partner-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(0, 255, 136, 0.05), transparent);
-  border-radius: 12px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.partner-card:hover::before {
-  opacity: 1;
-}
-
 /* Counter Animation */
 .stat-num {
   font-size: 2.5rem;
@@ -473,24 +400,6 @@
         <div class="road-empty"></div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- PARTNERS -->
-<section id="partners" class="partners-section reveal">
-  <div style="text-align: center; margin-bottom: 50px;">
-    <span class="section-tag">Partnerships</span>
-    <h2 class="section-title">Global <span>Partners</span></h2>
-    <p class="section-desc">Working with the world's leading blockchain and gaming projects</p>
-  </div>
-  <div class="partners-scroll">
-    <div class="partner-card">BNB Chain</div>
-    <div class="partner-card">PancakeSwap</div>
-    <div class="partner-card">CoinGecko</div>
-    <div class="partner-card">DappRadar</div>
-    <div class="partner-card">GameFi.org</div>
-    <div class="partner-card">BNB Chain</div>
-    <div class="partner-card">PancakeSwap</div>
   </div>
 </section>
 

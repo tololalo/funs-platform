@@ -842,6 +842,13 @@
             justify-content: center;
             font-size: 3rem;
             border-bottom: 1px solid rgba(79, 195, 247, 0.1);
+            overflow: hidden;
+        }
+
+        .nft-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .nft-info {
@@ -1207,8 +1214,8 @@
                                     <stop offset="100%" style="stop-color:#FF6B35;stop-opacity:0" />
                                 </linearGradient>
                             </defs>
-                            <polyline id="chartLine" points="0,200 100,180 200,160 300,150 400,170 500,140 600,130 700,145 800,120 900,100 1000,80" fill="none" stroke="#FF6B35" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                            <polyline id="chartFill" points="0,200 100,180 200,160 300,150 400,170 500,140 600,130 700,145 800,120 900,100 1000,80 1000,250 0,250" fill="url(#chartGradient)"/>
+                            <polyline id="chartLine" points="10,90 30,75 50,82 70,65 90,72 110,58 130,65 150,50 170,58 190,42 210,50 230,35 250,42 270,28 290,35" fill="none" stroke="#FF6B35" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <polyline id="chartFill" points="10,90 30,75 50,82 70,65 90,72 110,58 130,65 150,50 170,58 190,42 210,50 230,35 250,42 270,28 290,35 290,250 10,250" fill="url(#chartGradient)"/>
                         </svg>
                     </div>
                     <div class="chart-volume">
@@ -1516,7 +1523,7 @@
             <div class="tab-content" id="nft-tab">
                 <div class="nft-grid">
                     <div class="nft-card">
-                        <div class="nft-image">🏃</div>
+                        <div class="nft-image"><img src="nft-images/runner.svg" alt="FunS Runner"></div>
                         <div class="nft-info">
                             <div class="nft-name">FunS 런너 #1234</div>
                             <div class="nft-collection">FunS Game</div>
@@ -1525,7 +1532,7 @@
                     </div>
 
                     <div class="nft-card">
-                        <div class="nft-image">🐉</div>
+                        <div class="nft-image"><img src="nft-images/dragon.svg" alt="FunS Dragon"></div>
                         <div class="nft-info">
                             <div class="nft-name">FunS 드래곤 #5678</div>
                             <div class="nft-collection">FunS Dragons</div>
@@ -1534,7 +1541,7 @@
                     </div>
 
                     <div class="nft-card">
-                        <div class="nft-image">⚔️</div>
+                        <div class="nft-image"><img src="nft-images/warrior.svg" alt="FunS Warrior"></div>
                         <div class="nft-info">
                             <div class="nft-name">FunS 검사 #2341</div>
                             <div class="nft-collection">FunS Warriors</div>
@@ -1543,7 +1550,7 @@
                     </div>
 
                     <div class="nft-card">
-                        <div class="nft-image">🏰</div>
+                        <div class="nft-image"><img src="nft-images/castle.svg" alt="FunS Castle"></div>
                         <div class="nft-info">
                             <div class="nft-name">FunS 성 #6789</div>
                             <div class="nft-collection">FunS Realms</div>
@@ -1552,7 +1559,7 @@
                     </div>
 
                     <div class="nft-card">
-                        <div class="nft-image">✨</div>
+                        <div class="nft-image"><img src="nft-images/gem.svg" alt="FunS Gem"></div>
                         <div class="nft-info">
                             <div class="nft-name">FunS 신비로운 보석 #3456</div>
                             <div class="nft-collection">FunS Artifacts</div>
@@ -1561,7 +1568,7 @@
                     </div>
 
                     <div class="nft-card">
-                        <div class="nft-image">👑</div>
+                        <div class="nft-image"><img src="nft-images/crown.svg" alt="FunS Crown"></div>
                         <div class="nft-info">
                             <div class="nft-name">FunS 왕관 #9012</div>
                             <div class="nft-collection">FunS Legends</div>
