@@ -1140,8 +1140,8 @@
         <section class="portfolio-section">
             <div class="portfolio-header">
                 <div class="balance-info">
-                    <h1 class="counter" data-target="12458.32">$0.00</h1>
-                    <div class="balance-change">+ $<span class="counter" data-target="234.56">0</span>.56 (+1.92%)</div>
+                    <h1 class="balance-amount">$<span class="counter" data-target="12458.32">0.00</span></h1>
+                    <div class="balance-change">+ $<span class="counter" data-target="234.56">0.00</span> (+1.92%)</div>
                 </div>
                 <div>
                     <div class="address-section">
@@ -1231,7 +1231,7 @@
                 <!-- Token List -->
                 <div class="token-list">
                     <div class="token-item" data-token="FUNS" data-price="1.24">
-                        <div class="token-icon"><img src="../../dex/icons/funs.svg" alt="FUNS"></div>
+                        <div class="token-icon"><img src="../../funs-nugi.png" alt="FUNS"></div>
                         <div class="token-info">
                             <div class="token-name">FunS</div>
                             <div class="token-symbol">FUNS</div>
@@ -1756,6 +1756,10 @@
 
     <script>
         // Utility Functions
+        const formatNumber = (num) => {
+            return num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        };
+
         const animateCounter = (element, target) => {
             let current = 0;
             const increment = target / 60;
@@ -1765,7 +1769,7 @@
                     current = target;
                     clearInterval(interval);
                 }
-                element.textContent = current.toFixed(2);
+                element.textContent = formatNumber(current);
             }, 1000 / 60);
         };
 
