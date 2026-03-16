@@ -172,53 +172,95 @@ nav {
 
 /* ── HERO SECTION ── */
 .hero {
-  position: relative;
   padding: 50px 20px 40px;
   text-align: center;
+  position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(255,107,53,0.08) 0%, rgba(8,11,20,1) 40%, rgba(79,195,247,0.08) 100%);
-  border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(255,107,53,0.06) 0%, transparent 40%, rgba(79,195,247,0.04) 100%);
 }
 
 .hero::before {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,107,53,0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
-  animation: heroGrid 20s linear infinite;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle, rgba(255,107,53,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: heroGrid 25s linear infinite;
   pointer-events: none;
 }
 
 @keyframes heroGrid {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(50px, 50px); }
+  0% { transform: translate(0,0); }
+  100% { transform: translate(60px,60px); }
 }
 
-.hero-particles {
+.hero-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  max-width: 900px;
+  margin: 0 auto 32px;
+}
+
+.hero-mascot-section {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.mascot-glow {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(255,107,53,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.6; transform: translate(-50%,-50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%,-50%) scale(1.1); }
+}
+
+.hero-mascot {
+  width: 140px; height: 140px;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 0 12px rgba(255,107,53,0.3));
+  animation: mascotFloat 3s ease-in-out infinite;
+}
+
+@keyframes mascotFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.hero-text-section {
+  text-align: left;
 }
 
 .hero-badge {
   display: inline-block;
   padding: 8px 20px;
-  background: rgba(255,107,53,0.15);
-  border: 1px solid rgba(255,107,53,0.3);
+  background: rgba(255,107,53,0.12);
+  border: 1px solid rgba(255,107,53,0.25);
   border-radius: 50px;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
   color: var(--primary);
-  margin-bottom: 20px;
-  position: relative;
-  z-index: 1;
+  margin-bottom: 16px;
+}
+
+.hero-text-section h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 900;
+  margin-bottom: 12px;
+  color: var(--text);
+  line-height: 1.1;
 }
 
 .text-gradient {
@@ -228,56 +270,30 @@ nav {
   background-clip: text;
 }
 
-.hero-content h1 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 3rem;
-  font-weight: 900;
-  margin-bottom: 16px;
-  color: var(--text);
-  position: relative;
-  z-index: 1;
-}
-
-.hero-content p {
+.hero-text-section p {
   color: var(--muted);
-  font-size: 1.1rem;
-  margin-bottom: 24px;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  z-index: 1;
+  font-size: 1rem;
   line-height: 1.6;
 }
 
 .hero-stats-mini {
   display: flex;
-  gap: 24px;
+  gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
-  position: relative;
-  z-index: 1;
 }
 
-.hero-stats-mini span {
-  color: var(--text);
-  font-size: 0.9rem;
+.stat-pill {
+  padding: 8px 18px;
+  background: rgba(20,24,40,0.6);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  font-size: 0.85rem;
   font-weight: 600;
+  color: var(--text);
 }
 
-.hero-mascot {
-  width: 72px;
-  height: 72px;
-  object-fit: contain;
-  margin-bottom: 12px;
-  filter: drop-shadow(0 0 8px rgba(255,107,53,0.2));
-  animation: mascotFloat 3s ease-in-out infinite;
-}
-
-@keyframes mascotFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
+.stat-icon { margin-right: 4px; }
 
 /* ── SEARCH & FILTER SECTION ── */
 .search-filter {
@@ -436,7 +452,6 @@ nav {
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  opacity: 0;
   animation: fadeInUp 0.6s ease-out forwards;
 }
 
@@ -517,6 +532,9 @@ nav {
   font-weight: 700;
   font-size: 1.1rem;
   color: var(--text);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .game-genre {
@@ -538,6 +556,10 @@ nav {
   line-height: 1.5;
   margin-bottom: 16px;
   flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .game-stats {
@@ -882,9 +904,11 @@ footer {
     padding: 0 16px;
   }
 
-  .hero-content h1 {
-    font-size: 2.5rem;
-  }
+  .hero-grid { flex-direction: column; gap: 24px; }
+  .hero-text-section { text-align: center; }
+  .hero-mascot { width: 100px; height: 100px; }
+  .mascot-glow { width: 140px; height: 140px; }
+  .hero-text-section h1 { font-size: 2rem; }
 
   .featured-game {
     grid-template-columns: 1fr;
@@ -912,16 +936,15 @@ footer {
   }
 
   .hero {
-    padding: 50px 16px;
+    padding: 30px 16px 24px;
   }
 
-  .hero-content h1 {
-    font-size: 1.8rem;
-  }
-
-  .hero-content p {
-    font-size: 1rem;
-  }
+  .hero-grid { flex-direction: column; gap: 24px; }
+  .hero-text-section { text-align: center; }
+  .hero-mascot { width: 100px; height: 100px; }
+  .mascot-glow { width: 140px; height: 140px; }
+  .hero-text-section h1 { font-size: 2rem; }
+  .hero-text-section p { font-size: 0.9rem; }
 
   .search-bar {
     flex-direction: column;
@@ -974,22 +997,14 @@ footer {
   .lang-btn { padding: 3px 8px; font-size: 0.65rem; }
 
   .hero {
-    padding: 40px 12px;
+    padding: 30px 16px 24px;
   }
 
-  .hero-mascot {
-    width: 80px;
-    height: 80px;
-  }
-
-  .hero-content h1 {
-    font-size: 1.4rem;
-    margin-bottom: 12px;
-  }
-
-  .hero-content p {
-    font-size: 0.9rem;
-  }
+  .hero-mascot { width: 80px; height: 80px; }
+  .mascot-glow { width: 110px; height: 110px; }
+  .hero-text-section h1 { font-size: 1.6rem; }
+  .hero-text-section p { font-size: 0.9rem; }
+  .stat-pill { padding: 6px 14px; font-size: 0.75rem; }
 
   .game-logo-badge {
     width: 32px;
@@ -1119,15 +1134,8 @@ footer {
     padding: 30px 10px;
   }
 
-  .hero-mascot {
-    width: 60px;
-    height: 60px;
-  }
-
-  .hero-content h1 {
-    font-size: 1rem;
-    margin-bottom: 8px;
-  }
+  .hero-mascot { width: 64px; height: 64px; }
+  .hero-text-section h1 { font-size: 1.3rem; }
 
   .hero-content p {
     font-size: 0.8rem;
@@ -1369,6 +1377,14 @@ footer {
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+.modal-overlay.closing .game-modal {
+  animation: slideDown 0.2s ease-in forwards;
+}
+
+@keyframes slideDown {
+  to { transform: translateY(20px); opacity: 0; }
 }
 
 .modal-close-btn {
@@ -1686,17 +1702,21 @@ footer {
 
 <!-- HERO SECTION -->
 <section class="hero">
-  <div class="hero-particles"></div>
-  <div class="hero-content">
-    <img src="../funs-nugi.png" alt="FunS" class="hero-mascot">
-    <div class="hero-badge">🎮 Web3 Play-to-Earn Gaming</div>
-    <h1>FunS <span class="text-gradient">게임 허브</span></h1>
-    <p>누구나 쉽게 즐기는 캐주얼 게임으로 FUNS 토큰을 획득하세요</p>
-    <div class="hero-stats-mini">
-      <span>🎯 8+ 게임</span>
-      <span>👥 357K+ 유저</span>
-      <span>💰 $5.2M 보상</span>
+  <div class="hero-grid">
+    <div class="hero-mascot-section">
+      <div class="mascot-glow"></div>
+      <img src="../funs-nugi.png" alt="FunS" class="hero-mascot">
     </div>
+    <div class="hero-text-section">
+      <div class="hero-badge">🎮 Web3 Play-to-Earn Gaming</div>
+      <h1>FunS <span class="text-gradient">게임 허브</span></h1>
+      <p>누구나 쉽게 즐기는 캐주얼 게임으로 FUNS 토큰을 획득하세요</p>
+    </div>
+  </div>
+  <div class="hero-stats-mini">
+    <div class="stat-pill"><span class="stat-icon">🎯</span> 8+ 게임</div>
+    <div class="stat-pill"><span class="stat-icon">👥</span> 357K+ 유저</div>
+    <div class="stat-pill"><span class="stat-icon">💰</span> $5.2M 보상</div>
   </div>
 </section>
 
@@ -1988,7 +2008,7 @@ function renderGames() {
 
     let starsHTML = '';
     for (let i = 0; i < 5; i++) {
-      starsHTML += `<span class="star">${i < game.rating ? '★' : '☆'}</span>`;
+      starsHTML += `<span class="star">${i < Math.round(game.rating) ? '★' : '☆'}</span>`;
     }
 
     gameCard.innerHTML = `
@@ -2068,7 +2088,7 @@ function openGameModal(game) {
   // Generate star rating
   let starsHTML = '';
   for (let i = 0; i < 5; i++) {
-    starsHTML += `<span class="star">${i < game.rating ? '★' : '☆'}</span>`;
+    starsHTML += `<span class="star">${i < Math.round(game.rating) ? '★' : '☆'}</span>`;
   }
   document.getElementById('modalGameRating').innerHTML = starsHTML;
 
@@ -2086,8 +2106,11 @@ function openGameModal(game) {
 // Close modal
 function closeGameModal() {
   const modal = document.getElementById('gameModal');
-  modal.classList.remove('open');
-  document.body.style.overflow = 'auto';
+  modal.classList.add('closing');
+  setTimeout(() => {
+    modal.classList.remove('open', 'closing');
+    document.body.style.overflow = 'auto';
+  }, 200);
 }
 
 // Close modal button
