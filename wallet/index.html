@@ -266,6 +266,8 @@
         #features {
             background: var(--dark2);
             position: relative;
+            padding: 80px 8%;
+            text-align: center;
         }
 
         .section-tag {
@@ -298,14 +300,18 @@
             color: var(--muted);
             max-width: 600px;
             font-size: 1rem;
-            margin-bottom: 60px;
+            margin: 0 auto 60px;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 32px;
             margin-bottom: 80px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
         }
 
         .feature-card {
@@ -1158,45 +1164,31 @@
         <p>최고의 거래 가격을 자동으로 찾아주고, 투명한 수수료로 신뢰할 수 있는 거래를 보장합니다. FunS 게임 토큰에서 메이저 코인까지 모든 거래 쌍을 지원합니다.</p>
     </div>
     <div class="detail-visual reveal">
-        <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="bnbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#F3BA2F"/>
-                    <stop offset="100%" style="stop-color:#FF9800"/>
-                </linearGradient>
-                <linearGradient id="ethGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#627EEA"/>
-                    <stop offset="100%" style="stop-color:#764FE8"/>
-                </linearGradient>
-                <marker id="arrowR" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-                    <polygon points="0 0, 8 4, 0 8" fill="#4FC3F7"/>
-                </marker>
-                <marker id="arrowL" markerWidth="8" markerHeight="8" refX="1" refY="4" orient="auto">
-                    <polygon points="8 0, 0 4, 8 8" fill="#FF6B35"/>
-                </marker>
-            </defs>
-            <!-- BNB Token -->
-            <circle cx="60" cy="130" r="38" fill="url(#bnbGrad)"/>
-            <path d="M60 108 l12 7 -12 7 -12-7z M48 120 l-8 5 8 5 M72 120 l8 5 -8 5 M60 136 l12 7 -12 7 -12-7z" fill="none" stroke="white" stroke-width="1.5"/>
-            <text x="60" y="115" font-size="18" fill="white" text-anchor="middle" font-weight="700">◆</text>
-            <text x="60" y="185" font-family="Orbitron" font-size="12" fill="#F3BA2F" text-anchor="middle" font-weight="700">BNB</text>
-            <!-- SWAP Button -->
-            <rect x="118" y="108" rx="12" width="64" height="44" fill="#1a1f35" stroke="#FF6B35" stroke-width="2"/>
-            <text x="150" y="135" font-family="Orbitron" font-size="13" fill="#FFD700" text-anchor="middle" font-weight="900">SWAP</text>
-            <!-- Arrows -->
-            <line x1="100" y1="122" x2="118" y2="122" stroke="#4FC3F7" stroke-width="2" marker-end="url(#arrowR)"/>
-            <line x1="200" y1="138" x2="182" y2="138" stroke="#FF6B35" stroke-width="2" marker-end="url(#arrowL)"/>
-            <!-- ETH Token -->
-            <circle cx="240" cy="130" r="38" fill="url(#ethGrad)"/>
-            <polygon points="240,100 258,130 240,122 222,130" fill="rgba(255,255,255,0.9)"/>
-            <polygon points="240,122 258,130 240,140 222,130" fill="rgba(255,255,255,0.6)"/>
-            <polygon points="240,144 258,134 240,158 222,134" fill="rgba(255,255,255,0.9)"/>
-            <text x="240" y="185" font-family="Orbitron" font-size="12" fill="#627EEA" text-anchor="middle" font-weight="700">ETH</text>
-            <!-- Price Info Box -->
-            <rect x="30" y="220" width="240" height="55" rx="12" fill="#1a1f35" stroke="rgba(79,195,247,0.3)" stroke-width="1"/>
-            <text x="150" y="242" font-size="11" fill="#8892b0" text-anchor="middle">1 BNB = 0.0525 ETH</text>
-            <text x="150" y="262" font-family="Orbitron" font-size="10" fill="#4FC3F7" text-anchor="middle">수수료 0.3% · 예상 시간 ~3초</text>
-        </svg>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:24px; width:100%; max-width:360px; margin:0 auto;">
+            <!-- Token Row -->
+            <div style="display:flex; align-items:center; justify-content:center; gap:20px; width:100%;">
+                <!-- BNB -->
+                <div style="text-align:center;">
+                    <img src="../dex/icons/bnb.svg" alt="BNB" style="width:72px; height:72px; border-radius:50%;">
+                    <div style="font-family:Orbitron; font-size:13px; color:#F3BA2F; margin-top:8px; font-weight:700;">BNB</div>
+                </div>
+                <!-- SWAP -->
+                <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+                    <svg width="60" height="24" viewBox="0 0 60 24"><path d="M0 8 L50 8" stroke="#4FC3F7" stroke-width="2" marker-end="url(#arrR)"/><path d="M60 16 L10 16" stroke="#FF6B35" stroke-width="2" marker-end="url(#arrL)"/><defs><marker id="arrR" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><polygon points="0 0,6 3,0 6" fill="#4FC3F7"/></marker><marker id="arrL" markerWidth="6" markerHeight="6" refX="1" refY="3" orient="auto"><polygon points="6 0,0 3,6 6" fill="#FF6B35"/></marker></defs></svg>
+                    <div style="background:#1a1f35; border:2px solid #FF6B35; border-radius:12px; padding:6px 18px; font-family:Orbitron; font-size:13px; color:#FFD700; font-weight:900;">SWAP</div>
+                </div>
+                <!-- ETH -->
+                <div style="text-align:center;">
+                    <img src="../dex/icons/eth.svg" alt="ETH" style="width:72px; height:72px; border-radius:50%;">
+                    <div style="font-family:Orbitron; font-size:13px; color:#627EEA; margin-top:8px; font-weight:700;">ETH</div>
+                </div>
+            </div>
+            <!-- Price Info -->
+            <div style="background:#1a1f35; border:1px solid rgba(79,195,247,0.3); border-radius:12px; padding:14px 28px; text-align:center; width:100%;">
+                <div style="font-size:14px; color:#8892b0;">1 BNB = 0.0525 ETH</div>
+                <div style="font-family:Orbitron; font-size:11px; color:#4FC3F7; margin-top:4px;">수수료 0.3% · 예상 시간 ~3초</div>
+            </div>
+        </div>
     </div>
 </section>
 
