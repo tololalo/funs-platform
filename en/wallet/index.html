@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FunS Wallet - Digital Asset Management</title>
+    <title>FunS Wallet - Digital Asset Management & Payment Solution</title>
+    <meta name="description" content="FunS Wallet - Secure multi-chain wallet for managing FUNS, BNB, ETH and more assets. Pay with QR codes and earn game rewards in one place.">
+    <meta name="keywords" content="wallet, cryptocurrency, blockchain, tokens, NFT, QR payment, FunS, multi-chain, security">
+    <meta property="og:title" content="FunS Wallet - Digital Asset Management">
+    <meta property="og:description" content="Secure multi-chain wallet for managing game rewards, payments, and assets all in one place.">
+    <meta property="og:image" content="https://tololalo.github.io/funs-platform/funs-nugi.png">
+    <meta property="og:url" content="https://tololalo.github.io/funs-platform/en/wallet/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="../../funs-nugi.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -18,20 +27,20 @@
             --primary: #FF6B35;
             --secondary: #FFD700;
             --accent: #4FC3F7;
-            --dark: #080B14;
+            --dark: #0A0E1A;
             --dark2: #0D1120;
             --dark3: #141828;
             --card: #1a1f35;
             --text: #e8eaf0;
             --muted: #8892b0;
-            --green: #4caf50;
-            --red: #ef5350;
+            --border: rgba(255, 107, 53, 0.25);
             --font-size: 17px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         html {
             font-size: var(--font-size);
+            scroll-behavior: smooth;
         }
 
         body {
@@ -44,337 +53,674 @@
 
         /* Navigation */
         nav {
-            background: linear-gradient(135deg, rgba(8, 11, 20, 0.95) 0%, rgba(13, 17, 32, 0.95) 100%);
+            background: linear-gradient(135deg, rgba(10, 14, 26, 0.95) 0%, rgba(13, 17, 32, 0.95) 100%);
             border-bottom: 1px solid rgba(79, 195, 247, 0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(10px);
+            padding: 0 5%;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .nav-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
+            width: 100%;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
         }
 
         .nav-left {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 12px;
         }
 
         .nav-logo {
-            height: 2.5rem;
-            width: auto;
+            height: 44px;
+            width: 44px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 20px rgba(255, 107, 53, 0.4));
         }
 
         .nav-title {
             font-family: 'Orbitron', monospace;
-            font-size: 1.3rem;
             font-weight: 700;
-            color: var(--text);
-            letter-spacing: 0.05em;
+            font-size: 1rem;
+            color: var(--secondary);
+            letter-spacing: 2px;
         }
 
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 32px;
         }
 
         .back-link {
-            color: var(--accent);
+            color: var(--muted);
             text-decoration: none;
-            font-size: 0.95rem;
-            transition: var(--transition);
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color var(--transition);
         }
 
         .back-link:hover {
-            color: var(--primary);
+            color: var(--secondary);
         }
 
         .lang-switch {
             display: flex;
-            gap: 0.5rem;
-            background: rgba(79, 195, 247, 0.1);
-            padding: 0.4rem;
-            border-radius: 0.5rem;
-            border: 1px solid rgba(79, 195, 247, 0.2);
+            gap: 2px;
+            background: var(--dark3);
+            border-radius: 8px;
+            padding: 2px;
         }
 
         .lang-btn {
-            padding: 0.4rem 0.8rem;
-            border: none;
-            background: transparent;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 700;
             color: var(--muted);
-            cursor: pointer;
-            border-radius: 0.4rem;
-            font-size: 0.9rem;
-            transition: var(--transition);
+            text-decoration: none;
+            transition: all 0.2s;
         }
 
         .lang-btn.active {
             background: var(--primary);
-            color: white;
-            font-weight: 600;
+            color: #fff;
         }
 
-        .lang-btn:hover {
+        .lang-btn:hover:not(.active) {
             color: var(--text);
         }
 
         .wallet-btn {
-            padding: 0.6rem 1.5rem;
-            background: linear-gradient(135deg, var(--primary) 0%, #FF8C52 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--primary), #ff9a00);
+            color: #fff;
             border: none;
-            border-radius: 0.6rem;
+            padding: 8px 22px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
             cursor: pointer;
-            font-weight: 600;
-            font-size: 0.95rem;
+            letter-spacing: 0.5px;
             transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
         }
 
         .wallet-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+            box-shadow: 0 8px 24px rgba(255, 107, 53, 0.5);
         }
 
-        .wallet-btn.connected {
-            background: linear-gradient(135deg, var(--accent) 0%, #5FD3FF 100%);
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        @media (max-width: 1024px) {
-            .container {
-                padding: 1.5rem;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 1rem;
-            }
-        }
-
-        /* Portfolio Overview */
-        .portfolio-section {
-            background: linear-gradient(135deg, var(--card) 0%, rgba(20, 24, 40, 0.8) 100%);
-            border: 1px solid rgba(79, 195, 247, 0.1);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .portfolio-header {
+        /* Hero Section */
+        #hero {
+            min-height: 100vh;
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 5% 60px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .balance-info h1 {
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(255, 107, 53, 0.12) 0%, transparent 70%),
+                        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(79, 195, 247, 0.08) 0%, transparent 60%),
+                        radial-gradient(ellipse 50% 40% at 20% 70%, rgba(255, 215, 0, 0.06) 0%, transparent 60%);
+        }
+
+        .grid-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background-image: linear-gradient(rgba(255, 107, 53, 0.04) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 107, 53, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .hero-content h1 {
             font-family: 'Orbitron', monospace;
-            font-size: 3rem;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
             font-weight: 900;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            line-height: 1.1;
+            background: linear-gradient(135deg, #fff 0%, var(--secondary) 40%, var(--primary) 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.2rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .hero-cta {
+            background: linear-gradient(135deg, var(--primary), #ff9a00);
+            color: #fff;
+            padding: 16px 40px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 40px rgba(255, 107, 53, 0.4);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Phone Mockup SVG */
+        .phone-mockup {
+            width: 100%;
+            max-width: 280px;
+            height: 100%;
+            filter: drop-shadow(0 0 60px rgba(255, 107, 53, 0.3));
+            animation: floatPhone 4s ease-in-out infinite;
+        }
+
+        @keyframes floatPhone {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Features Grid */
+        #features {
+            background: var(--dark2);
+            position: relative;
+            padding: 80px 5%;
+        }
+
+        .features-header {
+            margin-bottom: 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(255, 107, 53, 0.12);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            color: var(--primary);
+            padding: 4px 14px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .section-title span {
+            color: var(--secondary);
+        }
+
+        .section-desc {
+            color: var(--muted);
+            max-width: 600px;
+            font-size: 1rem;
+            margin-bottom: 60px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-bottom: 80px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .feature-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px 32px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 107, 53, 0.5);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.1rem;
+            color: var(--secondary);
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Detail Sections */
+        .detail-section {
+            padding: 80px 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .detail-section:nth-child(even) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .detail-section:nth-child(even) .detail-content {
+            order: 2;
+        }
+
+        .detail-section:nth-child(even) .detail-visual {
+            order: 1;
+        }
+
+        .detail-content h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .detail-content h2 span {
+            color: var(--secondary);
+        }
+
+        .detail-content p {
+            color: var(--muted);
+            font-size: 1rem;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .detail-visual {
+            position: relative;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* QR Payment Section */
+        .qr-payment-section {
+            background: linear-gradient(135deg, rgba(79, 195, 247, 0.1), rgba(255, 107, 53, 0.1));
+            border: 1px solid rgba(79, 195, 247, 0.2);
+            border-radius: 24px;
+            padding: 60px 5%;
+            margin: 80px 5%;
+        }
+
+        .qr-payment-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .qr-flow-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .flow-step {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--secondary);
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .step-content h3 {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2rem;
+            color: var(--text);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .step-content p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .qr-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 400px;
+            position: relative;
+        }
+
+        /* Security Section */
+        .security-section {
+            background: var(--dark2);
+            padding: 80px 5%;
+        }
+
+        .security-header {
+            margin-bottom: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .security-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px 28px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .security-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(79, 195, 247, 0.5);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .security-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .security-card h3 {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.1rem;
+            color: var(--secondary);
+            margin-bottom: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .security-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        #cta {
+            text-align: center;
+            padding: 100px 5%;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.12), rgba(79, 195, 247, 0.08));
+            border-top: 1px solid rgba(255, 107, 53, 0.2);
+        }
+
+        .cta-badge {
+            display: inline-block;
+            background: rgba(255, 107, 53, 0.12);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            color: var(--primary);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .cta-title {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, var(--secondary) 40%, var(--primary) 80%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .balance-change {
+        .cta-sub {
+            color: var(--muted);
             font-size: 1.1rem;
-            color: var(--green);
-            font-weight: 600;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
         }
 
-        .balance-change.negative {
-            color: var(--red);
-        }
-
-        .address-section {
-            background: rgba(79, 195, 247, 0.05);
-            padding: 1rem;
-            border-radius: 0.8rem;
-            border: 1px solid rgba(79, 195, 247, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .address-display {
-            font-family: 'Orbitron', monospace;
-            font-size: 0.95rem;
-            color: var(--accent);
-            letter-spacing: 0.02em;
-        }
-
-        .copy-btn {
-            background: var(--primary);
+        .cta-btn {
+            background: linear-gradient(135deg, var(--primary), #ff9a00);
+            color: #fff;
+            padding: 16px 48px;
             border: none;
-            color: white;
-            padding: 0.4rem 0.8rem;
-            border-radius: 0.4rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.05rem;
             cursor: pointer;
-            font-size: 0.85rem;
-            transition: var(--transition);
-        }
-
-        .copy-btn:hover {
-            background: #FF8C52;
-        }
-
-        .copy-btn.copied {
-            background: var(--green);
-        }
-
-        .network-selector {
-            background: rgba(79, 195, 247, 0.1);
-            border: 1px solid rgba(79, 195, 247, 0.3);
-            color: var(--text);
-            padding: 0.6rem 1rem;
-            border-radius: 0.6rem;
-            cursor: pointer;
-            font-weight: 600;
-            transition: var(--transition);
-            display: flex;
+            text-decoration: none;
+            display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-        }
-
-        .network-selector:hover {
-            background: rgba(79, 195, 247, 0.2);
-            border-color: rgba(79, 195, 247, 0.5);
-        }
-
-        /* Quick Actions */
-        .quick-actions {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .quick-actions {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 600px) {
-            .quick-actions {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.8rem;
-            }
-        }
-
-        .action-btn {
-            background: rgba(79, 195, 247, 0.1);
-            border: 1px solid rgba(79, 195, 247, 0.2);
-            color: var(--text);
-            padding: 1rem;
-            border-radius: 0.8rem;
-            cursor: pointer;
+            gap: 8px;
             transition: var(--transition);
+            letter-spacing: 0.5px;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark3);
+            border-top: 1px solid rgba(255, 107, 53, 0.2);
+            padding: 60px 5%;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
             display: flex;
             flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-brand a {
+            display: flex;
             align-items: center;
-            gap: 0.6rem;
-            font-weight: 600;
-            font-size: 0.95rem;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--text);
         }
 
-        .action-btn:hover {
-            background: rgba(79, 195, 247, 0.2);
-            border-color: var(--primary);
-            transform: translateY(-4px);
+        .footer-brand a img {
+            height: 40px;
+            width: 40px;
+            object-fit: contain;
         }
 
-        .action-icon {
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 50%;
+        .footer-brand a span {
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--secondary);
+            letter-spacing: 1px;
+        }
+
+        .footer-brand p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .footer-col h4 {
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 12px;
+            font-family: 'Orbitron', monospace;
+            letter-spacing: 1px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-col a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 107, 53, 0.1);
+            padding-top: 24px;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .socials {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(79, 195, 247, 0.2));
-            border: 1px solid var(--primary);
-        }
-
-        /* Tabs */
-        .tabs-section {
-            margin-bottom: 2rem;
-        }
-
-        .tab-bar {
-            display: flex;
-            gap: 2rem;
-            border-bottom: 1px solid rgba(79, 195, 247, 0.1);
-            margin-bottom: 2rem;
-        }
-
-        .tab-btn {
-            background: none;
-            border: none;
-            color: var(--muted);
-            padding: 1rem 0;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            text-decoration: none;
+            font-size: 1.2rem;
             transition: var(--transition);
-            position: relative;
         }
 
-        .tab-btn:hover {
-            color: var(--text);
+        .social-btn:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 107, 53, 0.5);
+            box-shadow: 0 8px 24px rgba(255, 107, 53, 0.2);
         }
 
-        .tab-btn.active {
-            color: var(--primary);
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            animation: revealIn 0.8s ease-out forwards;
         }
 
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1rem;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 1px;
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.3s ease-in;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
+        @keyframes revealIn {
             from {
                 opacity: 0;
-                transform: translateY(10px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -382,1590 +728,708 @@
             }
         }
 
-        /* Token List */
-        .token-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .token-item {
-            background: rgba(26, 31, 53, 0.6);
-            border: 1px solid rgba(79, 195, 247, 0.1);
-            padding: 1.2rem;
-            border-radius: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .token-item:hover {
-            background: rgba(26, 31, 53, 0.9);
-            border-color: var(--primary);
-            transform: translateX(4px);
-        }
-
-        .token-icon {
-            width: 3rem;
-            height: 3rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-            overflow: hidden;
-        }
-
-        .token-icon img {
+        /* SVG Illustrations */
+        svg {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
         }
 
-        .token-info {
-            flex: 1;
-        }
-
-        .token-name {
-            font-weight: 600;
-            font-size: 1rem;
-            color: var(--text);
-        }
-
-        .token-symbol {
-            font-size: 0.85rem;
-            color: var(--muted);
-            margin-top: 0.2rem;
-        }
-
-        .token-values {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            text-align: right;
-        }
-
-        .token-balance {
-            font-family: 'Orbitron', monospace;
-            font-weight: 700;
-            font-size: 1rem;
-        }
-
-        .token-usd {
-            font-size: 0.9rem;
-            color: var(--muted);
-            margin-top: 0.2rem;
-        }
-
-        .token-change {
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-top: 0.3rem;
-        }
-
-        .token-change.positive {
-            color: var(--green);
-        }
-
-        .token-change.negative {
-            color: var(--red);
-        }
-
-        /* Chart Section */
-        .chart-section {
-            background: rgba(26, 31, 53, 0.6);
-            border: 1px solid rgba(79, 195, 247, 0.1);
-            border-radius: 0.8rem;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .chart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .chart-info h3 {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.3rem;
-        }
-
-        .chart-price {
-            font-family: 'Orbitron', monospace;
-            font-size: 0.95rem;
-            color: var(--muted);
-        }
-
-        .time-range {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .time-btn {
-            background: rgba(79, 195, 247, 0.1);
-            border: 1px solid rgba(79, 195, 247, 0.2);
-            color: var(--muted);
-            padding: 0.4rem 0.8rem;
-            border-radius: 0.4rem;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .time-btn:hover {
-            color: var(--text);
-            border-color: var(--accent);
-        }
-
-        .time-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .chart-container {
-            height: 250px;
-            margin-bottom: 1rem;
-            position: relative;
-        }
-
-        .chart-svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .chart-volume {
-            display: flex;
-            gap: 2rem;
-            font-size: 0.9rem;
-            color: var(--muted);
-        }
-
-        .volume-item {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .volume-label {
-            font-size: 0.8rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .volume-value {
-            font-family: 'Orbitron', monospace;
-            color: var(--text);
-            font-weight: 600;
-        }
-
-        /* Transactions */
-        .transactions-section {
-            background: rgba(26, 31, 53, 0.6);
-            border: 1px solid rgba(79, 195, 247, 0.1);
-            border-radius: 0.8rem;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .transactions-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .transactions-header h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-
-        .transaction-filters {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background: rgba(79, 195, 247, 0.1);
-            border: 1px solid rgba(79, 195, 247, 0.2);
-            color: var(--muted);
-            padding: 0.4rem 0.8rem;
-            border-radius: 0.4rem;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .filter-btn:hover {
-            color: var(--text);
-            border-color: var(--accent);
-        }
-
-        .filter-btn.active {
-            background: var(--accent);
-            color: var(--dark);
-            border-color: var(--accent);
-        }
-
-        .transaction-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .transaction-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: rgba(79, 195, 247, 0.05);
-            border-radius: 0.6rem;
-            border: 1px solid rgba(79, 195, 247, 0.1);
-            transition: var(--transition);
-        }
-
-        .transaction-item:hover {
-            background: rgba(79, 195, 247, 0.1);
-            border-color: rgba(79, 195, 247, 0.3);
-        }
-
-        .tx-icon {
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-
-        .tx-icon.send {
-            background: rgba(239, 83, 80, 0.2);
-            color: var(--red);
-        }
-
-        .tx-icon.receive {
-            background: rgba(76, 175, 80, 0.2);
-            color: var(--green);
-        }
-
-        .tx-icon.swap {
-            background: rgba(79, 195, 247, 0.2);
-            color: var(--accent);
-        }
-
-        .tx-info {
-            flex: 1;
-        }
-
-        .tx-description {
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .tx-time {
-            font-size: 0.85rem;
-            color: var(--muted);
-            margin-top: 0.2rem;
-        }
-
-        .tx-details {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .tx-amount {
-            font-family: 'Orbitron', monospace;
-            font-weight: 700;
-            text-align: right;
-        }
-
-        .tx-status {
-            padding: 0.3rem 0.8rem;
-            border-radius: 0.4rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-
-        .tx-status.completed {
-            background: rgba(76, 175, 80, 0.2);
-            color: var(--green);
-        }
-
-        .tx-status.pending {
-            background: rgba(255, 215, 0, 0.2);
-            color: var(--secondary);
-        }
-
-        /* DApp Section */
-        .dapps-section {
-            background: rgba(26, 31, 53, 0.6);
-            border: 1px solid rgba(79, 195, 247, 0.1);
-            border-radius: 0.8rem;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .dapps-header h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .dapps-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .dapps-grid {
+            nav {
+                height: 60px;
+                padding: 0 3%;
+            }
+
+            .nav-title {
+                font-size: 0.9rem;
+            }
+
+            .nav-right {
+                gap: 16px;
+            }
+
+            .back-link {
+                font-size: 0.8rem;
+            }
+
+            .wallet-btn {
+                padding: 6px 16px;
+                font-size: 0.75rem;
+            }
+
+            #hero {
+                padding: 80px 5% 40px;
+            }
+
+            .hero-container {
                 grid-template-columns: 1fr;
+                gap: 40px;
             }
-        }
 
-        .dapp-card {
-            background: rgba(79, 195, 247, 0.05);
-            border: 1px solid rgba(79, 195, 247, 0.1);
-            border-radius: 0.8rem;
-            padding: 1.2rem;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .dapp-card:hover {
-            background: rgba(79, 195, 247, 0.15);
-            border-color: var(--primary);
-            transform: translateY(-4px);
-        }
-
-        .dapp-icon {
-            width: 3rem;
-            height: 3rem;
-            border-radius: 0.6rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(79, 195, 247, 0.2));
-            border: 1px solid rgba(79, 195, 247, 0.3);
-        }
-
-        .dapp-info h4 {
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 0.3rem;
-        }
-
-        .dapp-desc {
-            font-size: 0.9rem;
-            color: var(--muted);
-            margin-bottom: 0.8rem;
-            flex: 1;
-        }
-
-        .dapp-open-btn {
-            background: var(--primary);
-            border: none;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.4rem;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: var(--transition);
-            align-self: flex-start;
-        }
-
-        .dapp-open-btn:hover {
-            background: #FF8C52;
-            transform: translateX(2px);
-        }
-
-        /* NFT Gallery */
-        .nft-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        @media (max-width: 768px) {
-            .nft-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .hero-visual {
+                height: 350px;
             }
-        }
 
-        @media (max-width: 480px) {
-            .nft-grid {
+            .detail-section {
                 grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 60px 5%;
             }
-        }
 
-        .nft-card {
-            background: rgba(79, 195, 247, 0.05);
-            border: 1px solid rgba(79, 195, 247, 0.1);
-            border-radius: 0.8rem;
-            overflow: hidden;
-            cursor: pointer;
-            transition: var(--transition);
-        }
+            .detail-section:nth-child(even) .detail-content,
+            .detail-section:nth-child(even) .detail-visual {
+                order: unset;
+            }
 
-        .nft-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-4px);
-        }
+            .detail-visual {
+                height: 300px;
+            }
 
-        .nft-image {
-            width: 100%;
-            aspect-ratio: 1;
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(79, 195, 247, 0.1));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            border-bottom: 1px solid rgba(79, 195, 247, 0.1);
-            overflow: hidden;
-        }
+            .qr-payment-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
 
-        .nft-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+            .qr-payment-section {
+                padding: 60px 5%;
+                margin: 60px 5%;
+            }
 
-        .nft-info {
-            padding: 1rem;
-        }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
 
-        .nft-name {
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 0.3rem;
-        }
+            .features-grid {
+                gap: 20px;
+            }
 
-        .nft-collection {
-            font-size: 0.85rem;
-            color: var(--muted);
-            margin-bottom: 0.5rem;
-        }
-
-        .nft-floor {
-            font-family: 'Orbitron', monospace;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        /* Security Section */
-        .security-section {
-            background: rgba(26, 31, 53, 0.6);
-            border: 1px solid rgba(79, 195, 247, 0.1);
-            border-radius: 0.8rem;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .security-section h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .security-card {
-            background: rgba(79, 195, 247, 0.05);
-            border: 1px solid rgba(79, 195, 247, 0.1);
-            border-radius: 0.8rem;
-            padding: 1.2rem;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .security-info h4 {
-            font-weight: 700;
-            margin-bottom: 0.3rem;
-        }
-
-        .security-info p {
-            font-size: 0.9rem;
-            color: var(--muted);
-        }
-
-        .toggle-switch {
-            width: 3rem;
-            height: 1.5rem;
-            background: rgba(79, 195, 247, 0.2);
-            border: 1px solid rgba(79, 195, 247, 0.3);
-            border-radius: 0.75rem;
-            cursor: pointer;
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .toggle-switch.active {
-            background: var(--green);
-            border-color: var(--green);
-        }
-
-        .toggle-slider {
-            position: absolute;
-            top: 0.15rem;
-            left: 0.15rem;
-            width: 1.2rem;
-            height: 1.2rem;
-            background: white;
-            border-radius: 50%;
-            transition: var(--transition);
-        }
-
-        .toggle-switch.active .toggle-slider {
-            left: 1.65rem;
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(13, 17, 32, 0.5);
-            border-top: 1px solid rgba(79, 195, 247, 0.1);
-            padding: 2rem;
-            margin-top: 3rem;
-            text-align: center;
-            color: var(--muted);
-            font-size: 0.9rem;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        /* Modals */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: var(--card);
-            border: 1px solid rgba(79, 195, 247, 0.2);
-            border-radius: 1rem;
-            padding: 2rem;
-            max-width: 500px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: var(--text);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .modal-close:hover {
-            color: var(--primary);
-        }
-
-        .modal-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 0.8rem;
-            background: rgba(79, 195, 247, 0.05);
-            border: 1px solid rgba(79, 195, 247, 0.2);
-            border-radius: 0.6rem;
-            color: var(--text);
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
-            transition: var(--transition);
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: rgba(79, 195, 247, 0.1);
-        }
-
-        .form-submit {
-            width: 100%;
-            padding: 1rem;
-            background: linear-gradient(135deg, var(--primary) 0%, #FF8C52 100%);
-            color: white;
-            border: none;
-            border-radius: 0.6rem;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 1rem;
-            transition: var(--transition);
-            margin-top: 1rem;
-        }
-
-        .form-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
-        }
-
-        /* Utility Classes */
-        .counter {
-            font-family: 'Orbitron', monospace;
-            font-weight: 700;
-        }
-
-        .hidden {
-            display: none;
+            .security-grid {
+                gap: 20px;
+            }
         }
 
         @media (max-width: 600px) {
+            :root {
+                --font-size: 15px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                height: auto;
+                padding: 8px 3%;
+                gap: 12px;
+            }
+
             .nav-content {
                 flex-direction: column;
-                gap: 1rem;
+                width: 100%;
+                gap: 12px;
             }
 
             .nav-right {
                 width: 100%;
+                flex-wrap: wrap;
+                gap: 12px;
                 justify-content: space-between;
             }
 
-            .portfolio-header {
-                flex-direction: column;
+            .hero-content h1 {
+                font-size: clamp(1.8rem, 5vw, 2.5rem);
             }
 
-            .balance-info h1 {
+            .hero-content .subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: clamp(1.5rem, 3vw, 2rem);
+            }
+
+            .cta-title {
+                font-size: clamp(1.5rem, 4vw, 2.5rem);
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .security-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+
+            .detail-section {
+                padding: 40px 5%;
+                gap: 30px;
+            }
+
+            .flow-step {
+                gap: 16px;
+            }
+
+            .step-number {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            :root {
+                --font-size: 14px;
+            }
+
+            nav {
+                padding: 6px 2%;
+            }
+
+            .nav-left {
+                gap: 8px;
+            }
+
+            .nav-title {
+                font-size: 0.75rem;
+                letter-spacing: 1px;
+            }
+
+            .nav-logo {
+                height: 32px;
+                width: 32px;
+            }
+
+            .nav-right {
+                gap: 8px;
+            }
+
+            .back-link {
+                font-size: 0.7rem;
+            }
+
+            .lang-btn {
+                padding: 2px 6px;
+                font-size: 0.6rem;
+            }
+
+            .wallet-btn {
+                padding: 4px 10px;
+                font-size: 0.65rem;
+            }
+
+            #hero {
+                padding: 60px 5% 30px;
+            }
+
+            .hero-content h1 {
+                font-size: 1.5rem;
+                margin-bottom: 12px;
+            }
+
+            .hero-content .subtitle {
+                font-size: 0.85rem;
+                margin-bottom: 20px;
+            }
+
+            .hero-cta {
+                padding: 12px 24px;
+                font-size: 0.85rem;
+            }
+
+            .hero-visual {
+                height: 250px;
+            }
+
+            .features-grid {
+                gap: 12px;
+            }
+
+            .feature-card {
+                padding: 24px 16px;
+            }
+
+            .feature-icon {
                 font-size: 2rem;
             }
 
-            .chart-header {
-                flex-direction: column;
-                align-items: flex-start;
+            .feature-card h3 {
+                font-size: 0.95rem;
+                margin-bottom: 8px;
             }
 
-            .tab-bar {
-                gap: 1rem;
+            .feature-card p {
+                font-size: 0.85rem;
             }
 
-            .dapps-grid {
-                grid-template-columns: 1fr;
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+            .detail-section {
+                padding: 30px 5%;
+            }
+
+            .detail-content h2 {
+                font-size: 1.2rem;
+            }
+
+            .cta-title {
+                font-size: 1.3rem;
+            }
+
+            .cta-sub {
+                font-size: 0.9rem;
+            }
+
+            .cta-btn {
+                padding: 10px 24px;
+                font-size: 0.9rem;
+            }
+
+            #cta {
+                padding: 40px 5%;
+            }
+
+            footer {
+                padding: 40px 5%;
+            }
+
+            .footer-grid {
+                gap: 24px;
+            }
+
+            .footer-col h4 {
+                font-size: 0.9rem;
+            }
+
+            .footer-col a {
+                font-size: 0.8rem;
+            }
+
+            .footer-bottom {
+                font-size: 0.8rem;
+            }
+
+            .security-icon {
+                font-size: 2rem;
+            }
+
+            .security-card h3 {
+                font-size: 0.95rem;
+            }
+
+            .security-card p {
+                font-size: 0.85rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-content">
-            <div class="nav-left">
-                <img src="../../funs-nugi.png" alt="FunS Logo" class="nav-logo">
-                <div class="nav-title">FunS Wallet</div>
-            </div>
-            <div class="nav-right">
-                <a href="../index.html" class="back-link">← FunS Platform</a>
-                <div class="lang-switch">
-                    <a href="../../wallet/index.html" class="lang-btn">KR</a>
-                    <a href="index.html" class="lang-btn active">EN</a>
-                </div>
-                <button class="wallet-btn" id="walletBtn">Connect Wallet</button>
-            </div>
+
+<!-- Navigation -->
+<nav>
+    <div class="nav-content">
+        <div class="nav-left">
+            <img src="../../funs-nugi.png" alt="FunS" class="nav-logo">
+            <span class="nav-title">FunS Wallet</span>
         </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="container">
-        <!-- Portfolio Overview -->
-        <section class="portfolio-section">
-            <div class="portfolio-header">
-                <div class="balance-info">
-                    <h1 class="balance-amount">$<span class="counter" data-target="12458.32">0.00</span></h1>
-                    <div class="balance-change">+ $<span class="counter" data-target="234.56">0.00</span> (+1.92%)</div>
-                </div>
-                <div>
-                    <div class="address-section">
-                        <span class="address-display" id="addressDisplay">0x1a2B...3c4D</span>
-                        <button class="copy-btn" id="copyBtn">Copy</button>
-                    </div>
-                    <button class="network-selector" id="networkSelector">
-                        <span>🔗</span> BNB Chain
-                    </button>
-                </div>
+        <div class="nav-right">
+            <a href="../index.html" class="back-link">← FunS Platform</a>
+            <div class="lang-switch">
+                <a href="../../wallet/index.html" class="lang-btn">KR</a>
+                <a href="index.html" class="lang-btn active">EN</a>
             </div>
-
-            <!-- Quick Actions -->
-            <div class="quick-actions">
-                <button class="action-btn" id="sendBtn">
-                    <div class="action-icon">↑</div>
-                    <span>Send</span>
-                </button>
-                <button class="action-btn" id="receiveBtn">
-                    <div class="action-icon">↓</div>
-                    <span>Receive</span>
-                </button>
-                <button class="action-btn" id="swapBtn">
-                    <div class="action-icon">⇄</div>
-                    <span>Swap</span>
-                </button>
-                <button class="action-btn" id="buyBtn">
-                    <div class="action-icon">💳</div>
-                    <span>Buy</span>
-                </button>
-            </div>
-        </section>
-
-        <!-- Tabs Section -->
-        <div class="tabs-section">
-            <div class="tab-bar">
-                <button class="tab-btn active" data-tab="tokens">Tokens</button>
-                <button class="tab-btn" data-tab="nft">NFT</button>
-                <button class="tab-btn" data-tab="defi">DeFi</button>
-            </div>
-
-            <!-- Tokens Tab -->
-            <div class="tab-content active" id="tokens-tab">
-                <!-- Chart Section -->
-                <div class="chart-section">
-                    <div class="chart-header">
-                        <div class="chart-info">
-                            <h3 id="chartToken">FUNS</h3>
-                            <div class="chart-price">$<span class="counter" data-target="1.24">1.24</span></div>
-                        </div>
-                        <div class="time-range">
-                            <button class="time-btn active" data-range="1h">1H</button>
-                            <button class="time-btn" data-range="1d">1D</button>
-                            <button class="time-btn" data-range="1w">1W</button>
-                            <button class="time-btn" data-range="1m">1M</button>
-                            <button class="time-btn" data-range="1y">1Y</button>
-                        </div>
-                    </div>
-                    <div class="chart-container">
-                        <svg class="chart-svg" id="priceChart" viewBox="0 0 1000 250" preserveAspectRatio="xMidYMid meet">
-                            <defs>
-                                <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:0.3" />
-                                    <stop offset="100%" style="stop-color:#FF6B35;stop-opacity:0" />
-                                </linearGradient>
-                            </defs>
-                            <polyline id="chartLine" points="10,90 30,75 50,82 70,65 90,72 110,58 130,65 150,50 170,58 190,42 210,50 230,35 250,42 270,28 290,35" fill="none" stroke="#FF6B35" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                            <polyline id="chartFill" points="10,90 30,75 50,82 70,65 90,72 110,58 130,65 150,50 170,58 190,42 210,50 230,35 250,42 270,28 290,35 290,250 10,250" fill="url(#chartGradient)"/>
-                        </svg>
-                    </div>
-                    <div class="chart-volume">
-                        <div class="volume-item">
-                            <span class="volume-label">Volume</span>
-                            <span class="volume-value">$245.3M</span>
-                        </div>
-                        <div class="volume-item">
-                            <span class="volume-label">Open</span>
-                            <span class="volume-value">$1.18</span>
-                        </div>
-                        <div class="volume-item">
-                            <span class="volume-label">High</span>
-                            <span class="volume-value">$1.28</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Token List -->
-                <div class="token-list">
-                    <div class="token-item" data-token="FUNS" data-price="1.24">
-                        <div class="token-icon"><img src="../../funs-nugi.png" alt="FUNS"></div>
-                        <div class="token-info">
-                            <div class="token-name">FunS</div>
-                            <div class="token-symbol">FUNS</div>
-                        </div>
-                        <div class="token-values">
-                            <div class="token-balance">15,840 FUNS</div>
-                            <div class="token-usd">$<span class="counter" data-target="19641.60">0</span></div>
-                            <div class="token-change positive">+8.2%</div>
-                        </div>
-                    </div>
-
-                    <div class="token-item" data-token="BNB" data-price="612.31">
-                        <div class="token-icon"><img src="../../dex/icons/bnb.svg" alt="BNB"></div>
-                        <div class="token-info">
-                            <div class="token-name">Binance Coin</div>
-                            <div class="token-symbol">BNB</div>
-                        </div>
-                        <div class="token-values">
-                            <div class="token-balance">3.45 BNB</div>
-                            <div class="token-usd">$<span class="counter" data-target="2111.40">0</span></div>
-                            <div class="token-change positive">+2.1%</div>
-                        </div>
-                    </div>
-
-                    <div class="token-item" data-token="USDT" data-price="1.00">
-                        <div class="token-icon"><img src="../../dex/icons/usdt.svg" alt="USDT"></div>
-                        <div class="token-info">
-                            <div class="token-name">Tether USD</div>
-                            <div class="token-symbol">USDT</div>
-                        </div>
-                        <div class="token-values">
-                            <div class="token-balance">2,500 USDT</div>
-                            <div class="token-usd">$<span class="counter" data-target="2500.00">0</span></div>
-                            <div class="token-change">0.0%</div>
-                        </div>
-                    </div>
-
-                    <div class="token-item" data-token="ETH" data-price="3842.94">
-                        <div class="token-icon"><img src="../../dex/icons/eth.svg" alt="ETH"></div>
-                        <div class="token-info">
-                            <div class="token-name">Ethereum</div>
-                            <div class="token-symbol">ETH</div>
-                        </div>
-                        <div class="token-values">
-                            <div class="token-balance">0.85 ETH</div>
-                            <div class="token-usd">$<span class="counter" data-target="3265.70">0</span></div>
-                            <div class="token-change negative">-1.3%</div>
-                        </div>
-                    </div>
-
-                    <div class="token-item" data-token="CAKE" data-price="2.85">
-                        <div class="token-icon"><img src="../../dex/icons/cake.svg" alt="CAKE"></div>
-                        <div class="token-info">
-                            <div class="token-name">PancakeSwap</div>
-                            <div class="token-symbol">CAKE</div>
-                        </div>
-                        <div class="token-values">
-                            <div class="token-balance">450 CAKE</div>
-                            <div class="token-usd">$<span class="counter" data-target="1282.50">0</span></div>
-                            <div class="token-change positive">+5.4%</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Transactions Section -->
-                <div class="transactions-section">
-                    <div class="transactions-header">
-                        <h3>Recent Transactions</h3>
-                        <div class="transaction-filters">
-                            <button class="filter-btn active" data-filter="all">All</button>
-                            <button class="filter-btn" data-filter="send">보내기</button>
-                            <button class="filter-btn" data-filter="receive">받기</button>
-                            <button class="filter-btn" data-filter="swap">스왑</button>
-                        </div>
-                    </div>
-
-                    <div class="transaction-list">
-                        <div class="transaction-item" data-tx-type="swap">
-                            <div class="tx-icon swap">⇄</div>
-                            <div class="tx-info">
-                                <div class="tx-description">Swap BNB → FUNS</div>
-                                <div class="tx-time">5 minutes ago</div>
-                            </div>
-                            <div class="tx-details">
-                                <div class="tx-amount">-1.5 BNB</div>
-                                <div class="tx-status completed">Complete</div>
-                            </div>
-                        </div>
-
-                        <div class="transaction-item" data-tx-type="receive">
-                            <div class="tx-icon receive">↓</div>
-                            <div class="tx-info">
-                                <div class="tx-description">Receive FUNS</div>
-                                <div class="tx-time">2 hours ago</div>
-                            </div>
-                            <div class="tx-details">
-                                <div class="tx-amount">+500 FUNS</div>
-                                <div class="tx-status completed">Complete</div>
-                            </div>
-                        </div>
-
-                        <div class="transaction-item" data-tx-type="send">
-                            <div class="tx-icon send">↑</div>
-                            <div class="tx-info">
-                                <div class="tx-description">Send BNB</div>
-                                <div class="tx-time">1 day ago</div>
-                            </div>
-                            <div class="tx-details">
-                                <div class="tx-amount">-2.0 BNB</div>
-                                <div class="tx-status completed">Complete</div>
-                            </div>
-                        </div>
-
-                        <div class="transaction-item" data-tx-type="swap">
-                            <div class="tx-icon swap">⇄</div>
-                            <div class="tx-info">
-                                <div class="tx-description">Swap USDT → ETH</div>
-                                <div class="tx-time">2 days ago</div>
-                            </div>
-                            <div class="tx-details">
-                                <div class="tx-amount">-1000 USDT</div>
-                                <div class="tx-status completed">Complete</div>
-                            </div>
-                        </div>
-
-                        <div class="transaction-item" data-tx-type="receive">
-                            <div class="tx-icon receive">↓</div>
-                            <div class="tx-info">
-                                <div class="tx-description">Receive CAKE</div>
-                                <div class="tx-time">3 days ago</div>
-                            </div>
-                            <div class="tx-details">
-                                <div class="tx-amount">+50 CAKE</div>
-                                <div class="tx-status pending">Pending</div>
-                            </div>
-                        </div>
-
-                        <div class="transaction-item" data-tx-type="send">
-                            <div class="tx-icon send">↑</div>
-                            <div class="tx-info">
-                                <div class="tx-description">Send ETH</div>
-                                <div class="tx-time">1 week ago</div>
-                            </div>
-                            <div class="tx-details">
-                                <div class="tx-amount">-0.5 ETH</div>
-                                <div class="tx-status completed">Complete</div>
-                            </div>
-                        </div>
-
-                        <div class="transaction-item" data-tx-type="swap">
-                            <div class="tx-icon swap">⇄</div>
-                            <div class="tx-info">
-                                <div class="tx-description">Swap BNB → USDT</div>
-                                <div class="tx-time">2 weeks ago</div>
-                            </div>
-                            <div class="tx-details">
-                                <div class="tx-amount">+1200 USDT</div>
-                                <div class="tx-status completed">Complete</div>
-                            </div>
-                        </div>
-
-                        <div class="transaction-item" data-tx-type="receive">
-                            <div class="tx-icon receive">↓</div>
-                            <div class="tx-info">
-                                <div class="tx-description">Receive BNB</div>
-                                <div class="tx-time">3 weeks ago</div>
-                            </div>
-                            <div class="tx-details">
-                                <div class="tx-amount">+0.75 BNB</div>
-                                <div class="tx-status completed">Complete</div>
-                            </div>
-                        </div>
-
-                        <div class="transaction-item" data-tx-type="send">
-                            <div class="tx-icon send">↑</div>
-                            <div class="tx-info">
-                                <div class="tx-description">Send FUNS</div>
-                                <div class="tx-time">1 month ago</div>
-                            </div>
-                            <div class="tx-details">
-                                <div class="tx-amount">-1000 FUNS</div>
-                                <div class="tx-status completed">Complete</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- DApps Section -->
-                <div class="dapps-section">
-                    <div class="dapps-header">
-                        <h3>Popular DApps</h3>
-                    </div>
-                    <div class="dapps-grid">
-                        <div class="dapp-card">
-                            <div class="dapp-icon">⇄</div>
-                            <div class="dapp-info">
-                                <h4>FunSwap DEX</h4>
-                                <div class="dapp-desc">Decentralized Exchange</div>
-                            </div>
-                            <button class="dapp-open-btn">Open</button>
-                        </div>
-
-                        <div class="dapp-card">
-                            <div class="dapp-icon">🎮</div>
-                            <div class="dapp-info">
-                                <h4FunS Games</h4>
-                                <div class="dapp-desc">Web3 Games</div>
-                            </div>
-                            <button class="dapp-open-btn">Open</button>
-                        </div>
-
-                        <div class="dapp-card">
-                            <div class="dapp-icon">💰</div>
-                            <div class="dapp-info">
-                                <h4>FunS Staking</h4>
-                                <div class="dapp-desc">Token Staking</div>
-                            </div>
-                            <button class="dapp-open-btn">Open</button>
-                        </div>
-
-                        <div class="dapp-card">
-                            <div class="dapp-icon">🖼️</div>
-                            <div class="dapp-info">
-                                <h4>FunS NFT</h4>
-                                <div class="dapp-desc">NFT Market</div>
-                            </div>
-                            <button class="dapp-open-btn">Open</button>
-                        </div>
-
-                        <div class="dapp-card">
-                            <div class="dapp-icon">🥞</div>
-                            <div class="dapp-info">
-                                <h4>PancakeSwap</h4>
-                                <div class="dapp-desc">Decentralized Exchange</div>
-                            </div>
-                            <button class="dapp-open-btn">Open</button>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- Security Section -->
-                <div class="security-section">
-                    <h3>Security</h3>
-
-                    <div class="security-card">
-                        <div class="security-info">
-                            <h4>⚠️ Backup Reminder</h4>
-                            <p>Protect your wallet by backing up your seed phrase</p>
-                        </div>
-                        <button class="dapp-open-btn">Backup</button>
-                    </div>
-
-                    <div class="security-card">
-                        <div class="security-info">
-                            <h4>Biometric Lock</h4>
-                            <p>Lock your wallet with fingerprint or face</p>
-                        </div>
-                        <div class="toggle-switch active" id="biometricToggle">
-                            <div class="toggle-slider"></div>
-                        </div>
-                    </div>
-
-                    <div class="security-card">
-                        <div class="security-info">
-                            <h4>Connected Sites</h4>
-                            <p>3 DApps connected</p>
-                        </div>
-                        <button class="dapp-open-btn">Manage</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- NFT Tab -->
-            <div class="tab-content" id="nft-tab">
-                <div class="nft-grid">
-                    <div class="nft-card">
-                        <div class="nft-image"><img src="../../wallet/nft-images/runner.svg" alt="FunS Runner"></div>
-                        <div class="nft-info">
-                            <div class="nft-name">FunS Runner #1234</div>
-                            <div class="nft-collection"FunS Game</div>
-                            <div class="nft-floor"Floor: 0.5 BNB</div>
-                        </div>
-                    </div>
-
-                    <div class="nft-card">
-                        <div class="nft-image"><img src="../../wallet/nft-images/dragon.svg" alt="FunS Dragon"></div>
-                        <div class="nft-info">
-                            <div class="nft-name">FunS Dragon #5678</div>
-                            <div class="nft-collection"FunS Dragons</div>
-                            <div class="nft-floor"Floor: 1.2 BNB</div>
-                        </div>
-                    </div>
-
-                    <div class="nft-card">
-                        <div class="nft-image"><img src="../../wallet/nft-images/warrior.svg" alt="FunS Warrior"></div>
-                        <div class="nft-info">
-                            <div class="nft-name">FunS Knight #2341</div>
-                            <div class="nft-collection"FunS Warriors</div>
-                            <div class="nft-floor"Floor: 0.8 BNB</div>
-                        </div>
-                    </div>
-
-                    <div class="nft-card">
-                        <div class="nft-image"><img src="../../wallet/nft-images/castle.svg" alt="FunS Castle"></div>
-                        <div class="nft-info">
-                            <div class="nft-name">FunS Castle #6789</div>
-                            <div class="nft-collection"FunS Realms</div>
-                            <div class="nft-floor"Floor: 2.0 BNB</div>
-                        </div>
-                    </div>
-
-                    <div class="nft-card">
-                        <div class="nft-image"><img src="../../wallet/nft-images/gem.svg" alt="FunS Gem"></div>
-                        <div class="nft-info">
-                            <div class="nft-name">FunS Mystical Gem #3456</div>
-                            <div class="nft-collection"FunS Artifacts</div>
-                            <div class="nft-floor"Floor: 0.3 BNB</div>
-                        </div>
-                    </div>
-
-                    <div class="nft-card">
-                        <div class="nft-image"><img src="../../wallet/nft-images/crown.svg" alt="FunS Crown"></div>
-                        <div class="nft-info">
-                            <div class="nft-name">FunS Crown #9012</div>
-                            <div class="nft-collection"FunS Legends</div>
-                            <div class="nft-floor"Floor: 3.5 BNB</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- DeFi Tab -->
-            <div class="tab-content" id="defi-tab">
-                <div class="token-list">
-                    <div class="token-item" data-token="FUNS-STAKING">
-                        <div class="token-icon" style="background: linear-gradient(135deg, #FF6B35, #FFD700);">📊</div>
-                        <div class="token-info">
-                            <div class="token-name">FunS Staking Pool</div>
-                            <div class="token-symbol"45% APY</div>
-                        </div>
-                        <div class="token-values">
-                            <div class="token-balance">6,240 FUNS</div>
-                            <div class="token-usd">$<span class="counter" data-target="7737.60">0</span></div>
-                            <div class="token-change positive">+45% APY</div>
-                        </div>
-                    </div>
-
-                    <div class="token-item" data-token="LP-BNB-FUNS">
-                        <div class="token-icon" style="background: linear-gradient(135deg, #F3BA2F, #FF6B35);">💧</div>
-                        <div class="token-info">
-                            <div class="token-name">BNB-FUNS LP Token</div>
-                            <div class="token-symbol"Liquidity Provider</div>
-                        </div>
-                        <div class="token-values">
-                            <div class="token-balance">125.5 LP</div>
-                            <div class="token-usd">$<span class="counter" data-target="4532.15">0</span></div>
-                            <div class="token-change positive">+8.5% APR</div>
-                        </div>
-                    </div>
-
-                    <div class="token-item" data-token="LENDING">
-                        <div class="token-icon" style="background: linear-gradient(135deg, #4FC3F7, #2196F3);">🏦</div>
-                        <div class="token-info">
-                            <div class="token-name">Lending Pool</div>
-                            <div class="token-symbol">Lending Protocol</div>
-                        </div>
-                        <div class="token-values">
-                            <div class="token-balance">2,500 USDT</div>
-                            <div class="token-usd">$<span class="counter" data-target="2562.50">0</span></div>
-                            <div class="token-change positive">+2.5% APY</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <button class="wallet-btn" id="walletBtn">Connect Wallet</button>
         </div>
     </div>
+</nav>
 
-    <!-- Modals -->
-    <div class="modal" id="sendModal">
-        <div class="modal-content">
-            <button class="modal-close" id="closeSendModal">×</button>
-            <div class="modal-title">Send</div>
-            <form id="sendForm">
-                <div class="form-group">
-                    <label class="form-label">Recipient Address</label>
-                    <input type="text" class="form-input" placeholder="0x..." required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Token</label>
-                    <select class="form-input" required>
-                        <option>FUNS</option>
-                        <option>BNB</option>
-                        <option>USDT</option>
-                        <option>ETH</option>
-                        <option>CAKE</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Amount</label>
-                    <input type="number" class="form-input" placeholder="0.00" step="0.01" required>
-                </div>
-                <button type="submit" class="form-submit">전송</button>
-            </form>
+<!-- Hero Section -->
+<section id="hero">
+    <div class="hero-bg"></div>
+    <div class="grid-overlay"></div>
+    <div class="hero-container">
+        <div class="hero-content reveal">
+            <h1>FunS Wallet</h1>
+            <p class="subtitle">One wallet for gaming, payments, and rewards</p>
+            <a href="app/index.html" class="hero-cta">🚀 Start FunS Wallet</a>
+        </div>
+        <div class="hero-visual reveal">
+            <!-- Phone Mockup -->
+            <svg class="phone-mockup" viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
+                <!-- Phone Body -->
+                <rect x="20" y="20" width="160" height="360" rx="20" fill="none" stroke="#4FC3F7" stroke-width="2"/>
+                <!-- Screen -->
+                <rect x="28" y="32" width="144" height="280" rx="12" fill="#0A0E1A" stroke="none"/>
+                <!-- Notch -->
+                <rect x="80" y="32" width="40" height="16" rx="4" fill="#0A0E1A"/>
+                <!-- Status Bar -->
+                <line x1="32" y1="55" x2="168" y2="55" stroke="#4FC3F7" stroke-width="0.5" opacity="0.3"/>
+                <!-- Wallet Display -->
+                <text x="100" y="100" font-family="Orbitron" font-size="12" fill="#FFD700" text-anchor="middle" font-weight="700">
+                    FunS Wallet
+                </text>
+                <rect x="40" y="115" width="120" height="60" rx="8" fill="#1a1f35" stroke="#FF6B35" stroke-width="1" opacity="0.6"/>
+                <text x="100" y="135" font-family="Orbitron" font-size="8" fill="#4FC3F7" text-anchor="middle">
+                    Total Assets
+                </text>
+                <text x="100" y="155" font-family="Orbitron" font-size="14" fill="#FFD700" text-anchor="middle" font-weight="700">
+                    $5,234.50
+                </text>
+                <!-- Tokens Section -->
+                <circle cx="50" cy="200" r="20" fill="#1a1f35" stroke="#FF6B35" stroke-width="1"/>
+                <text x="50" y="205" font-size="10" fill="#FFD700" text-anchor="middle" font-weight="700">🔷</text>
+                <circle cx="100" cy="200" r="20" fill="#1a1f35" stroke="#4FC3F7" stroke-width="1"/>
+                <text x="100" y="205" font-size="10" fill="#FFD700" text-anchor="middle" font-weight="700">⬡</text>
+                <circle cx="150" cy="200" r="20" fill="#1a1f35" stroke="#FFD700" stroke-width="1"/>
+                <text x="150" y="205" font-size="10" fill="#FFD700" text-anchor="middle" font-weight="700">◎</text>
+                <!-- Action Buttons -->
+                <rect x="40" y="240" width="50" height="20" rx="4" fill="#FF6B35" opacity="0.8"/>
+                <text x="65" y="252" font-size="8" fill="#fff" text-anchor="middle" font-weight="700">Send</text>
+                <rect x="110" y="240" width="50" height="20" rx="4" fill="#4FC3F7" opacity="0.8"/>
+                <text x="135" y="252" font-size="8" fill="#0A0E1A" text-anchor="middle" font-weight="700">Swap</text>
+                <!-- Home Indicator -->
+                <line x1="85" y1="355" x2="115" y2="355" stroke="#4FC3F7" stroke-width="2" opacity="0.5"/>
+            </svg>
         </div>
     </div>
+</section>
 
-    <div class="modal" id="receiveModal">
-        <div class="modal-content">
-            <button class="modal-close" id="closeReceiveModal">×</button>
-            <div class="modal-title">Receive</div>
-            <div style="text-align: center;">
-                <div style="background: white; padding: 1.5rem; border-radius: 0.8rem; margin-bottom: 1.5rem; display: inline-block;">
-                    <svg width="150" height="150" style="background: white;">
-                        <rect width="150" height="150" fill="white"/>
-                        <text x="50%" y="50%" text-anchor="middle" font-size="12" fill="#666">QR Code</text>
-                    </svg>
+<!-- Features Section -->
+<section id="features">
+    <div class="features-header reveal">
+        <span class="section-tag">Core Features</span>
+        <h2 class="section-title">FunS Wallet's <span>Powerful Features</span></h2>
+        <p class="section-desc">From secure asset management to everyday payments, everything in one wallet.</p>
+    </div>
+    <div class="features-grid">
+        <div class="feature-card reveal">
+            <span class="feature-icon">🔐</span>
+            <h3>Secure Asset Management</h3>
+            <p>Manage diverse assets like FUNS, BNB, and ETH in one place with multi-chain support. Biometric authentication and seed phrase encryption provide top-tier security.</p>
+        </div>
+        <div class="feature-card reveal">
+            <span class="feature-icon">📱</span>
+            <h3>QR Payment</h3>
+            <p>Pay with FUNS tokens at offline stores with a single QR code scan. Fast and secure transactions processed in real-time.</p>
+        </div>
+        <div class="feature-card reveal">
+            <span class="feature-icon">🎮</span>
+            <h3>Game Rewards Integration</h3>
+            <p>P2E rewards from FunS gaming platform automatically accumulate in your wallet. Earn real value as you play and check it anytime.</p>
+        </div>
+        <div class="feature-card reveal">
+            <span class="feature-icon">💳</span>
+            <h3>FunS Pay</h3>
+            <p>Pay with FUNS for online shopping, subscriptions, and more. Available at partner stores worldwide.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Detail Section -->
+<section class="detail-section reveal">
+    <div class="detail-content">
+        <h2>Portfolio at a <span>Glance</span></h2>
+        <p>Monitor your assets in real-time. See token ratios, balances, and price changes all at once with our intuitive dashboard for easier asset management.</p>
+        <p>Track all token prices connected to your wallet in real-time and verify the security of your assets anytime, anywhere.</p>
+    </div>
+    <div class="detail-visual reveal">
+        <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <!-- Circular Chart -->
+            <circle cx="150" cy="150" r="100" fill="none" stroke="#4FC3F7" stroke-width="1" opacity="0.2"/>
+            <!-- Pie Segments -->
+            <circle cx="150" cy="50" r="8" fill="#FF6B35"/>
+            <path d="M 150 150 L 225 100 A 100 100 0 0 1 225 200 Z" fill="none" stroke="#FF6B35" stroke-width="20" opacity="0.6"/>
+            <circle cx="225" cy="150" r="8" fill="#4FC3F7"/>
+            <path d="M 150 150 L 150 50 A 100 100 0 0 1 225 100 Z" fill="none" stroke="#4FC3F7" stroke-width="20" opacity="0.6"/>
+            <circle cx="150" cy="50" r="8" fill="#FFD700"/>
+            <path d="M 150 150 L 75 100 A 100 100 0 0 1 150 50 Z" fill="none" stroke="#FFD700" stroke-width="20" opacity="0.6"/>
+            <!-- Center -->
+            <circle cx="150" cy="150" r="40" fill="#1a1f35" stroke="#FF6B35" stroke-width="1"/>
+            <text x="150" y="150" font-family="Orbitron" font-size="16" fill="#FFD700" text-anchor="middle" dy="0.3em" font-weight="700">$5.2K</text>
+            <!-- Legend -->
+            <rect x="20" y="220" width="12" height="12" fill="#FF6B35"/>
+            <text x="36" y="226" font-size="11" fill="#e8eaf0">FUNS (40%)</text>
+            <rect x="150" y="220" width="12" height="12" fill="#4FC3F7"/>
+            <text x="166" y="226" font-size="11" fill="#e8eaf0">BNB (35%)</text>
+            <rect x="280" y="220" width="12" height="12" fill="#FFD700" opacity="0" />
+            <text x="20" y="245" font-size="11" fill="#e8eaf0">ETH (25%)</text>
+        </svg>
+    </div>
+</section>
+
+<!-- Swap Detail Section -->
+<section class="detail-section reveal">
+    <div class="detail-content">
+        <h2>Instant <span>Swap</span></h2>
+        <p>DEX integration within your wallet enables one-click token exchanges. Swap tokens quickly and affordably without complex procedures.</p>
+        <p>Automatically find the best exchange rates and guarantee transparent fees for trustworthy trading. Supports all trading pairs from FunS game tokens to major coins.</p>
+    </div>
+    <div class="detail-visual reveal">
+        <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <!-- From Token -->
+            <circle cx="70" cy="150" r="30" fill="#1a1f35" stroke="#FF6B35" stroke-width="2"/>
+            <text x="70" y="155" font-size="16" fill="#FFD700" text-anchor="middle" font-weight="700">⬡</text>
+            <text x="70" y="200" font-family="Orbitron" font-size="10" fill="#4FC3F7" text-anchor="middle">BNB</text>
+            <!-- Arrow -->
+            <path d="M 110 140 Q 150 120 190 140" fill="none" stroke="#4FC3F7" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <path d="M 190 160 Q 150 180 110 160" fill="none" stroke="#FF6B35" stroke-width="2"/>
+            <text x="150" y="135" font-family="Orbitron" font-size="11" fill="#FFD700" text-anchor="middle" font-weight="700">SWAP</text>
+            <!-- To Token -->
+            <circle cx="230" cy="150" r="30" fill="#1a1f35" stroke="#4FC3F7" stroke-width="2"/>
+            <text x="230" y="155" font-size="16" fill="#FFD700" text-anchor="middle" font-weight="700">🔷</text>
+            <text x="230" y="200" font-family="Orbitron" font-size="10" fill="#FFD700" text-anchor="middle">ETH</text>
+            <!-- Price Info -->
+            <rect x="30" y="240" width="240" height="40" rx="8" fill="#1a1f35" stroke="#FF6B35" stroke-width="1" opacity="0.6"/>
+            <text x="60" y="260" font-size="10" fill="#8892b0">1 BNB =</text>
+            <text x="160" y="260" font-family="Orbitron" font-size="10" fill="#FFD700" font-weight="700">0.0525 ETH</text>
+            <text x="60" y="272" font-size="9" fill="#8892b0">Fee: 0.3%</text>
+            <defs>
+                <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                    <polygon points="0 0, 10 3, 0 6" fill="#4FC3F7"/>
+                </marker>
+            </defs>
+        </svg>
+    </div>
+</section>
+
+<!-- NFT Gallery Detail Section -->
+<section class="detail-section reveal">
+    <div class="detail-content">
+        <h2>NFT <span>Gallery</span></h2>
+        <p>Manage and display your NFTs in one place. View all your FunS game characters, items, collections, and NFT assets in your wallet.</p>
+        <p>Direct marketplace integration makes trading convenient. Display your NFT collection freely and prove ownership through your profile.</p>
+    </div>
+    <div class="detail-visual reveal">
+        <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <!-- NFT Grid -->
+            <rect x="30" y="40" width="50" height="50" rx="8" fill="#1a1f35" stroke="#FF6B35" stroke-width="1.5"/>
+            <text x="55" y="70" font-size="20" text-anchor="middle">🦄</text>
+            <rect x="110" y="40" width="50" height="50" rx="8" fill="#1a1f35" stroke="#4FC3F7" stroke-width="1.5"/>
+            <text x="135" y="70" font-size="20" text-anchor="middle">⚔️</text>
+            <rect x="190" y="40" width="50" height="50" rx="8" fill="#1a1f35" stroke="#FFD700" stroke-width="1.5"/>
+            <text x="215" y="70" font-size="20" text-anchor="middle">💎</text>
+            <rect x="30" y="120" width="50" height="50" rx="8" fill="#1a1f35" stroke="#4FC3F7" stroke-width="1.5"/>
+            <text x="55" y="150" font-size="20" text-anchor="middle">🎭</text>
+            <rect x="110" y="120" width="50" height="50" rx="8" fill="#1a1f35" stroke="#FF6B35" stroke-width="1.5"/>
+            <text x="135" y="150" font-size="20" text-anchor="middle">🔮</text>
+            <rect x="190" y="120" width="50" height="50" rx="8" fill="#1a1f35" stroke="#FFD700" stroke-width="1.5"/>
+            <text x="215" y="150" font-size="20" text-anchor="middle">👑</text>
+            <!-- Total -->
+            <text x="150" y="230" font-family="Orbitron" font-size="12" fill="#FFD700" text-anchor="middle" font-weight="700">You Own 6 NFTs</text>
+            <text x="150" y="250" font-size="10" fill="#8892b0" text-anchor="middle">Total Value: $12,450</text>
+        </svg>
+    </div>
+</section>
+
+<!-- QR Payment Section -->
+<section class="qr-payment-section reveal">
+    <div class="qr-payment-container">
+        <div class="qr-flow-steps">
+            <div class="flow-step reveal">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Scan QR Code</h3>
+                    <p>Scan the FunS Pay QR code at the store with your wallet camera.</p>
                 </div>
-                <div class="form-group">
-                    <label class="form-label">Wallet Address</label>
-                    <div style="background: rgba(79, 195, 247, 0.1); padding: 1rem; border-radius: 0.6rem; font-family: 'Orbitron', monospace; word-break: break-all; color: var(--accent);">
-                        0x1a2B3c4D5e6F7g8h9i0j1k2l3m4n5o6p7q8r9s0
-                    </div>
+            </div>
+            <div class="flow-step reveal">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Confirm Amount</h3>
+                    <p>Review the payment amount and store name, then approve.</p>
                 </div>
-                <button class="form-submit">Copy</button>
+            </div>
+            <div class="flow-step reveal">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Payment Complete</h3>
+                    <p>Authorize with biometric authentication and your payment is instantly processed.</p>
+                </div>
             </div>
         </div>
-    </div>
-
-    <div class="modal" id="swapModal">
-        <div class="modal-content">
-            <button class="modal-close" id="closeSwapModal">×</button>
-            <div class="modal-title">Swap</div>
-            <form id="swapForm">
-                <div class="form-group">
-                    <label class="form-label">Sell</label>
-                    <select class="form-input" required>
-                        <option>FUNS</option>
-                        <option>BNB</option>
-                        <option>USDT</option>
-                        <option>ETH</option>
-                        <option>CAKE</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Sell Amount</label>
-                    <input type="number" class="form-input" placeholder="0.00" step="0.01" required>
-                </div>
-                <div style="text-align: center; margin: 1rem 0;">⇅</div>
-                <div class="form-group">
-                    <label class="form-label">Buy</label>
-                    <select class="form-input" required>
-                        <option>BNB</option>
-                        <option>FUNS</option>
-                        <option>USDT</option>
-                        <option>ETH</option>
-                        <option>CAKE</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Buy Amount</label>
-                    <input type="number" class="form-input" placeholder="0.00" step="0.01" disabled>
-                </div>
-                <button type="submit" class="form-submit">스왑</button>
-            </form>
+        <div class="qr-visual reveal">
+            <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+                <!-- QR Frame -->
+                <rect x="30" y="30" width="220" height="220" fill="none" stroke="#4FC3F7" stroke-width="2" rx="12"/>
+                <!-- QR Pattern -->
+                <rect x="40" y="40" width="40" height="40" fill="#FF6B35"/>
+                <rect x="200" y="40" width="40" height="40" fill="#FF6B35"/>
+                <rect x="40" y="200" width="40" height="40" fill="#FF6B35"/>
+                <!-- Grid Pattern -->
+                <rect x="100" y="80" width="8" height="8" fill="#FFD700" opacity="0.6"/>
+                <rect x="120" y="80" width="8" height="8" fill="#FFD700" opacity="0.6"/>
+                <rect x="100" y="100" width="8" height="8" fill="#FFD700" opacity="0.6"/>
+                <rect x="140" y="100" width="8" height="8" fill="#FFD700" opacity="0.6"/>
+                <rect x="160" y="80" width="8" height="8" fill="#4FC3F7" opacity="0.6"/>
+                <rect x="160" y="100" width="8" height="8" fill="#4FC3F7" opacity="0.6"/>
+                <rect x="140" y="120" width="8" height="8" fill="#FFD700" opacity="0.6"/>
+                <rect x="100" y="140" width="8" height="8" fill="#4FC3F7" opacity="0.6"/>
+                <rect x="140" y="140" width="8" height="8" fill="#FF6B35" opacity="0.6"/>
+                <rect x="160" y="140" width="8" height="8" fill="#FFD700" opacity="0.6"/>
+                <!-- Center Dot -->
+                <circle cx="140" cy="140" r="6" fill="#FFD700"/>
+                <!-- Label -->
+                <text x="140" y="265" font-family="Orbitron" font-size="12" fill="#FFD700" text-anchor="middle" font-weight="700">FunS Pay</text>
+            </svg>
         </div>
     </div>
+</section>
 
-    <div class="modal" id="buyModal">
-        <div class="modal-content">
-            <button class="modal-close" id="closeBuyModal">×</button>
-            <div class="modal-title">Buy</div>
-            <form id="buyForm">
-                <div class="form-group">
-                    <label class="form-label">Token</label>
-                    <select class="form-input" required>
-                        <option>FUNS</option>
-                        <option>BNB</option>
-                        <option>USDT</option>
-                        <option>ETH</option>
-                        <option>CAKE</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Purchase Amount (USD)</label>
-                    <input type="number" class="form-input" placeholder="0.00" step="0.01" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Payment Method</label>
-                    <select class="form-input" required>
-                        <option>Credit Card</option>
-                        <option>Bank Transfer</option>
-                        <option>PayPal</option>
-                    </select>
-                </div>
-                <button type="submit" class="form-submit">구매</button>
-            </form>
+<!-- Security Section -->
+<section class="security-section">
+    <div class="security-header reveal">
+        <span class="section-tag">Security</span>
+        <h2 class="section-title">Top-Level <span>Security Technology</span></h2>
+        <p class="section-desc">Protecting your assets is our first priority.</p>
+    </div>
+    <div class="security-grid">
+        <div class="security-card reveal">
+            <div class="security-icon">🔐</div>
+            <h3>Biometric Auth</h3>
+            <p>Protect your wallet with biometric data like fingerprints and facial recognition. Multi-layer authentication provides top-tier security.</p>
+        </div>
+        <div class="security-card reveal">
+            <div class="security-icon">📝</div>
+            <h3>Seed Phrase Encryption</h3>
+            <p>Your 12/24-word seed phrase is protected by strong encryption. Safely backup and manage your recovery phrase offline.</p>
+        </div>
+        <div class="security-card reveal">
+            <div class="security-icon">🛡️</div>
+            <h3>Multi-Sig Security</h3>
+            <p>Important transactions use multi-signature technology. Approval processes protect you from unauthorized transactions.</p>
         </div>
     </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#privacy">Privacy Policy</a>
-                <a href="#terms">Terms of Service</a>
-                <a href="#security">Security</a>
-                <a href="#support">Support</a>
-                <a href="#community">Community</a>
-            </div>
-            <p>&copy; 2024 FunS Wallet. All rights reserved.</p>
+<!-- CTA Section -->
+<section id="cta" class="reveal">
+    <span class="cta-badge">🌟 Start Now</span>
+    <h2 class="cta-title">Get Started with<br><span>FunS Wallet</span></h2>
+    <p class="cta-sub">Secure and convenient asset management. Manage everything from game rewards to everyday payments in one place with FunS Wallet.</p>
+    <a href="app/index.html" class="cta-btn">🚀 Open Wallet</a>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <a href="../index.html">
+                <img src="../../funs-nugi.png" alt="FunS Logo">
+                <span>FunS Platform</span>
+            </a>
+            <p>Web3 gaming, decentralized exchange, and digital wallet all in one. Manage your assets and create value in the FunS ecosystem.</p>
         </div>
-    </footer>
+        <div class="footer-col">
+            <h4>Wallet</h4>
+            <ul>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#cta">Get Started</a></li>
+                <li><a href="#">Security</a></li>
+                <li><a href="#">FAQ</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Platform</h4>
+            <ul>
+                <li><a href="../../games/index.html">Games</a></li>
+                <li><a href="../../dex/index.html">DEX</a></li>
+                <li><a href="../../nft/index.html">NFT</a></li>
+                <li><a href="../../staking/index.html">Staking</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Support</h4>
+            <ul>
+                <li><a href="mailto:hello@funs.land">hello@funs.land</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>© 2026 FunS Platform. All rights reserved.</span>
+        <div class="socials">
+            <a href="https://telegram.org/" class="social-btn" title="Telegram">✈️</a>
+            <a href="https://www.instagram.com/" class="social-btn" title="Instagram">📸</a>
+            <a href="#" class="social-btn" title="Twitter">🐦</a>
+        </div>
+    </div>
+</footer>
 
-    <script>
-        // Utility Functions
-        const formatNumber = (num) => {
-            return num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        };
+<script>
+    // Wallet Connection Handler
+    const walletBtn = document.getElementById('walletBtn');
 
-        const animateCounter = (element, target) => {
-            let current = 0;
-            const increment = target / 60;
-            const interval = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(interval);
-                }
-                element.textContent = formatNumber(current);
-            }, 1000 / 60);
-        };
-
-        // Initialize counters on load
-        document.addEventListener('DOMContentLoaded', () => {
-            const counters = document.querySelectorAll('.counter');
-            counters.forEach(counter => {
-                const target = parseFloat(counter.dataset.target);
-                animateCounter(counter, target);
-            });
-        });
-
-        // Wallet Connection
-        const walletBtn = document.getElementById('walletBtn');
-        let isConnected = sessionStorage.getItem('walletConnected') === 'true';
-
-        const updateWalletBtn = () => {
+    if (walletBtn) {
+        walletBtn.addEventListener('click', function() {
+            const isConnected = sessionStorage.getItem('walletConnected');
             if (isConnected) {
-                walletBtn.textContent = '지갑: 0x1a2B...3c4D';
-                walletBtn.classList.add('connected');
+                // Disconnect
+                sessionStorage.removeItem('walletConnected');
+                walletBtn.textContent = 'Connect Wallet';
+                walletBtn.style.background = 'linear-gradient(135deg, #FF6B35, #ff9a00)';
             } else {
-                walletBtn.textContent = '지갑 연결';
-                walletBtn.classList.remove('connected');
+                // Connect
+                sessionStorage.setItem('walletConnected', 'true');
+                walletBtn.textContent = 'Wallet Connected ✓';
+                walletBtn.style.background = 'linear-gradient(135deg, #4caf50, #66bb6a)';
             }
-        };
-
-        walletBtn.addEventListener('click', () => {
-            isConnected = !isConnected;
-            sessionStorage.setItem('walletConnected', isConnected);
-            updateWalletBtn();
         });
 
-        updateWalletBtn();
+        // Check connection status on load
+        const isConnected = sessionStorage.getItem('walletConnected');
+        if (isConnected) {
+            walletBtn.textContent = 'Wallet Connected ✓';
+            walletBtn.style.background = 'linear-gradient(135deg, #4caf50, #66bb6a)';
+        }
+    }
 
-        // Copy Address
-        const copyBtn = document.getElementById('copyBtn');
-        copyBtn.addEventListener('click', () => {
-            const address = document.getElementById('addressDisplay').textContent;
-            navigator.clipboard.writeText(address).then(() => {
-                copyBtn.textContent = 'Copied!';
-                copyBtn.style.transition = 'all 0.3s ease';
-                setTimeout(() => {
-                    copyBtn.textContent = '복사';
-                }, 2000);
-            });
+    // Scroll Reveal Animation
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
         });
+    }, observerOptions);
 
-        // Tab Switching
-        const tabButtons = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
+    revealElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+        observer.observe(el);
+    });
 
-        tabButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const tabId = btn.dataset.tab + '-tab';
-
-                tabButtons.forEach(b => b.classList.remove('active'));
-                tabContents.forEach(tc => tc.classList.remove('active'));
-
-                btn.classList.add('active');
-                document.getElementById(tabId).classList.add('active');
-            });
-        });
-
-        // Token Selection for Chart
-        const tokenItems = document.querySelectorAll('.token-item');
-        tokenItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const tokenName = item.dataset.token;
-                const price = item.dataset.price;
-                document.getElementById('chartToken').textContent = tokenName;
-
-                // Update chart (simplified)
-                const chartLine = document.getElementById('chartLine');
-                const chartFill = document.getElementById('chartFill');
-                // Fixed upward trend from $0.45 to $1.24
-                const upwardTrendPoints = '0,220 50,210 100,195 150,180 200,165 250,150 300,135 350,125 400,110 450,95 500,80 550,70 600,60 650,50 700,45 750,40 800,35 850,30 900,25 950,15 1000,10';
-                chartLine.setAttribute('points', upwardTrendPoints);
-                chartFill.setAttribute('points', upwardTrendPoints + ' 1000,250 0,250');
-            });
-        });
-
-        // Time Range Chart Update
-        const timeButtons = document.querySelectorAll('.time-btn');
-        timeButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                timeButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                // Update chart based on time range
-                const range = btn.dataset.range;
-                console.log('Chart updated for range:', range);
-            });
-        });
-
-        // Transaction Filter
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const transactionItems = document.querySelectorAll('.transaction-item');
-
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const filter = btn.dataset.filter;
-
-                filterButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                transactionItems.forEach(item => {
-                    if (filter === 'all' || item.dataset.txType === filter) {
-                        item.style.display = 'flex';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-        });
-
-        // Modal Functions
-        const openModal = (modalId) => {
-            document.getElementById(modalId).classList.add('active');
-        };
-
-        const closeModal = (modalId) => {
-            document.getElementById(modalId).classList.remove('active');
-        };
-
-        // Send Modal
-        document.getElementById('sendBtn').addEventListener('click', () => openModal('sendModal'));
-        document.getElementById('closeSendModal').addEventListener('click', () => closeModal('sendModal'));
-
-        // Receive Modal
-        document.getElementById('receiveBtn').addEventListener('click', () => openModal('receiveModal'));
-        document.getElementById('closeReceiveModal').addEventListener('click', () => closeModal('receiveModal'));
-
-        // Swap Modal
-        document.getElementById('swapBtn').addEventListener('click', () => openModal('swapModal'));
-        document.getElementById('closeSwapModal').addEventListener('click', () => closeModal('swapModal'));
-
-        // Buy Modal
-        document.getElementById('buyBtn').addEventListener('click', () => openModal('buyModal'));
-        document.getElementById('closeBuyModal').addEventListener('click', () => closeModal('buyModal'));
-
-        // Close modals when clicking outside
-        document.querySelectorAll('.modal').forEach(modal => {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                }
-            });
-        });
-
-        // Form Submissions
-        document.getElementById('sendForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Transaction processed!');
-            closeModal('sendModal');
-            document.getElementById('sendForm').reset();
-        });
-
-        document.getElementById('swapForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Swap processed!');
-            closeModal('swapModal');
-            document.getElementById('swapForm').reset();
-        });
-
-        document.getElementById('buyForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Purchase request processed!');
-            closeModal('buyModal');
-            document.getElementById('buyForm').reset();
-        });
-
-        // Biometric Toggle
-        const biometricToggle = document.getElementById('biometricToggle');
-        biometricToggle.addEventListener('click', () => {
-            biometricToggle.classList.toggle('active');
-        });
-
-        // DApp Open Buttons
-        document.querySelectorAll('.dapp-open-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href !== '#' && document.querySelector(href)) {
                 e.preventDefault();
-                alert('Opening DApp...');
-            });
-        });
-
-        // Receive Modal Copy Button
-        document.querySelectorAll('#receiveModal .form-submit').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const address = '0x1a2B3c4D5e6F7g8h9i0j1k2l3m4n5o6p7q8r9s0';
-                navigator.clipboard.writeText(address).then(() => {
-                    btn.textContent = 'Copied!';
-                    setTimeout(() => {
-                        btn.textContent = '복사';
-                    }, 2000);
+                document.querySelector(href).scrollIntoView({
+                    behavior: 'smooth'
                 });
-            });
+            }
         });
-    </script>
+    });
+</script>
+
 </body>
 </html>
