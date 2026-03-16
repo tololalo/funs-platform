@@ -482,6 +482,7 @@
         .security-section {
             background: var(--dark2);
             padding: 80px 5%;
+            text-align: center;
         }
 
         .security-grid {
@@ -489,6 +490,9 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 32px;
             margin-top: 60px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .security-card {
@@ -1141,27 +1145,42 @@
         <p>지갑에 연결된 모든 토큰의 가격 변동을 실시간으로 추적하고, 언제 어디서나 자산의 안전성을 확인할 수 있습니다.</p>
     </div>
     <div class="detail-visual reveal">
-        <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-            <!-- Circular Chart -->
-            <circle cx="150" cy="150" r="100" fill="none" stroke="#4FC3F7" stroke-width="1" opacity="0.2"/>
-            <!-- Pie Segments -->
-            <circle cx="150" cy="50" r="8" fill="#FF6B35"/>
-            <path d="M 150 150 L 225 100 A 100 100 0 0 1 225 200 Z" fill="none" stroke="#FF6B35" stroke-width="20" opacity="0.6"/>
-            <circle cx="225" cy="150" r="8" fill="#4FC3F7"/>
-            <path d="M 150 150 L 150 50 A 100 100 0 0 1 225 100 Z" fill="none" stroke="#4FC3F7" stroke-width="20" opacity="0.6"/>
-            <circle cx="150" cy="50" r="8" fill="#FFD700"/>
-            <path d="M 150 150 L 75 100 A 100 100 0 0 1 150 50 Z" fill="none" stroke="#FFD700" stroke-width="20" opacity="0.6"/>
-            <!-- Center -->
-            <circle cx="150" cy="150" r="40" fill="#1a1f35" stroke="#FF6B35" stroke-width="1"/>
-            <text x="150" y="150" font-family="Orbitron" font-size="16" fill="#FFD700" text-anchor="middle" dy="0.3em" font-weight="700">$5.2K</text>
-            <!-- Legend -->
-            <rect x="20" y="220" width="12" height="12" fill="#FF6B35"/>
-            <text x="36" y="226" font-size="11" fill="#e8eaf0">FUNS (40%)</text>
-            <rect x="150" y="220" width="12" height="12" fill="#4FC3F7"/>
-            <text x="166" y="226" font-size="11" fill="#e8eaf0">BNB (35%)</text>
-            <rect x="280" y="220" width="12" height="12" fill="#FFD700" opacity="0" />
-            <text x="20" y="245" font-size="11" fill="#e8eaf0">ETH (25%)</text>
-        </svg>
+        <div style="width:100%; max-width:360px; margin:0 auto;">
+            <svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+                <!-- Donut Chart -->
+                <!-- FUNS 40% = 144deg, BNB 35% = 126deg, ETH 25% = 90deg -->
+                <circle cx="180" cy="140" r="95" fill="none" stroke="rgba(79,195,247,0.08)" stroke-width="36"/>
+                <!-- ETH segment: 0 to 90deg -->
+                <circle cx="180" cy="140" r="95" fill="none" stroke="#FFD700" stroke-width="36"
+                    stroke-dasharray="149.2 447.7" stroke-dashoffset="0" stroke-linecap="round" opacity="0.85"/>
+                <!-- BNB segment: 90 to 216deg (35% of 596.9 = 208.9) -->
+                <circle cx="180" cy="140" r="95" fill="none" stroke="#4FC3F7" stroke-width="36"
+                    stroke-dasharray="208.9 388.0" stroke-dashoffset="-149.2" stroke-linecap="round" opacity="0.85"/>
+                <!-- FUNS segment: 216 to 360deg (40% of 596.9 = 238.8) -->
+                <circle cx="180" cy="140" r="95" fill="none" stroke="#FF6B35" stroke-width="36"
+                    stroke-dasharray="238.8 358.1" stroke-dashoffset="-358.1" stroke-linecap="round" opacity="0.85"/>
+                <!-- Center circle -->
+                <circle cx="180" cy="140" r="56" fill="#0D1120"/>
+                <circle cx="180" cy="140" r="56" fill="none" stroke="rgba(255,107,53,0.3)" stroke-width="1"/>
+                <text x="180" y="132" font-family="Orbitron" font-size="11" fill="#8892b0" text-anchor="middle">Total</text>
+                <text x="180" y="154" font-family="Orbitron" font-size="20" fill="#FFD700" text-anchor="middle" font-weight="900">$5,234</text>
+                <!-- Legend - centered, evenly spaced row -->
+                <g transform="translate(0, 275)">
+                    <!-- FUNS -->
+                    <rect x="28" y="0" width="14" height="14" rx="3" fill="#FF6B35"/>
+                    <text x="48" y="11" font-size="12" fill="#e8eaf0" font-weight="600">FUNS</text>
+                    <text x="88" y="11" font-size="11" fill="#8892b0">40%</text>
+                    <!-- BNB -->
+                    <rect x="130" y="0" width="14" height="14" rx="3" fill="#4FC3F7"/>
+                    <text x="150" y="11" font-size="12" fill="#e8eaf0" font-weight="600">BNB</text>
+                    <text x="184" y="11" font-size="11" fill="#8892b0">35%</text>
+                    <!-- ETH -->
+                    <rect x="228" y="0" width="14" height="14" rx="3" fill="#FFD700"/>
+                    <text x="248" y="11" font-size="12" fill="#e8eaf0" font-weight="600">ETH</text>
+                    <text x="278" y="11" font-size="11" fill="#8892b0">25%</text>
+                </g>
+            </svg>
+        </div>
     </div>
 </section>
 
@@ -1279,75 +1298,100 @@
             </div>
         </div>
         <div class="qr-visual reveal">
-            <div style="position:relative; width:260px; margin:0 auto;">
-            <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="qrGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:0.15"/>
-                        <stop offset="100%" style="stop-color:#4FC3F7;stop-opacity:0.15"/>
-                    </linearGradient>
-                </defs>
-                <!-- Background -->
-                <rect x="20" y="10" width="240" height="240" rx="16" fill="url(#qrGlow)" stroke="rgba(79,195,247,0.3)" stroke-width="1.5"/>
-                <!-- QR Finder Patterns (3 corners) -->
-                <rect x="35" y="25" width="48" height="48" rx="6" fill="none" stroke="#FF6B35" stroke-width="4"/>
-                <rect x="43" y="33" width="32" height="32" rx="3" fill="#FF6B35"/>
-                <rect x="197" y="25" width="48" height="48" rx="6" fill="none" stroke="#FF6B35" stroke-width="4"/>
-                <rect x="205" y="33" width="32" height="32" rx="3" fill="#FF6B35"/>
-                <rect x="35" y="187" width="48" height="48" rx="6" fill="none" stroke="#FF6B35" stroke-width="4"/>
-                <rect x="43" y="195" width="32" height="32" rx="3" fill="#FF6B35"/>
-                <!-- QR Data Pattern (scattered dots) -->
-                <rect x="95" y="28" width="7" height="7" fill="#e8eaf0"/><rect x="107" y="28" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="119" y="28" width="7" height="7" fill="#e8eaf0"/><rect x="143" y="28" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="167" y="28" width="7" height="7" fill="#e8eaf0"/><rect x="179" y="28" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="95" y="40" width="7" height="7" fill="#e8eaf0"/><rect x="131" y="40" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="155" y="40" width="7" height="7" fill="#e8eaf0"/><rect x="179" y="40" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="95" y="52" width="7" height="7" fill="#e8eaf0"/><rect x="107" y="52" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="131" y="52" width="7" height="7" fill="#e8eaf0"/><rect x="155" y="52" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="95" y="64" width="7" height="7" fill="#e8eaf0"/><rect x="119" y="64" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="143" y="64" width="7" height="7" fill="#e8eaf0"/><rect x="167" y="64" width="7" height="7" fill="#e8eaf0"/>
-                <!-- Row patterns -->
-                <rect x="35" y="82" width="7" height="7" fill="#e8eaf0"/><rect x="47" y="82" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="59" y="82" width="7" height="7" fill="#e8eaf0"/><rect x="71" y="82" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="83" y="82" width="7" height="7" fill="#e8eaf0"/><rect x="95" y="82" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="107" y="82" width="7" height="7" fill="#4FC3F7"/><rect x="167" y="82" width="7" height="7" fill="#4FC3F7"/>
-                <rect x="179" y="82" width="7" height="7" fill="#e8eaf0"/><rect x="191" y="82" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="215" y="82" width="7" height="7" fill="#e8eaf0"/><rect x="227" y="82" width="7" height="7" fill="#e8eaf0"/>
-                <!-- More scattered data -->
-                <rect x="35" y="94" width="7" height="7" fill="#e8eaf0"/><rect x="59" y="94" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="83" y="94" width="7" height="7" fill="#e8eaf0"/><rect x="95" y="94" width="7" height="7" fill="#4FC3F7"/>
-                <rect x="179" y="94" width="7" height="7" fill="#4FC3F7"/><rect x="203" y="94" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="227" y="94" width="7" height="7" fill="#e8eaf0"/>
-                <!-- Bottom area data -->
-                <rect x="35" y="160" width="7" height="7" fill="#e8eaf0"/><rect x="59" y="160" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="83" y="160" width="7" height="7" fill="#e8eaf0"/><rect x="95" y="160" width="7" height="7" fill="#4FC3F7"/>
-                <rect x="179" y="160" width="7" height="7" fill="#4FC3F7"/><rect x="203" y="160" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="35" y="172" width="7" height="7" fill="#e8eaf0"/><rect x="47" y="172" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="71" y="172" width="7" height="7" fill="#e8eaf0"/><rect x="95" y="172" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="179" y="172" width="7" height="7" fill="#e8eaf0"/><rect x="203" y="172" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="215" y="172" width="7" height="7" fill="#e8eaf0"/>
-                <!-- Bottom right corner data -->
-                <rect x="95" y="190" width="7" height="7" fill="#e8eaf0"/><rect x="107" y="190" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="131" y="190" width="7" height="7" fill="#e8eaf0"/><rect x="155" y="190" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="179" y="190" width="7" height="7" fill="#4FC3F7"/><rect x="203" y="190" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="215" y="190" width="7" height="7" fill="#e8eaf0"/><rect x="227" y="190" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="95" y="202" width="7" height="7" fill="#e8eaf0"/><rect x="119" y="202" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="143" y="202" width="7" height="7" fill="#e8eaf0"/><rect x="167" y="202" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="191" y="202" width="7" height="7" fill="#e8eaf0"/><rect x="215" y="202" width="7" height="7" fill="#4FC3F7"/>
-                <rect x="95" y="214" width="7" height="7" fill="#e8eaf0"/><rect x="107" y="214" width="7" height="7" fill="#4FC3F7"/>
-                <rect x="131" y="214" width="7" height="7" fill="#e8eaf0"/><rect x="155" y="214" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="179" y="214" width="7" height="7" fill="#e8eaf0"/><rect x="203" y="214" width="7" height="7" fill="#4FC3F7"/>
-                <rect x="227" y="214" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="95" y="226" width="7" height="7" fill="#4FC3F7"/><rect x="119" y="226" width="7" height="7" fill="#e8eaf0"/>
-                <rect x="143" y="226" width="7" height="7" fill="#e8eaf0"/><rect x="167" y="226" width="7" height="7" fill="#4FC3F7"/>
-                <rect x="191" y="226" width="7" height="7" fill="#e8eaf0"/><rect x="215" y="226" width="7" height="7" fill="#e8eaf0"/>
-                <!-- Center clear area for logo -->
-                <rect x="105" y="100" width="70" height="60" rx="10" fill="#0A0E1A"/>
-                <!-- Label -->
-                <text x="140" y="270" font-family="Orbitron" font-size="13" fill="#FFD700" text-anchor="middle" font-weight="700">FunS Pay</text>
-            </svg>
-            <!-- Real FUNS logo in center of QR -->
-            <img src="../funs-nugi.png" alt="FunS" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-58%); width:50px; height:50px; border-radius:50%; border:3px solid #FFD700; background:#0A0E1A; padding:2px;">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:20px;">
+                <div style="position:relative; width:280px; height:280px; background:linear-gradient(145deg, #0D1120, #141828); border-radius:24px; border:1px solid rgba(79,195,247,0.2); padding:24px; box-shadow:0 0 40px rgba(255,107,53,0.08), 0 0 80px rgba(79,195,247,0.05);">
+                    <svg viewBox="0 0 232 232" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
+                        <!-- QR Finder Patterns (3 corners) -->
+                        <!-- Top-left -->
+                        <rect x="0" y="0" width="56" height="56" rx="8" fill="none" stroke="#FF6B35" stroke-width="5"/>
+                        <rect x="12" y="12" width="32" height="32" rx="4" fill="#FF6B35"/>
+                        <!-- Top-right -->
+                        <rect x="176" y="0" width="56" height="56" rx="8" fill="none" stroke="#FF6B35" stroke-width="5"/>
+                        <rect x="188" y="12" width="32" height="32" rx="4" fill="#FF6B35"/>
+                        <!-- Bottom-left -->
+                        <rect x="0" y="176" width="56" height="56" rx="8" fill="none" stroke="#FF6B35" stroke-width="5"/>
+                        <rect x="12" y="188" width="32" height="32" rx="4" fill="#FF6B35"/>
+                        <!-- Data dots - Row 1 -->
+                        <rect x="68" y="8" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="84" y="8" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="108" y="8" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="132" y="8" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="156" y="8" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <!-- Data dots - Row 2 -->
+                        <rect x="68" y="24" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="100" y="24" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="124" y="24" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="156" y="24" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <!-- Data dots - Row 3 -->
+                        <rect x="68" y="40" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="84" y="40" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="116" y="40" width="8" height="8" rx="1" fill="#4FC3F7"/>
+                        <rect x="140" y="40" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <!-- Timing pattern row -->
+                        <rect x="8" y="68" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="24" y="68" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="40" y="68" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="56" y="68" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="72" y="68" width="8" height="8" rx="1" fill="#4FC3F7"/>
+                        <rect x="152" y="68" width="8" height="8" rx="1" fill="#4FC3F7"/>
+                        <rect x="176" y="68" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="192" y="68" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="208" y="68" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="224" y="68" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <!-- Middle rows (around center logo) -->
+                        <rect x="8" y="84" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="40" y="84" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="72" y="84" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="192" y="84" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="216" y="84" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="8" y="100" width="8" height="8" rx="1" fill="#4FC3F7"/>
+                        <rect x="40" y="100" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="192" y="100" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="224" y="100" width="8" height="8" rx="1" fill="#4FC3F7"/>
+                        <rect x="8" y="124" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="40" y="124" width="8" height="8" rx="1" fill="#4FC3F7"/>
+                        <rect x="192" y="124" width="8" height="8" rx="1" fill="#4FC3F7"/>
+                        <rect x="216" y="124" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="8" y="140" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="24" y="140" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="56" y="140" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="192" y="140" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="208" y="140" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <!-- Timing pattern column -->
+                        <rect x="68" y="152" width="8" height="8" rx="1" fill="#4FC3F7"/>
+                        <rect x="152" y="152" width="8" height="8" rx="1" fill="#4FC3F7"/>
+                        <rect x="176" y="152" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="192" y="152" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="216" y="152" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <!-- Bottom rows -->
+                        <rect x="68" y="180" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="84" y="180" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="108" y="180" width="8" height="8" rx="1" fill="#4FC3F7"/>
+                        <rect x="132" y="180" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="156" y="180" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="176" y="180" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="208" y="180" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="68" y="196" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="100" y="196" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="140" y="196" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="176" y="196" width="8" height="8" rx="1" fill="#4FC3F7"/>
+                        <rect x="208" y="196" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="224" y="196" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="68" y="212" width="8" height="8" rx="1" fill="#4FC3F7"/>
+                        <rect x="84" y="212" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="116" y="212" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="148" y="212" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="176" y="212" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <rect x="192" y="212" width="8" height="8" rx="1" fill="#4FC3F7"/>
+                        <rect x="224" y="212" width="8" height="8" rx="1" fill="#e8eaf0"/>
+                        <!-- Center clear area -->
+                        <rect x="82" y="82" width="68" height="68" rx="12" fill="#0D1120"/>
+                        <rect x="82" y="82" width="68" height="68" rx="12" fill="none" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+                    </svg>
+                    <!-- FUNS logo centered in QR -->
+                    <img src="../funs-nugi.png" alt="FunS" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:52px; height:52px; border-radius:50%; border:2px solid #FFD700; background:#0D1120; padding:3px; box-shadow:0 0 16px rgba(255,215,0,0.3);">
+                </div>
+                <div style="font-family:Orbitron; font-size:15px; color:#FFD700; font-weight:700; letter-spacing:2px;">FunS Pay</div>
             </div>
         </div>
     </div>
