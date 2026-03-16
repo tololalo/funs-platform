@@ -417,6 +417,13 @@
             font-weight: bold;
             font-size: 1.2rem;
             flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .token-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .token-info {
@@ -1224,7 +1231,7 @@
                 <!-- Token List -->
                 <div class="token-list">
                     <div class="token-item" data-token="FUNS" data-price="1.24">
-                        <div class="token-icon" style="background: linear-gradient(135deg, #FF6B35, #FFD700);">F</div>
+                        <div class="token-icon"><img src="../../dex/icons/funs.svg" alt="FUNS"></div>
                         <div class="token-info">
                             <div class="token-name">FunS</div>
                             <div class="token-symbol">FUNS</div>
@@ -1237,7 +1244,7 @@
                     </div>
 
                     <div class="token-item" data-token="BNB" data-price="612.31">
-                        <div class="token-icon" style="background: linear-gradient(135deg, #F3BA2F, #FF9800);">⬡</div>
+                        <div class="token-icon"><img src="../../dex/icons/bnb.svg" alt="BNB"></div>
                         <div class="token-info">
                             <div class="token-name">Binance Coin</div>
                             <div class="token-symbol">BNB</div>
@@ -1250,7 +1257,7 @@
                     </div>
 
                     <div class="token-item" data-token="USDT" data-price="1.00">
-                        <div class="token-icon" style="background: linear-gradient(135deg, #26A69A, #009688);">₮</div>
+                        <div class="token-icon"><img src="../../dex/icons/usdt.svg" alt="USDT"></div>
                         <div class="token-info">
                             <div class="token-name">Tether USD</div>
                             <div class="token-symbol">USDT</div>
@@ -1263,7 +1270,7 @@
                     </div>
 
                     <div class="token-item" data-token="ETH" data-price="3842.94">
-                        <div class="token-icon" style="background: linear-gradient(135deg, #627EEA, #764FE8);">Ξ</div>
+                        <div class="token-icon"><img src="../../dex/icons/eth.svg" alt="ETH"></div>
                         <div class="token-info">
                             <div class="token-name">Ethereum</div>
                             <div class="token-symbol">ETH</div>
@@ -1276,7 +1283,7 @@
                     </div>
 
                     <div class="token-item" data-token="CAKE" data-price="2.85">
-                        <div class="token-icon" style="background: linear-gradient(135deg, #D1884F, #C76D3C);">🍰</div>
+                        <div class="token-icon"><img src="../../dex/icons/cake.svg" alt="CAKE"></div>
                         <div class="token-info">
                             <div class="token-name">PancakeSwap</div>
                             <div class="token-symbol">CAKE</div>
