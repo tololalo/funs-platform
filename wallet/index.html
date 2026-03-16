@@ -1054,41 +1054,50 @@
         </div>
         <div class="hero-visual reveal">
             <!-- Phone Mockup -->
-            <svg class="phone-mockup" viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
-                <!-- Phone Body -->
-                <rect x="20" y="20" width="160" height="360" rx="20" fill="none" stroke="#4FC3F7" stroke-width="2"/>
-                <!-- Screen -->
-                <rect x="28" y="32" width="144" height="280" rx="12" fill="#0A0E1A" stroke="none"/>
+            <div class="phone-mockup" style="width:280px; background:linear-gradient(145deg,#141828,#0D1120); border-radius:36px; border:2px solid rgba(79,195,247,0.3); padding:12px; box-shadow: 0 0 60px rgba(255,107,53,0.15), 0 0 120px rgba(79,195,247,0.08); animation: floatPhone 6s ease-in-out infinite;">
                 <!-- Notch -->
-                <rect x="80" y="32" width="40" height="16" rx="4" fill="#0A0E1A"/>
-                <!-- Status Bar -->
-                <line x1="32" y1="55" x2="168" y2="55" stroke="#4FC3F7" stroke-width="0.5" opacity="0.3"/>
-                <!-- Wallet Display -->
-                <text x="100" y="100" font-family="Orbitron" font-size="12" fill="#FFD700" text-anchor="middle" font-weight="700">
-                    FunS Wallet
-                </text>
-                <rect x="40" y="115" width="120" height="60" rx="8" fill="#1a1f35" stroke="#FF6B35" stroke-width="1" opacity="0.6"/>
-                <text x="100" y="135" font-family="Orbitron" font-size="8" fill="#4FC3F7" text-anchor="middle">
-                    Total Assets
-                </text>
-                <text x="100" y="155" font-family="Orbitron" font-size="14" fill="#FFD700" text-anchor="middle" font-weight="700">
-                    $5,234.50
-                </text>
-                <!-- Tokens Section -->
-                <circle cx="50" cy="200" r="20" fill="#1a1f35" stroke="#FF6B35" stroke-width="1"/>
-                <text x="50" y="205" font-size="10" fill="#FFD700" text-anchor="middle" font-weight="700">🔷</text>
-                <circle cx="100" cy="200" r="20" fill="#1a1f35" stroke="#4FC3F7" stroke-width="1"/>
-                <text x="100" y="205" font-size="10" fill="#FFD700" text-anchor="middle" font-weight="700">⬡</text>
-                <circle cx="150" cy="200" r="20" fill="#1a1f35" stroke="#FFD700" stroke-width="1"/>
-                <text x="150" y="205" font-size="10" fill="#FFD700" text-anchor="middle" font-weight="700">◎</text>
-                <!-- Action Buttons -->
-                <rect x="40" y="240" width="50" height="20" rx="4" fill="#FF6B35" opacity="0.8"/>
-                <text x="65" y="252" font-size="8" fill="#fff" text-anchor="middle" font-weight="700">Send</text>
-                <rect x="110" y="240" width="50" height="20" rx="4" fill="#4FC3F7" opacity="0.8"/>
-                <text x="135" y="252" font-size="8" fill="#0A0E1A" text-anchor="middle" font-weight="700">Swap</text>
+                <div style="width:80px; height:6px; background:#0A0E1A; border-radius:3px; margin:0 auto 16px;"></div>
+                <!-- Screen -->
+                <div style="background:#0A0E1A; border-radius:24px; padding:24px 16px; min-height:360px;">
+                    <!-- Header with logo -->
+                    <div style="display:flex; align-items:center; gap:8px; margin-bottom:20px;">
+                        <img src="../funs-nugi.png" alt="FunS" style="width:28px; height:28px; border-radius:50%;">
+                        <span style="font-family:Orbitron; font-size:13px; color:#FFD700; font-weight:700;">FunS Wallet</span>
+                    </div>
+                    <!-- Balance Card -->
+                    <div style="background:linear-gradient(135deg,rgba(255,107,53,0.15),rgba(79,195,247,0.1)); border:1px solid rgba(255,107,53,0.3); border-radius:16px; padding:20px; margin-bottom:20px; text-align:center;">
+                        <div style="font-size:11px; color:#8892b0; margin-bottom:4px;">Total Assets</div>
+                        <div style="font-family:Orbitron; font-size:24px; color:#FFD700; font-weight:900;">$12,458</div>
+                        <div style="font-size:10px; color:#4FC3F7; margin-top:4px;">+1.92% ↑</div>
+                    </div>
+                    <!-- Token List -->
+                    <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:20px;">
+                        <div style="display:flex; align-items:center; gap:10px; background:#1a1f35; border-radius:12px; padding:10px;">
+                            <img src="../funs-nugi.png" alt="FUNS" style="width:28px; height:28px; border-radius:50%;">
+                            <div style="flex:1;"><div style="font-size:12px; font-weight:600; color:#e8eaf0;">FUNS</div><div style="font-size:9px; color:#8892b0;">15,840 FUNS</div></div>
+                            <div style="text-align:right;"><div style="font-size:11px; color:#FFD700; font-family:Orbitron; font-weight:700;">$19,641</div><div style="font-size:9px; color:#4FC3F7;">+8.2%</div></div>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:10px; background:#1a1f35; border-radius:12px; padding:10px;">
+                            <img src="../dex/icons/bnb.svg" alt="BNB" style="width:28px; height:28px; border-radius:50%;">
+                            <div style="flex:1;"><div style="font-size:12px; font-weight:600; color:#e8eaf0;">BNB</div><div style="font-size:9px; color:#8892b0;">3.45 BNB</div></div>
+                            <div style="text-align:right;"><div style="font-size:11px; color:#FFD700; font-family:Orbitron; font-weight:700;">$2,111</div><div style="font-size:9px; color:#4FC3F7;">+2.1%</div></div>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:10px; background:#1a1f35; border-radius:12px; padding:10px;">
+                            <img src="../dex/icons/eth.svg" alt="ETH" style="width:28px; height:28px; border-radius:50%;">
+                            <div style="flex:1;"><div style="font-size:12px; font-weight:600; color:#e8eaf0;">ETH</div><div style="font-size:9px; color:#8892b0;">0.85 ETH</div></div>
+                            <div style="text-align:right;"><div style="font-size:11px; color:#FFD700; font-family:Orbitron; font-weight:700;">$3,265</div><div style="font-size:9px; color:#FF6B35;">-1.3%</div></div>
+                        </div>
+                    </div>
+                    <!-- Action Buttons -->
+                    <div style="display:flex; gap:8px;">
+                        <div style="flex:1; background:#FF6B35; border-radius:10px; padding:10px; text-align:center; font-size:12px; font-weight:700; color:white;">Send</div>
+                        <div style="flex:1; background:#4FC3F7; border-radius:10px; padding:10px; text-align:center; font-size:12px; font-weight:700; color:#0A0E1A;">Receive</div>
+                        <div style="flex:1; background:linear-gradient(135deg,#FF6B35,#FFD700); border-radius:10px; padding:10px; text-align:center; font-size:12px; font-weight:700; color:white;">Swap</div>
+                    </div>
+                </div>
                 <!-- Home Indicator -->
-                <line x1="85" y1="355" x2="115" y2="355" stroke="#4FC3F7" stroke-width="2" opacity="0.5"/>
-            </svg>
+                <div style="width:60px; height:4px; background:rgba(79,195,247,0.3); border-radius:2px; margin:12px auto 0;"></div>
+            </div>
         </div>
     </div>
 </section>
@@ -1164,29 +1173,51 @@
         <p>최고의 거래 가격을 자동으로 찾아주고, 투명한 수수료로 신뢰할 수 있는 거래를 보장합니다. FunS 게임 토큰에서 메이저 코인까지 모든 거래 쌍을 지원합니다.</p>
     </div>
     <div class="detail-visual reveal">
-        <div style="display:flex; flex-direction:column; align-items:center; gap:24px; width:100%; max-width:360px; margin:0 auto;">
-            <!-- Token Row -->
-            <div style="display:flex; align-items:center; justify-content:center; gap:20px; width:100%;">
-                <!-- BNB -->
-                <div style="text-align:center;">
-                    <img src="../dex/icons/bnb.svg" alt="BNB" style="width:72px; height:72px; border-radius:50%;">
-                    <div style="font-family:Orbitron; font-size:13px; color:#F3BA2F; margin-top:8px; font-weight:700;">BNB</div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:28px; width:100%; max-width:400px; margin:0 auto;">
+            <!-- Swap Card -->
+            <div style="background:linear-gradient(135deg,rgba(255,107,53,0.08),rgba(79,195,247,0.08)); border:1px solid rgba(255,107,53,0.2); border-radius:20px; padding:32px 24px; width:100%;">
+                <!-- From Token -->
+                <div style="display:flex; align-items:center; gap:12px; background:#0A0E1A; border-radius:14px; padding:16px; margin-bottom:12px;">
+                    <img src="../funs-nugi.png" alt="FUNS" style="width:48px; height:48px; border-radius:50%;">
+                    <div style="flex:1;">
+                        <div style="font-size:11px; color:#8892b0;">From</div>
+                        <div style="font-family:Orbitron; font-size:18px; color:#FFD700; font-weight:700;">500 FUNS</div>
+                    </div>
+                    <div style="text-align:right;">
+                        <div style="font-size:11px; color:#8892b0;">≈ $620.00</div>
+                        <div style="font-size:12px; color:#FF6B35; font-weight:600;">FUNS</div>
+                    </div>
                 </div>
-                <!-- SWAP -->
-                <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
-                    <svg width="60" height="24" viewBox="0 0 60 24"><path d="M0 8 L50 8" stroke="#4FC3F7" stroke-width="2" marker-end="url(#arrR)"/><path d="M60 16 L10 16" stroke="#FF6B35" stroke-width="2" marker-end="url(#arrL)"/><defs><marker id="arrR" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><polygon points="0 0,6 3,0 6" fill="#4FC3F7"/></marker><marker id="arrL" markerWidth="6" markerHeight="6" refX="1" refY="3" orient="auto"><polygon points="6 0,0 3,6 6" fill="#FF6B35"/></marker></defs></svg>
-                    <div style="background:#1a1f35; border:2px solid #FF6B35; border-radius:12px; padding:6px 18px; font-family:Orbitron; font-size:13px; color:#FFD700; font-weight:900;">SWAP</div>
+                <!-- Swap Arrow -->
+                <div style="display:flex; justify-content:center; margin:-6px 0;">
+                    <div style="background:linear-gradient(135deg,#FF6B35,#FFD700); width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; border:3px solid #0D1120; font-size:18px; cursor:pointer; z-index:1;">⇅</div>
                 </div>
-                <!-- ETH -->
-                <div style="text-align:center;">
-                    <img src="../dex/icons/eth.svg" alt="ETH" style="width:72px; height:72px; border-radius:50%;">
-                    <div style="font-family:Orbitron; font-size:13px; color:#627EEA; margin-top:8px; font-weight:700;">ETH</div>
+                <!-- To Token -->
+                <div style="display:flex; align-items:center; gap:12px; background:#0A0E1A; border-radius:14px; padding:16px; margin-top:-6px;">
+                    <img src="../dex/icons/bnb.svg" alt="BNB" style="width:48px; height:48px; border-radius:50%;">
+                    <div style="flex:1;">
+                        <div style="font-size:11px; color:#8892b0;">To</div>
+                        <div style="font-family:Orbitron; font-size:18px; color:#F3BA2F; font-weight:700;">1.012 BNB</div>
+                    </div>
+                    <div style="text-align:right;">
+                        <div style="font-size:11px; color:#8892b0;">≈ $619.34</div>
+                        <div style="font-size:12px; color:#F3BA2F; font-weight:600;">BNB</div>
+                    </div>
                 </div>
-            </div>
-            <!-- Price Info -->
-            <div style="background:#1a1f35; border:1px solid rgba(79,195,247,0.3); border-radius:12px; padding:14px 28px; text-align:center; width:100%;">
-                <div style="font-size:14px; color:#8892b0;">1 BNB = 0.0525 ETH</div>
-                <div style="font-family:Orbitron; font-size:11px; color:#4FC3F7; margin-top:4px;">수수료 0.3% · 예상 시간 ~3초</div>
+                <!-- Rate Info -->
+                <div style="margin-top:16px; padding:12px; background:rgba(79,195,247,0.06); border-radius:10px; border:1px solid rgba(79,195,247,0.15);">
+                    <div style="display:flex; justify-content:space-between; font-size:12px; color:#8892b0; margin-bottom:4px;">
+                        <span>Rate</span><span style="color:#e8eaf0;">1 FUNS = $1.24</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; font-size:12px; color:#8892b0; margin-bottom:4px;">
+                        <span>수수료</span><span style="color:#e8eaf0;">0.3%</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; font-size:12px; color:#8892b0;">
+                        <span>예상 시간</span><span style="color:#4FC3F7;">~3초</span>
+                    </div>
+                </div>
+                <!-- Swap Button -->
+                <div style="background:linear-gradient(135deg,#FF6B35,#FFD700); border-radius:14px; padding:14px; text-align:center; margin-top:16px; font-family:Orbitron; font-size:15px; font-weight:900; color:white; cursor:pointer; letter-spacing:1px;">SWAP</div>
             </div>
         </div>
     </div>
@@ -1248,15 +1279,12 @@
             </div>
         </div>
         <div class="qr-visual reveal">
+            <div style="position:relative; width:260px; margin:0 auto;">
             <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <linearGradient id="qrGlow" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:0.15"/>
                         <stop offset="100%" style="stop-color:#4FC3F7;stop-opacity:0.15"/>
-                    </linearGradient>
-                    <linearGradient id="funsQR" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#FF6B35"/>
-                        <stop offset="100%" style="stop-color:#FFD700"/>
                     </linearGradient>
                 </defs>
                 <!-- Background -->
@@ -1313,14 +1341,14 @@
                 <rect x="95" y="226" width="7" height="7" fill="#4FC3F7"/><rect x="119" y="226" width="7" height="7" fill="#e8eaf0"/>
                 <rect x="143" y="226" width="7" height="7" fill="#e8eaf0"/><rect x="167" y="226" width="7" height="7" fill="#4FC3F7"/>
                 <rect x="191" y="226" width="7" height="7" fill="#e8eaf0"/><rect x="215" y="226" width="7" height="7" fill="#e8eaf0"/>
-                <!-- Center FUNS Logo Area -->
-                <rect x="108" y="103" width="64" height="54" rx="10" fill="#0A0E1A" stroke="url(#funsQR)" stroke-width="2"/>
-                <circle cx="140" cy="125" r="18" fill="url(#funsQR)"/>
-                <text x="140" y="132" font-family="Arial" font-size="20" fill="white" text-anchor="middle" font-weight="900">F</text>
-                <text x="140" y="150" font-family="Orbitron" font-size="6" fill="#FFD700" text-anchor="middle" font-weight="700">FunS Pay</text>
+                <!-- Center clear area for logo -->
+                <rect x="105" y="100" width="70" height="60" rx="10" fill="#0A0E1A"/>
                 <!-- Label -->
                 <text x="140" y="270" font-family="Orbitron" font-size="13" fill="#FFD700" text-anchor="middle" font-weight="700">FunS Pay</text>
             </svg>
+            <!-- Real FUNS logo in center of QR -->
+            <img src="../funs-nugi.png" alt="FunS" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-58%); width:50px; height:50px; border-radius:50%; border:3px solid #FFD700; background:#0A0E1A; padding:2px;">
+            </div>
         </div>
     </div>
 </section>
