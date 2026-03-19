@@ -662,6 +662,36 @@
             padding: 0;
         }
 
+        /* Settings modal compact */
+        .stg-body { padding: 0 4px; }
+        .stg-group { margin-bottom: 18px; }
+        .stg-label { font-size: 12px; color: rgba(255,255,255,0.4); font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .stg-row { display: flex; gap: 6px; }
+        .stg-chip {
+            flex: 1; padding: 9px 4px; border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1); background: none;
+            color: rgba(255,255,255,0.5); font-size: 13px; cursor: pointer;
+            text-align: center; transition: all 0.15s;
+        }
+        .stg-chip.active {
+            border-color: var(--primary); background: rgba(255,107,53,0.12);
+            color: var(--primary); font-weight: 700;
+        }
+        .stg-input {
+            flex: 0.8; padding: 9px 6px; border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.04);
+            color: white; font-size: 13px; text-align: center; outline: none; width: 0;
+        }
+        .stg-input:focus { border-color: var(--primary); }
+        .stg-info-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 13px;
+        }
+        .stg-info-row span:first-child { color: rgba(255,255,255,0.4); }
+        .stg-info-row .stg-val { color: var(--text); font-weight: 500; }
+        .stg-info-row .stg-val.green { color: var(--green); }
+        .stg-info-row.last { border-bottom: none; }
+
         .token-list {
             display: grid;
             gap: 8px;
@@ -1008,46 +1038,34 @@
 
     <!-- Settings Modal -->
     <div class="modal-overlay" id="settings-modal-overlay">
-        <div class="modal" id="settings-modal" style="max-height:80vh;overflow-y:auto;">
+        <div class="modal" id="settings-modal">
             <div class="modal-header">
                 <h2 class="modal-title" id="settings-modal-title">거래 설정</h2>
                 <button class="modal-close" id="settings-modal-close">✕</button>
             </div>
-            <div style="padding:0 20px 20px;">
-                <!-- Slippage -->
-                <div style="margin-bottom:20px;">
-                    <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:10px;font-weight:600;">슬리피지 허용치</div>
-                    <div style="display:flex;gap:8px;" id="slippage-options">
-                        <button class="slippage-opt" data-val="0.1" style="flex:1;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:none;color:rgba(255,255,255,0.6);font-size:14px;cursor:pointer;">0.1%</button>
-                        <button class="slippage-opt active" data-val="0.5" style="flex:1;padding:10px;border-radius:10px;border:1px solid var(--primary);background:rgba(255,107,53,0.15);color:var(--primary);font-size:14px;font-weight:700;cursor:pointer;">0.5%</button>
-                        <button class="slippage-opt" data-val="1" style="flex:1;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:none;color:rgba(255,255,255,0.6);font-size:14px;cursor:pointer;">1.0%</button>
-                        <input type="number" id="custom-slippage" placeholder="직접 입력" step="0.1" min="0.1" max="50" style="flex:1;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:white;font-size:14px;text-align:center;outline:none;width:0;">
+            <div class="stg-body">
+                <div class="stg-group">
+                    <div class="stg-label">슬리피지 허용치</div>
+                    <div class="stg-row" id="slippage-options">
+                        <button class="stg-chip" data-val="0.1">0.1%</button>
+                        <button class="stg-chip active" data-val="0.5">0.5%</button>
+                        <button class="stg-chip" data-val="1">1.0%</button>
+                        <input type="number" class="stg-input" id="custom-slippage" placeholder="%" step="0.1" min="0.1" max="50">
                     </div>
                 </div>
-                <!-- Gas -->
-                <div style="margin-bottom:20px;">
-                    <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:10px;font-weight:600;">가스비 설정</div>
-                    <div style="display:flex;gap:8px;" id="gas-options">
-                        <button class="gas-opt" data-val="low" style="flex:1;padding:12px 10px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:none;color:rgba(255,255,255,0.6);font-size:13px;cursor:pointer;text-align:center;"><div>🐢</div><div style='margin-top:4px;'>느림</div></button>
-                        <button class="gas-opt active" data-val="normal" style="flex:1;padding:12px 10px;border-radius:10px;border:1px solid var(--primary);background:rgba(255,107,53,0.15);color:var(--primary);font-size:13px;font-weight:700;cursor:pointer;text-align:center;"><div>⚡</div><div style='margin-top:4px;'>보통</div></button>
-                        <button class="gas-opt" data-val="fast" style="flex:1;padding:12px 10px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:none;color:rgba(255,255,255,0.6);font-size:13px;cursor:pointer;text-align:center;"><div>🚀</div><div style='margin-top:4px;'>빠름</div></button>
+                <div class="stg-group">
+                    <div class="stg-label">가스비</div>
+                    <div class="stg-row" id="gas-options">
+                        <button class="stg-chip gas" data-val="low">🐢 느림</button>
+                        <button class="stg-chip gas active" data-val="normal">⚡ 보통</button>
+                        <button class="stg-chip gas" data-val="fast">🚀 빠름</button>
                     </div>
                 </div>
-                <!-- Info -->
-                <div style="margin-bottom:20px;">
-                    <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:10px;font-weight:600;">정보</div>
-                    <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:14px;">
-                        <span style="color:rgba(255,255,255,0.5);">라우팅</span>
-                        <span style="color:var(--green);font-weight:600;">1inch + PancakeSwap</span>
-                    </div>
-                    <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:14px;">
-                        <span style="color:rgba(255,255,255,0.5);">네트워크</span>
-                        <span>BNB Smart Chain</span>
-                    </div>
-                    <div style="display:flex;justify-content:space-between;padding:12px 0;font-size:14px;">
-                        <span style="color:rgba(255,255,255,0.5);">버전</span>
-                        <span>1.0.0</span>
-                    </div>
+                <div class="stg-group">
+                    <div class="stg-label">정보</div>
+                    <div class="stg-info-row"><span>라우팅</span><span class="stg-val green">1inch + PancakeSwap</span></div>
+                    <div class="stg-info-row"><span>네트워크</span><span class="stg-val">BNB Chain</span></div>
+                    <div class="stg-info-row last"><span>버전</span><span class="stg-val">1.0.0</span></div>
                 </div>
             </div>
         </div>
@@ -1532,19 +1550,11 @@
             if (e.target.id === 'settings-modal-overlay') e.target.classList.remove('active');
         });
 
-        // Slippage options in settings
-        document.querySelectorAll('.slippage-opt').forEach(btn => {
+        // Slippage chips
+        document.querySelectorAll('#slippage-options .stg-chip').forEach(btn => {
             btn.addEventListener('click', () => {
-                document.querySelectorAll('.slippage-opt').forEach(b => {
-                    b.style.border = '1px solid rgba(255,255,255,0.1)';
-                    b.style.background = 'none';
-                    b.style.color = 'rgba(255,255,255,0.6)';
-                    b.style.fontWeight = '400';
-                });
-                btn.style.border = '1px solid var(--primary)';
-                btn.style.background = 'rgba(255,107,53,0.15)';
-                btn.style.color = 'var(--primary)';
-                btn.style.fontWeight = '700';
+                document.querySelectorAll('#slippage-options .stg-chip').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
                 const val = parseFloat(btn.dataset.val);
                 if (!isNaN(val)) state.slippage = val;
                 document.getElementById('custom-slippage').value = '';
@@ -1554,28 +1564,15 @@
             const val = parseFloat(e.target.value);
             if (!isNaN(val) && val > 0 && val <= 50) {
                 state.slippage = val;
-                document.querySelectorAll('.slippage-opt').forEach(b => {
-                    b.style.border = '1px solid rgba(255,255,255,0.1)';
-                    b.style.background = 'none';
-                    b.style.color = 'rgba(255,255,255,0.6)';
-                    b.style.fontWeight = '400';
-                });
+                document.querySelectorAll('#slippage-options .stg-chip').forEach(b => b.classList.remove('active'));
             }
         });
 
-        // Gas options in settings
-        document.querySelectorAll('.gas-opt').forEach(btn => {
+        // Gas chips
+        document.querySelectorAll('#gas-options .stg-chip').forEach(btn => {
             btn.addEventListener('click', () => {
-                document.querySelectorAll('.gas-opt').forEach(b => {
-                    b.style.border = '1px solid rgba(255,255,255,0.1)';
-                    b.style.background = 'none';
-                    b.style.color = 'rgba(255,255,255,0.6)';
-                    b.style.fontWeight = '400';
-                });
-                btn.style.border = '1px solid var(--primary)';
-                btn.style.background = 'rgba(255,107,53,0.15)';
-                btn.style.color = 'var(--primary)';
-                btn.style.fontWeight = '700';
+                document.querySelectorAll('#gas-options .stg-chip').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
             });
         });
 
