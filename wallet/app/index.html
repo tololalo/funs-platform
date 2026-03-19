@@ -1147,7 +1147,7 @@
     <!-- BOTTOM SHEET MODALS -->
     <div class="bottom-sheet-overlay" id="sendModal"><div class="bottom-sheet"><div class="sheet-handle"></div><div class="sheet-header"><span class="sheet-title">전송</span><button class="sheet-close" id="closeSendModal">✕</button></div><div class="sheet-body"><form id="sendForm"><div class="form-group"><label class="form-label">받는 주소</label><input type="text" class="form-input" placeholder="0x..." required></div><div class="form-group"><label class="form-label">토큰</label><select class="form-input" required><option>FUNS</option><option>BNB</option><option>USDT</option><option>ETH</option><option>CAKE</option></select></div><div class="form-group"><label class="form-label">수량</label><input type="number" class="form-input" placeholder="0.00" step="0.01" required></div><button type="submit" class="form-btn">전송 확인</button></form></div></div></div>
 
-    <div class="bottom-sheet-overlay" id="receiveModal"><div class="bottom-sheet"><div class="sheet-handle"></div><div class="sheet-header"><span class="sheet-title">수신</span><button class="sheet-close" id="closeReceiveModal">✕</button></div><div class="sheet-body"><div class="qr-section"><div class="qr-box"><svg width="160" height="160" style="background:white;"><rect width="160" height="160" fill="white"/><text x="50%" y="50%" text-anchor="middle" font-size="12" fill="#666">QR Code</text></svg></div><div class="qr-address">0x1a2B3c4D5e6F7g8h9i0j1k2l3m4n5o6p7q8r9s0</div><button type="button" class="form-btn" style="margin-top:16px;">주소 복사</button></div></div></div></div>
+    <div class="bottom-sheet-overlay" id="receiveModal"><div class="bottom-sheet"><div class="sheet-handle"></div><div class="sheet-header"><span class="sheet-title">수신</span><button class="sheet-close" id="closeReceiveModal">✕</button></div><div class="sheet-body"><div class="qr-section"><div class="qr-box"><canvas id="qrCanvas" width="160" height="160" style="border-radius:8px;"></canvas></div><div class="qr-address">0x742d35Cc6634C0532925a3b844Bc9e7595f2bD38</div><button type="button" class="form-btn" style="margin-top:16px;">주소 복사</button></div></div></div></div>
 
     <div class="bottom-sheet-overlay" id="swapModal"><div class="bottom-sheet"><div class="sheet-handle"></div><div class="sheet-header"><span class="sheet-title">스왑</span><button class="sheet-close" id="closeSwapModal">✕</button></div><div class="sheet-body"><form id="swapForm"><div class="form-group"><label class="form-label">판매</label><div class="token-select-wrap"><select class="form-input token-select" id="swapFromToken" required><option value="FUNS" data-icon="../../funs-nugi.png">FUNS</option><option value="BNB" data-icon="../../dex/icons/bnb.svg">BNB</option><option value="USDT" data-icon="../../dex/icons/usdt.svg">USDT</option><option value="ETH" data-icon="../../dex/icons/eth.svg">ETH</option><option value="CAKE" data-icon="../../dex/icons/cake.svg">CAKE</option></select><img class="token-select-icon" id="swapFromIcon" src="../../funs-nugi.png" alt=""></div></div><div class="form-group"><label class="form-label">수량</label><input type="number" class="form-input" placeholder="0.00" step="0.01" required></div><div class="swap-divider"><div class="swap-arrow">⇅</div></div><div class="form-group"><label class="form-label">구매</label><div class="token-select-wrap"><select class="form-input token-select" id="swapToToken" required><option value="BNB" data-icon="../../dex/icons/bnb.svg">BNB</option><option value="FUNS" data-icon="../../funs-nugi.png">FUNS</option><option value="USDT" data-icon="../../dex/icons/usdt.svg">USDT</option><option value="ETH" data-icon="../../dex/icons/eth.svg">ETH</option><option value="CAKE" data-icon="../../dex/icons/cake.svg">CAKE</option></select><img class="token-select-icon" id="swapToIcon" src="../../dex/icons/bnb.svg" alt=""></div></div><div class="form-group"><label class="form-label">예상 수량</label><input type="number" class="form-input" placeholder="0.00" disabled></div><button type="submit" class="form-btn">스왑 확인</button></form></div></div></div>
 
@@ -1251,6 +1251,87 @@
         const tokenListObserver = new MutationObserver(updatePortfolioBalance);
         const tokenListEl = document.querySelector('#page-home .token-list');
         if (tokenListEl) tokenListObserver.observe(tokenListEl, { childList: true, subtree: true, characterData: true });
+
+        // Scan button
+        document.getElementById('scanBtn').addEventListener('click', () => {
+            alert('QR 스캐너는 모바일 앱에서 사용 가능합니다');
+        });
+
+        // Notification button
+        document.getElementById('notifBtn').addEventListener('click', () => {
+            alert('알림이 없습니다');
+        });
+
+        // Manage tokens → go to settings
+        const manageBtn = document.getElementById('manageTokensBtn');
+        if (manageBtn) {
+            manageBtn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-bar-item').forEach(t => { if (!t.classList.contains('swap-tab')) t.classList.remove('active'); });
+                document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
+                document.getElementById('page-settings').classList.add('active');
+                document.querySelector('[data-page="settings"]').classList.add('active');
+            });
+        }
+
+        // Network selector
+        document.getElementById('networkSelector').addEventListener('click', () => {
+            document.querySelectorAll('.tab-bar-item').forEach(t => { if (!t.classList.contains('swap-tab')) t.classList.remove('active'); });
+            document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page-settings').classList.add('active');
+            document.querySelector('[data-page="settings"]').classList.add('active');
+        });
+
+        // Form submit handlers (prevent default, show toast)
+        ['sendForm', 'swapForm', 'buyForm'].forEach(formId => {
+            const form = document.getElementById(formId);
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const overlay = form.closest('.bottom-sheet-overlay');
+                    if (overlay) overlay.classList.remove('active');
+                    // Reset form
+                    form.reset();
+                });
+            }
+        });
+
+        // Receive modal copy button
+        const receiveSheet = document.getElementById('receiveModal');
+        if (receiveSheet) {
+            const copyBtn2 = receiveSheet.querySelector('.form-btn');
+            if (copyBtn2) {
+                copyBtn2.addEventListener('click', () => {
+                    navigator.clipboard.writeText('0x742d35Cc6634C0532925a3b844Bc9e7595f2bD38').then(() => {
+                        copyBtn2.textContent = '✓ 복사됨';
+                        setTimeout(() => copyBtn2.textContent = '주소 복사', 1500);
+                    });
+                });
+            }
+        }
+
+        // Generate QR code on receive modal open
+        const origReceiveClick = document.getElementById('receiveBtn').onclick;
+        document.getElementById('receiveBtn').addEventListener('click', () => {
+            setTimeout(() => {
+                const canvas = document.getElementById('qrCanvas');
+                if (canvas && typeof QRCode !== 'undefined') {
+                    QRCode.toCanvas(canvas, '0x742d35Cc6634C0532925a3b844Bc9e7595f2bD38', {
+                        width: 160, margin: 2, color: { dark: '#000000', light: '#ffffff' }
+                    });
+                }
+            }, 100);
+        });
+
+        // Modal close → reset forms
+        document.querySelectorAll('.bottom-sheet-overlay').forEach(overlay => {
+            const observer = new MutationObserver(() => {
+                if (!overlay.classList.contains('active')) {
+                    const form = overlay.querySelector('form');
+                    if (form) form.reset();
+                }
+            });
+            observer.observe(overlay, { attributes: true, attributeFilter: ['class'] });
+        });
 
         // Copy Address
         const copyBtn = document.getElementById('copyBtn');

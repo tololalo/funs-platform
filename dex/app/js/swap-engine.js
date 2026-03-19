@@ -678,8 +678,8 @@ class SwapEngine extends EventTarget {
 
       const amounts = await router.getAmountsOut(amountIn, path);
       const expectedOut = BigInt(amounts[amounts.length - 1]);
-      const slippageMultiplier = BigInt(100 - Math.round(slippage * 100)) / BigInt(100);
-      const minOut = (expectedOut * slippageMultiplier) / BigInt(100);
+      const slippageBps = BigInt(Math.round(slippage * 100)); // basis points (100 = 1%)
+      const minOut = (expectedOut * (BigInt(10000) - slippageBps)) / BigInt(10000);
 
       // Build swap transaction data
       // Note: This is a simplified version. In production, you might use:
