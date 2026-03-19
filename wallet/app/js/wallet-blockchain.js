@@ -105,6 +105,175 @@ class WalletBlockchain extends EventTarget {
   }
 
   /**
+   * Get balances for current wallet (wrapper around fetchAllBalances)
+   * @returns {Promise<Object>} Balances object
+   */
+  async getBalances() {
+    try {
+      const addr = window.walletCore?.address || window.WalletCore?.address;
+      if (!addr) {
+        throw new Error('No wallet address available');
+      }
+      return await this.fetchAllBalances(addr);
+    } catch (error) {
+      console.error('Failed to get balances:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Get token price by symbol
+   * @param {string} symbol - Token symbol (e.g., 'BNB', 'USDT')
+   * @returns {Promise<Object>} Price object with usd and change24h
+   */
+  async getTokenPrice(symbol) {
+    try {
+      const prices = await this.fetchPrices();
+      const networkConfig = window.WalletConfig.NETWORKS[this.currentNetwork];
+      const networkTokens = window.WalletConfig.getAllTokens?.(this.currentNetwork) || window.WalletConfig.TOKENS[this.currentNetwork] || {};
+
+      let coingeckoId = null;
+
+      // Find coingeckoId for this symbol
+      if (symbol === networkConfig.symbol) {
+        coingeckoId = this._getNativeCoingeckoId(this.currentNetwork);
+      } else {
+        const token = networkTokens?.[symbol];
+        coingeckoId = token?.coingeckoId;
+      }
+
+      if (!coingeckoId) {
+        throw new Error(`CoinGecko ID not found for token ${symbol}`);
+      }
+
+      return prices[coingeckoId] || { usd: 0, change24h: 0 };
+    } catch (error) {
+      console.error(`Failed to get price for ${symbol}:`, error);
+      return { usd: 0, change24h: 0 };
+    }
+  }
+
+  /**
+   * Get swap quote (DEX swap estimation)
+   * @param {string} fromToken - Source token symbol
+   * @param {string} toToken - Destination token symbol
+   * @param {string} amount - Amount to swap
+   * @returns {Promise<Object>} Swap quote with estimated output
+   */
+  async getSwapQuote(fromToken, toToken, amount) {
+    try {
+      const networkConfig = window.WalletConfig.NETWORKS[this.currentNetwork];
+      if (!networkConfig) {
+        throw new Error(`Network config not found for ${this.currentNetwork}`);
+      }
+
+      const networkTokens = window.WalletConfig.getAllTokens?.(this.currentNetwork) || window.WalletConfig.TOKENS[this.currentNetwork] || {};
+      const fromTokenConfig = fromToken === networkConfig.symbol ? networkConfig : networkTokens[fromToken];
+      const toTokenConfig = toToken === networkConfig.symbol ? networkConfig : networkTokens[toToken];
+
+      if (!fromTokenConfig || !toTokenConfig) {
+        throw new Error('Token configuration not found');
+      }
+
+      // Get DEX router based on network
+      const routerConfig = this.currentNetwork === 'bsc'
+        ? window.WalletConfig.DEX_ROUTERS.pancakeswap
+        : window.WalletConfig.DEX_ROUTERS.uniswap;
+
+      if (!routerConfig) {
+        throw new Error(`No DEX router configured for ${this.currentNetwork}`);
+      }
+
+      const provider = this.getProvider();
+      const router = new ethers.Contract(
+        routerConfig.address,
+        window.WalletConfig.ROUTER_ABI,
+        provider
+      );
+
+      // Build path
+      const path = [fromTokenConfig.address, toTokenConfig.address];
+      const decimals = fromTokenConfig.decimals || 18;
+      const amountIn = ethers.parseUnits(amount, decimals);
+
+      // Get amounts out
+      const amounts = await router.getAmountsOut(amountIn, path);
+      const outputDecimals = toTokenConfig.decimals || 18;
+      const outputAmount = ethers.formatUnits(amounts[amounts.length - 1], outputDecimals);
+
+      return {
+        fromToken,
+        toToken,
+        inputAmount: amount,
+        outputAmount: outputAmount,
+        priceImpact: 0
+      };
+    } catch (error) {
+      console.error('Failed to get swap quote:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Check token allowance for spending
+   * @param {string} tokenSymbol - Token symbol
+   * @param {string} spenderAddress - Address that will spend tokens
+   * @param {string} ownerAddress - Address that owns tokens (optional, uses wallet address)
+   * @returns {Promise<string>} Allowance amount
+   */
+  async checkAllowance(tokenSymbol, spenderAddress, ownerAddress = null) {
+    try {
+      const owner = ownerAddress || window.walletCore?.address || window.WalletCore?.address;
+      if (!owner) {
+        throw new Error('No wallet address available');
+      }
+
+      if (!ethers.isAddress(spenderAddress)) {
+        throw new Error('Invalid spender address');
+      }
+
+      const networkConfig = window.WalletConfig.NETWORKS[this.currentNetwork];
+      const networkTokens = window.WalletConfig.getAllTokens?.(this.currentNetwork) || window.WalletConfig.TOKENS[this.currentNetwork] || {};
+      const tokenConfig = networkTokens[tokenSymbol];
+
+      if (!tokenConfig || !tokenConfig.address) {
+        throw new Error(`Token ${tokenSymbol} not configured`);
+      }
+
+      const provider = this.getProvider();
+      const contract = new ethers.Contract(
+        tokenConfig.address,
+        this._getERC20ABI(),
+        provider
+      );
+
+      const allowance = await contract.allowance(owner, spenderAddress);
+      const decimals = tokenConfig.decimals || 18;
+      return ethers.formatUnits(allowance, decimals);
+    } catch (error) {
+      console.error('Failed to check allowance:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Get explorer URL for a transaction
+   * @param {string} txHash - Transaction hash
+   * @param {string} networkKey - Network identifier (optional, uses current network)
+   * @returns {string} Full explorer URL
+   */
+  getExplorerUrl(txHash, networkKey = null) {
+    const key = networkKey || this.currentNetwork;
+    const networkConfig = window.WalletConfig.NETWORKS[key];
+
+    if (!networkConfig || !networkConfig.explorer) {
+      return '';
+    }
+
+    return `${networkConfig.explorer}/tx/${txHash}`;
+  }
+
+  /**
    * Fetch all balances for an address on current network
    * @param {string} address - Wallet address
    * @returns {Promise<Object>} Balances object

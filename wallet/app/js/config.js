@@ -37,6 +37,7 @@ const NETWORKS = {
 const TOKENS = {
   bsc: {
     FUNS: {
+      // TODO: Replace with actual FUNS token contract address on BSC mainnet
       address: '0x0000000000000000000000000000000000000000',
       decimals: 18,
       symbol: 'FUNS',
@@ -251,8 +252,28 @@ const ROUTER_ABI = [
  * @type {Object}
  */
 const API_KEYS = {
-  bscscan: '',
-  etherscan: ''
+  bscscan: '', // TODO: Get free tier API key from https://bscscan.com/apis
+  etherscan: '' // TODO: Get free tier API key from https://etherscan.io/apis
+};
+
+/**
+ * Fiat on-ramp providers configuration
+ * Integration with third-party services for buying crypto with fiat currency
+ * @type {Object}
+ */
+const FIAT_PROVIDERS = {
+  moonpay: {
+    apiKey: '', // TODO: Get from https://dashboard.moonpay.com
+    apiUrl: 'https://api.moonpay.com/v3',
+    widgetUrl: 'https://buy.moonpay.com',
+    supportedCurrencies: ['BNB', 'ETH', 'USDT', 'USDC'],
+    supportedPayments: ['credit_card', 'bank_transfer', 'apple_pay', 'google_pay']
+  },
+  simplex: {
+    apiKey: '', // TODO: Get from https://dashboard.simplex.com
+    widgetUrl: 'https://checkout.simplexcc.com',
+    supportedCurrencies: ['BNB', 'ETH']
+  }
 };
 
 /**
@@ -280,7 +301,8 @@ const WALLET_CONFIG = {
   sessionTimeout: 5 * 60 * 1000, // 5 minutes in milliseconds
   maxGasPrice: '50', // in gwei
   defaultSlippage: 0.5, // percentage
-  refreshInterval: 30000 // milliseconds
+  refreshInterval: 30000, // milliseconds
+  walletConnectProjectId: '' // Get from https://cloud.walletconnect.com
 };
 
 /**
@@ -295,6 +317,7 @@ const WalletConfig = {
   ERC20_ABI,
   ROUTER_ABI,
   API_KEYS,
+  FIAT_PROVIDERS,
   WALLET_CONFIG,
 
   /**
@@ -449,6 +472,7 @@ const WalletConfig = {
 // Load saved settings on startup
 if (typeof window !== 'undefined') {
   window.WalletConfig = WalletConfig;
+  window.FIAT_PROVIDERS = FIAT_PROVIDERS;
   WalletConfig.loadEnabledNetworks();
 }
 

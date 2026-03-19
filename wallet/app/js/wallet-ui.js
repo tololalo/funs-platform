@@ -1298,7 +1298,142 @@ class WalletUI {
 
   // Custom token modal
   setupCustomTokenModal() {
-    // Will be triggered from settings panel
+    // Bind the modal trigger button from settings panel
+    const addCustomTokenBtn = document.getElementById('addCustomTokenBtn');
+    const closeAddTokenModal = document.getElementById('closeAddTokenModal');
+    const cancelAddToken = document.getElementById('cancelAddToken');
+    const confirmAddToken = document.getElementById('confirmAddToken');
+
+    if (addCustomTokenBtn) {
+      addCustomTokenBtn.addEventListener('click', () => this.showAddCustomTokenModal());
+    }
+
+    if (closeAddTokenModal) {
+      closeAddTokenModal.addEventListener('click', () => {
+        const modal = document.querySelector('.custom-token-modal');
+        if (modal) modal.remove();
+      });
+    }
+
+    if (cancelAddToken) {
+      cancelAddToken.addEventListener('click', () => {
+        const modal = document.querySelector('.custom-token-modal');
+        if (modal) modal.remove();
+      });
+    }
+
+    if (confirmAddToken) {
+      confirmAddToken.addEventListener('click', () => this.handleConfirmAddToken());
+    }
+
+    // Listen for token address input to fetch info
+    this.setupTokenAddressInput();
+  }
+
+  /**
+   * Setup event listener for token address input with auto-fetch capability
+   */
+  setupTokenAddressInput() {
+    const observer = new MutationObserver(() => {
+      const addressInput = document.getElementById('customTokenAddress');
+      if (addressInput && !addressInput.hasTokenInputListener) {
+        addressInput.addEventListener('input', (e) => this.handleTokenAddressInput(e));
+        addressInput.hasTokenInputListener = true;
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  /**
+   * Handle token address input with validation and auto-fetch
+   * @param {Event} event - Input change event
+   */
+  async handleTokenAddressInput(event) {
+    const address = event.target.value.trim();
+    const symbolInput = document.getElementById('customTokenSymbol');
+    const nameInput = document.getElementById('customTokenName');
+    const decimalsInput = document.getElementById('customTokenDecimals');
+    const confirmBtn = document.getElementById('confirmAddToken');
+    const loadingDiv = document.querySelector('.token-loading');
+
+    // Validate 42-character hex address (0x + 40 hex chars)
+    if (!/^0x[a-fA-F0-9]{40}$/.test(address)) {
+      if (symbolInput) symbolInput.value = '';
+      if (nameInput) nameInput.value = '';
+      if (decimalsInput) decimalsInput.value = '';
+      if (confirmBtn) confirmBtn.disabled = true;
+      return;
+    }
+
+    // Show loading state
+    if (loadingDiv) loadingDiv.style.display = 'block';
+
+    try {
+      const provider = this.walletBlockchain.getProvider();
+      const erc20ABI = [
+        'function symbol() view returns (string)',
+        'function name() view returns (string)',
+        'function decimals() view returns (uint8)'
+      ];
+      const contract = new ethers.Contract(address, erc20ABI, provider);
+
+      const [symbol, name, decimals] = await Promise.all([
+        contract.symbol(),
+        contract.name(),
+        contract.decimals()
+      ]);
+
+      if (symbolInput) symbolInput.value = symbol;
+      if (nameInput) nameInput.value = name;
+      if (decimalsInput) decimalsInput.value = decimals.toString();
+      if (confirmBtn) confirmBtn.disabled = false;
+
+      // Store for later use
+      event.target.tokenData = { address, symbol, name, decimals: Number(decimals) };
+
+      if (loadingDiv) loadingDiv.style.display = 'none';
+    } catch (error) {
+      if (symbolInput) symbolInput.value = '';
+      if (nameInput) nameInput.value = '';
+      if (decimalsInput) decimalsInput.value = '';
+      if (confirmBtn) confirmBtn.disabled = true;
+      if (loadingDiv) loadingDiv.style.display = 'none';
+      this.showToast('유효하지 않은 토큰 컨트랙트 주소입니다', 'error');
+    }
+  }
+
+  /**
+   * Handle confirm button for adding custom token
+   */
+  handleConfirmAddToken() {
+    const addressInput = document.getElementById('customTokenAddress');
+    if (!addressInput || !addressInput.tokenData) return;
+
+    const tokenData = addressInput.tokenData;
+    const currentNetwork = this.walletBlockchain.currentNetwork || 'bsc';
+
+    // Check if already exists
+    const existing = window.WalletConfig.getAllTokens(currentNetwork);
+    if (existing[tokenData.symbol]) {
+      this.showToast(`${tokenData.symbol} 토큰이 이미 존재합니다`, 'warning');
+      return;
+    }
+
+    const success = window.WalletConfig.addCustomToken(currentNetwork, tokenData);
+    if (success) {
+      this.showToast(`${tokenData.symbol} 토큰이 추가되었습니다`, 'success');
+      this.refreshCustomTokenList();
+      const modal = document.querySelector('.custom-token-modal');
+      if (modal) modal.remove();
+
+      // Refresh balances
+      if (!this.isLocked) {
+        this.loadDashboard();
+      }
+    } else {
+      this.showToast('토큰 추가에 실패했습니다', 'error');
+    }
   }
 
   showAddCustomTokenModal() {
