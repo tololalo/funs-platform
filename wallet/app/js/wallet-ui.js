@@ -33,11 +33,15 @@ class WalletUI {
       this.setupNetworkSelector();
       this.setupSettingsPanel();
       this.setupCustomTokenModal();
-      // Initialize blockchain providers
-      await this.walletBlockchain.init();
+
+      // Initialize blockchain providers (non-blocking)
+      try {
+        await this.walletBlockchain.init();
+      } catch (networkError) {
+        console.warn('[FunS] 블록체인 네트워크 연결 대기 중:', networkError.message);
+      }
     } catch (error) {
-      console.error('지갑 초기화 실패:', error);
-      this.showToast('지갑 초기화 실패', 'error');
+      console.warn('[FunS] 초기화:', error.message);
     }
   }
 
