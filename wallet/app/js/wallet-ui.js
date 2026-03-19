@@ -47,11 +47,18 @@ class WalletUI {
     overlay.className = 'onboarding-overlay';
     overlay.innerHTML = `
       <div class="onboarding-container">
+        <div class="onboarding-logo">
+          <img src="../../funs-nugi.png" alt="FunS" style="width:72px;height:72px;border-radius:50%;margin-bottom:16px;">
+        </div>
         <div class="onboarding-header">
-          <h1>지갑 시작하기</h1>
+          <h1>FunS Wallet</h1>
           <p>블록체인 자산을 안전하게 관리하세요</p>
         </div>
         <div class="onboarding-options">
+          <button class="onboarding-btn demo-wallet-btn" style="background:linear-gradient(135deg, var(--primary,#FF6B35) 0%, #FF8C52 100%); border:none; color:white; justify-content:center;">
+            <span class="text">🚀 테스트 버전으로 둘러보기</span>
+          </button>
+          <div class="onboarding-divider" style="display:flex;align-items:center;gap:12px;margin:8px 0;"><span style="flex:1;height:1px;background:rgba(255,255,255,0.08);"></span><span style="color:rgba(255,255,255,0.3);font-size:12px;">또는</span><span style="flex:1;height:1px;background:rgba(255,255,255,0.08);"></span></div>
           <button class="onboarding-btn create-wallet-btn">
             <span class="icon">+</span>
             <span class="text">새 지갑 만들기</span>
@@ -65,6 +72,13 @@ class WalletUI {
     `;
 
     document.body.appendChild(overlay);
+
+    // Demo mode - skip wallet creation, show dashboard directly
+    overlay.querySelector('.demo-wallet-btn').addEventListener('click', () => {
+      overlay.remove();
+      this.isLocked = false;
+      this.showToast('테스트 모드로 실행 중', 'success');
+    });
 
     overlay.querySelector('.create-wallet-btn').addEventListener('click', () => {
       this.showCreateWalletFlow(overlay);
@@ -372,6 +386,9 @@ class WalletUI {
             <span class="num-text">C</span>
           </button>
         </div>
+        <button class="onboarding-btn demo-skip-btn" style="margin-top:16px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);justify-content:center;font-size:14px;padding:14px;">
+          테스트 모드로 건너뛰기
+        </button>
         <div class="pin-error" style="display: none;"></div>
       </div>
     `;
@@ -438,6 +455,16 @@ class WalletUI {
       updateDisplay();
       errorDiv.style.display = 'none';
     });
+
+    // Demo skip button
+    const demoBtn = overlay.querySelector('.demo-skip-btn');
+    if (demoBtn) {
+      demoBtn.addEventListener('click', () => {
+        overlay.remove();
+        this.isLocked = false;
+        this.showToast('테스트 모드로 실행 중', 'success');
+      });
+    }
   }
 
   // PIN confirmation for transactions
