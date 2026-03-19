@@ -917,7 +917,7 @@
                         <span style="font-size:10px;">▼</span>
                     </button>
                     <div class="portfolio-label">Total Assets</div>
-                    <div class="portfolio-balance">$<span class="counter" data-target="12458.32">0.00</span></div>
+                    <div class="portfolio-balance" id="portfolioBalance">$28,801.20</div>
                     <div class="portfolio-change up">▲ $234.56 (+1.92%)</div>
                     <div class="address-row">
                         <span class="address-text" id="addressDisplay">0x1a2B...3c4D</span>
@@ -1203,21 +1203,26 @@
             });
         });
 
-        // Portfolio balance calculation from token list
+        // Portfolio balance: sum all token USD values
         function updatePortfolioBalance() {
-            const tokens = document.querySelectorAll('#page-home .token-list .token-item');
+            const items = document.querySelectorAll('#page-home .token-list .token-item');
             let total = 0;
-            tokens.forEach(t => {
+            items.forEach(t => {
                 const usdEl = t.querySelector('.token-usd');
                 if (usdEl) {
                     const val = parseFloat(usdEl.textContent.replace(/[$,]/g, ''));
                     if (!isNaN(val)) total += val;
                 }
             });
-            const balEl = document.querySelector('.portfolio-balance');
+            const balEl = document.getElementById('portfolioBalance');
             if (balEl) balEl.textContent = '$' + total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
         }
+        // Run on load and after any changes
         updatePortfolioBalance();
+        // Watch for dynamic token list changes
+        const tokenListObserver = new MutationObserver(updatePortfolioBalance);
+        const tokenListEl = document.querySelector('#page-home .token-list');
+        if (tokenListEl) tokenListObserver.observe(tokenListEl, { childList: true, subtree: true, characterData: true });
 
         // Copy Address
         const copyBtn = document.getElementById('copyBtn');
