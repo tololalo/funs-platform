@@ -888,7 +888,7 @@
                     <label class="token-input-label" id="label-from">보낼 토큰</label>
                     <div class="token-input-container">
                         <button class="token-select" id="from-token-btn">
-                            <div class="token-icon" id="from-icon">BNB</div>
+                            <div class="token-icon" id="from-icon"><img src="../icons/bnb.svg" alt="BNB" style="width:100%;height:100%;border-radius:50%;object-fit:cover;"></div>
                             <span id="from-symbol">BNB</span>
                         </button>
                         <div class="amount-input-wrapper">
@@ -913,7 +913,7 @@
                     <label class="token-input-label" id="label-to">받을 토큰</label>
                     <div class="token-input-container">
                         <button class="token-select" id="to-token-btn">
-                            <div class="token-icon" id="to-icon">USDT</div>
+                            <div class="token-icon" id="to-icon"><img src="../icons/usdt.svg" alt="USDT" style="width:100%;height:100%;border-radius:50%;object-fit:cover;"></div>
                             <span id="to-symbol">USDT</span>
                         </button>
                         <div class="amount-input-wrapper">
@@ -1186,12 +1186,17 @@
         }
 
         function formatTokenIcon(symbol) {
-            const colors = {
-                'BNB': '#F3BA2F', 'WBNB': '#F3BA2F',
-                'FUNS': '#FF6B35', 'USDT': '#26A17B',
-                'USDC': '#2775CA', 'BUSD': '#F3BA2F',
-                'ETH': '#627EEA', 'CAKE': '#D1884F'
+            const iconMap = {
+                'BNB': '../icons/bnb.svg', 'WBNB': '../icons/bnb.svg',
+                'FUNS': '../../funs-nugi.png', 'USDT': '../icons/usdt.svg',
+                'USDC': '../icons/usdc.svg', 'BUSD': '../icons/usdc.svg',
+                'ETH': '../icons/eth.svg', 'CAKE': '../icons/cake.svg'
             };
+            const src = iconMap[symbol];
+            if (src) {
+                return `<img src="${src}" alt="${symbol}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">`;
+            }
+            const colors = { 'BNB': '#F3BA2F', 'FUNS': '#FF6B35', 'USDT': '#26A17B', 'USDC': '#2775CA', 'ETH': '#627EEA', 'CAKE': '#D1884F' };
             return `<span style="background: ${colors[symbol] || '#999'}; color: white; width: 100%; height: 100%; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700;">${symbol}</span>`;
         }
 
@@ -1208,7 +1213,7 @@
                 const item = document.createElement('div');
                 item.className = 'token-item';
                 item.innerHTML = `
-                    <div class="token-item-icon">${token.symbol}</div>
+                    <div class="token-item-icon">${formatTokenIcon(token.symbol)}</div>
                     <div class="token-item-info">
                         <div class="token-item-name">${token.symbol}</div>
                         <div class="token-item-address">${token.name}</div>
@@ -1348,8 +1353,8 @@
                     <div class="swap-history-item">
                         <div class="swap-history-left">
                             <div class="swap-history-icons">
-                                <div class="swap-history-icon">${item.from}</div>
-                                <div class="swap-history-icon">${item.to}</div>
+                                <div class="swap-history-icon">${formatTokenIcon(item.from)}</div>
+                                <div class="swap-history-icon">${formatTokenIcon(item.to)}</div>
                             </div>
                             <div class="swap-history-info">
                                 <div class="swap-history-pair">${item.from} → ${item.to}</div>
