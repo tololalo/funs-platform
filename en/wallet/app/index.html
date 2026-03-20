@@ -323,7 +323,17 @@
             width: 100%; aspect-ratio: 1; background: var(--bg2);
             display: flex; align-items: center; justify-content: center; overflow: hidden;
         }
-        .nft-img img { width: 100%; height: 100%; object-fit: cover; }
+        .nft-img img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
+        .nft-lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.92); z-index:9999; align-items:center; justify-content:center; flex-direction:column; padding:20px; }
+        .nft-lightbox.active { display:flex; }
+        .nft-lightbox img { max-width:90%; max-height:70vh; border-radius:16px; box-shadow:0 8px 40px rgba(255,107,53,0.3); animation:nftZoomIn 0.3s ease; }
+        .nft-lightbox-info { text-align:center; margin-top:16px; }
+        .nft-lightbox-name { font-size:20px; font-weight:700; color:#fff; font-family:'Orbitron',sans-serif; }
+        .nft-lightbox-collection { font-size:14px; color:var(--text4); margin-top:4px; }
+        .nft-lightbox-price { font-size:16px; color:var(--primary); font-weight:600; margin-top:8px; }
+        .nft-lightbox-close { position:absolute; top:20px; right:24px; font-size:32px; color:#fff; cursor:pointer; opacity:0.7; transition:opacity 0.2s; background:none; border:none; }
+        .nft-lightbox-close:hover { opacity:1; }
+        @keyframes nftZoomIn { from { transform:scale(0.8); opacity:0; } to { transform:scale(1); opacity:1; } }
         .nft-meta { padding: 12px; }
         .nft-name { font-size: 13px; font-weight: 600; color: var(--text2); margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .nft-collection { font-size: 11px; color: var(--text4); margin-bottom: 6px; }
@@ -1257,6 +1267,40 @@
                 });
             });
         }
+    })();
+    </script>
+    <!-- NFT Lightbox -->
+    <div class="nft-lightbox" id="nftLightbox">
+        <button class="nft-lightbox-close" id="nftLightboxClose">&times;</button>
+        <img id="nftLightboxImg" src="" alt="">
+        <div class="nft-lightbox-info">
+            <div class="nft-lightbox-name" id="nftLightboxName"></div>
+            <div class="nft-lightbox-collection" id="nftLightboxCollection"></div>
+            <div class="nft-lightbox-price" id="nftLightboxPrice"></div>
+        </div>
+    </div>
+    <script>
+    (function(){
+        const lightbox = document.getElementById('nftLightbox');
+        const lbImg = document.getElementById('nftLightboxImg');
+        const lbName = document.getElementById('nftLightboxName');
+        const lbCollection = document.getElementById('nftLightboxCollection');
+        const lbPrice = document.getElementById('nftLightboxPrice');
+        document.querySelectorAll('.nft-card').forEach(card => {
+            card.querySelector('.nft-img').addEventListener('click', () => {
+                const img = card.querySelector('.nft-img img');
+                const name = card.querySelector('.nft-name').textContent;
+                const collection = card.querySelector('.nft-collection').textContent;
+                const price = card.querySelector('.nft-price').textContent;
+                lbImg.src = img.src;
+                lbName.textContent = name;
+                lbCollection.textContent = collection;
+                lbPrice.textContent = price;
+                lightbox.classList.add('active');
+            });
+        });
+        document.getElementById('nftLightboxClose').addEventListener('click', () => lightbox.classList.remove('active'));
+        lightbox.addEventListener('click', (e) => { if(e.target === lightbox) lightbox.classList.remove('active'); });
     })();
     </script>
     <script>
