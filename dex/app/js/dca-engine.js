@@ -342,7 +342,7 @@ class DCAEngine extends EventTarget {
     const prices = {
         'BNB': 612.45, 'WBNB': 612.45, 'FUNS': 0.0845,
         'USDT': 1.00, 'USDC': 1.00, 'BUSD': 1.00,
-        'ETH': 3456.78, 'CAKE': 8.92
+        'ETH': 3456.78, 'CAKE': 8.92, 'BTC': 84521.30
     };
     const fromPrice = prices[fromToken] || 1;
     const toPrice = prices[toToken] || 1;

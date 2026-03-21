@@ -1726,6 +1726,14 @@
                 decimals: 18,
                 icon: 'cake.svg',
                 price: 8.92
+            },
+            'BTC': {
+                symbol: 'BTC',
+                name: 'Bitcoin (BTCB)',
+                address: '0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c',
+                decimals: 18,
+                icon: 'btc.svg',
+                price: 84521.30
             }
         };
 
@@ -1802,13 +1810,13 @@
                 'BNB': '../icons/bnb.svg', 'WBNB': '../icons/bnb.svg',
                 'FUNS': '../../funs-nugi.png', 'USDT': '../icons/usdt.svg',
                 'USDC': '../icons/usdc.svg', 'BUSD': '../icons/usdc.svg',
-                'ETH': '../icons/eth.svg', 'CAKE': '../icons/cake.svg'
+                'ETH': '../icons/eth.svg', 'CAKE': '../icons/cake.svg', 'BTC': '../icons/btc.svg'
             };
             const src = iconMap[symbol];
             if (src) {
                 return `<img src="${src}" alt="${symbol}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">`;
             }
-            const colors = { 'BNB': '#F3BA2F', 'FUNS': '#FF6B35', 'USDT': '#26A17B', 'USDC': '#2775CA', 'ETH': '#627EEA', 'CAKE': '#D1884F' };
+            const colors = { 'BNB': '#F3BA2F', 'FUNS': '#FF6B35', 'USDT': '#26A17B', 'USDC': '#2775CA', 'ETH': '#627EEA', 'CAKE': '#D1884F', 'BTC': '#F7931A' };
             return `<span style="background: ${colors[symbol] || '#999'}; color: white; width: 100%; height: 100%; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700;">${symbol}</span>`;
         }
 
