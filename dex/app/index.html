@@ -947,10 +947,40 @@
         }
         .dca-section-title:first-child { margin-top: 0; }
         .dca-token-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             margin-bottom: 16px;
+        }
+        .dca-token-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .dca-token-col-label {
+            font-size: 11px;
+            color: var(--text4);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            padding-left: 4px;
+        }
+        .dca-token-col-label.spend { color: var(--primary); }
+        .dca-token-col-label.buy { color: var(--green); }
+        .dca-token-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, rgba(255,107,53,0.2), rgba(255,107,53,0.05));
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--primary);
+            font-size: 16px;
+            margin-top: 18px;
+            flex-shrink: 0;
         }
         .dca-token-selector {
             display: flex;
@@ -966,13 +996,14 @@
             font-weight: 600;
             font-family: inherit;
             transition: all 0.2s;
+            width: 100%;
         }
         .dca-token-selector:active {
             background: rgba(255,255,255,0.1);
             border-color: var(--border-light);
         }
         .dca-token-selector .token-icon {
-            width: 20px; height: 20px; border-radius: 50%;
+            width: 24px; height: 24px; border-radius: 50%;
             background: rgba(255,255,255,0.1);
             display: flex; align-items: center; justify-content: center;
             font-size: 10px; font-weight: 700; flex-shrink: 0;
@@ -1337,18 +1368,24 @@
             <div class="tab-content" id="dca-content">
                 <!-- DCA Setup Card -->
                 <div class="dca-card">
-                    <div class="dca-section-title" id="dca-label-pair">토큰 페어</div>
                     <div class="dca-token-row">
-                        <button class="dca-token-selector" id="dca-from-btn">
-                            <div class="token-icon" id="dca-from-icon"></div>
-                            <span id="dca-from-symbol">USDT</span>
-                            <span class="dropdown-arrow">▼</span>
-                        </button>
-                        <button class="dca-token-selector" id="dca-to-btn">
-                            <div class="token-icon" id="dca-to-icon"></div>
-                            <span id="dca-to-symbol">BNB</span>
-                            <span class="dropdown-arrow">▼</span>
-                        </button>
+                        <div class="dca-token-col">
+                            <span class="dca-token-col-label spend" id="dca-label-spend">투자할 토큰</span>
+                            <button class="dca-token-selector" id="dca-from-btn">
+                                <div class="token-icon" id="dca-from-icon"></div>
+                                <span id="dca-from-symbol">USDT</span>
+                                <span class="dropdown-arrow">▼</span>
+                            </button>
+                        </div>
+                        <div class="dca-token-arrow">→</div>
+                        <div class="dca-token-col">
+                            <span class="dca-token-col-label buy" id="dca-label-buy">살 토큰</span>
+                            <button class="dca-token-selector" id="dca-to-btn">
+                                <div class="token-icon" id="dca-to-icon"></div>
+                                <span id="dca-to-symbol">BNB</span>
+                                <span class="dropdown-arrow">▼</span>
+                            </button>
+                        </div>
                     </div>
 
                     <div class="dca-section-title" id="dca-label-amount">주문당 금액</div>
@@ -1517,7 +1554,8 @@
                 // DCA translations
                 'tab-swap': 'SWAP',
                 'tab-dca': 'DCA',
-                'dca-label-pair': '토큰 페어',
+                'dca-label-spend': '투자할 토큰',
+                'dca-label-buy': '살 토큰',
                 'dca-label-amount': '주문당 금액',
                 'dca-label-freq': '실행 주기',
                 'dca-label-orders': '총 주문 횟수',
@@ -1585,7 +1623,8 @@
                 // DCA translations
                 'tab-swap': 'SWAP',
                 'tab-dca': 'DCA',
-                'dca-label-pair': 'Token Pair',
+                'dca-label-spend': 'Spend',
+                'dca-label-buy': 'Buy',
                 'dca-label-amount': 'Amount Per Order',
                 'dca-label-freq': 'Frequency',
                 'dca-label-orders': 'Total Orders',
