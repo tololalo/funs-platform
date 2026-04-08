@@ -458,14 +458,14 @@
   <h2 class="cta-title">앱을 다운로드하고<br>글로벌 경제에 합류하세요</h2>
   <p class="cta-sub">Web3 게임과 탈중앙화 거래소를 하나의 플랫폼에서 경험하세요. 지금 바로 시작할 수 있습니다.</p>
   <div class="download-btns">
-    <a href="apk/funs-land.apk" class="dl-btn">
+    <a href="#" onclick="document.getElementById('coming-soon-modal').style.display='flex';return false;" class="dl-btn">
       <span class="dl-btn-icon">🤖</span>
       <div class="dl-btn-text">
         <div class="small">Download on</div>
         <div class="big">Android APK</div>
       </div>
     </a>
-    <a href="https://funsworld.com/" class="dl-btn">
+    <a href="#" onclick="document.getElementById('coming-soon-modal').style.display='flex';return false;" class="dl-btn">
       <span class="dl-btn-icon">🌐</span>
       <div class="dl-btn-text">
         <div class="small">Play on</div>
@@ -474,6 +474,14 @@
     </a>
   </div>
 </section>
+
+<!-- COMING SOON MODAL -->
+<div id="coming-soon-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:24px;cursor:pointer;" onclick="this.style.display='none'">
+  <img src="funs-nugi.png" alt="FunS Logo" style="width:120px;height:120px;object-fit:contain;filter:drop-shadow(0 0 30px rgba(255,107,53,0.5));animation:csFloat 2s ease-in-out infinite;">
+  <div style="font-family:'Orbitron',monospace;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;background:linear-gradient(135deg,#FF6B35,#FFD700);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;">COMING SOON</div>
+  <p style="color:rgba(255,255,255,0.6);font-size:1rem;text-align:center;">곧 만나보실 수 있습니다. 기대해 주세요!</p>
+  <style>@keyframes csFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}</style>
+</div>
 
 <!-- FOOTER -->
 <footer>
