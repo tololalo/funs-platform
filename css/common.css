@@ -292,10 +292,10 @@ footer {
 
 /* Ticker */
 .ticker-wrap { background: rgba(255,107,53,.08); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; padding: 10px 0; }
-.ticker { display: flex; animation: ticker 30s linear infinite; white-space: nowrap; }
-.ticker-item { display: inline-flex; align-items: center; gap: 8px; padding: 0 32px; font-size: 0.8rem; font-family: 'Orbitron', monospace; color: var(--muted); }
+.ticker { display: flex; animation: ticker 45s linear infinite; white-space: nowrap; will-change: transform; }
+.ticker-item { display: inline-flex; align-items: center; gap: 8px; padding: 0 32px; font-size: 0.8rem; font-family: 'Orbitron', monospace; color: var(--muted); flex-shrink: 0; }
 .ticker-item .pos { color: #4caf50; }
-@keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+@keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-33.333%)} }
 
 /* Mobile nav hamburger - simplified */
 .menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; min-width: 44px; min-height: 44px; }
