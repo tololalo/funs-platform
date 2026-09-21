@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FunS Wallet — 多链钱包</title>
-<meta name="description" content="从比特币到 FUNS,6条链的资产集中管理。QR 支付、P2E 奖励、自我托管 — FunS Wallet。">
+<meta name="description" content="支持 BNB Smart Chain 与以太坊的自我托管钱包,密钥只保存在你的设备上。多链、QR 支付与 P2E 奖励即将推出。">
 <meta property="og:title" content="FunS Wallet — 多链钱包">
-<meta property="og:description" content="从比特币到 FUNS,6条链的资产集中管理。密钥只属于你 — 坚守自我托管原则。">
+<meta property="og:description" content="BNB Smart Chain 与以太坊,一个钱包全搞定。密钥只属于你。">
 <meta property="og:image" content="https://funs.world/funs-nugi.png">
 <meta property="og:url" content="https://funs.world/wallet/">
 <meta property="og:type" content="website">
@@ -151,6 +151,7 @@ img{max-width:100%}
 .chain-row{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
 .chain{display:inline-flex;align-items:center;gap:9px;padding:10px 20px;border-radius:50px;font-size:14.56px;font-weight:600;box-shadow:var(--shadow-sm)}
 .chain img{width:20px;height:20px;display:block}
+.mock-note{margin:10px auto 0;max-width:520px;text-align:center;font-size:12px;line-height:1.5;opacity:.62}
 .soon-chip{display:inline-flex;align-items:center;margin-left:10px;padding:4px 12px;border-radius:20px;font-size:11.76px;font-weight:700;letter-spacing:1.5px;color:#B07E00;background:rgba(255,201,61,.18);border:1px solid rgba(255,201,61,.45);vertical-align:middle}
 
 /* ─ Roadmap ─ */
@@ -264,7 +265,7 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
   <div>
     <span class="eyebrow glass">FUNS WALLET</span>
     <h1>Multi-chain<br><span class="grad">Wallet</span></h1>
-    <p class="lede">从比特币到 FUNS,<strong>6条链</strong>的资产集中管理。密钥只属于你 — 坚守<strong>自我托管</strong>原则。</p>
+    <p class="lede">现在就可在一处管理 <strong>BNB Smart Chain</strong> 与<strong>以太坊</strong>资产。密钥只属于你 — 坚守<strong>自我托管</strong>原则。<em>更多链的支持即将推出。</em></p>
     <div class="hero-ctas">
       <a class="btn btn-dark" href="#download">📱 下载应用</a>
       <a class="btn btn-ghost" href="#features">了解功能 ↓</a>
@@ -286,7 +287,7 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
         <div class="w-assets">
           <span class="lbl">ASSETS</span>
           <div class="w-rows">
-            <div class="w-row"><img src="../../images/funs-nugi.png" alt=""><div class="nm"><b>FunS</b><span>1,250 FUNS</span></div><div class="val"><b>$1,875.00</b><span class="up">+12.4%</span></div></div>
+            <div class="w-row"><img src="../../images/funs-nugi.png" alt=""><div class="nm"><b>FunS</b><span>1,250 FUNS</span></div><div class="val"><b>&mdash;</b></div></div>
             <div class="w-row"><img src="../../images/coins/btc.svg" alt=""><div class="nm"><b>Bitcoin</b><span>0.012 BTC</span></div><div class="val"><b>$824.10</b><span class="up">+1.2%</span></div></div>
             <div class="w-row"><img src="../../images/coins/eth.svg" alt=""><div class="nm"><b>Ethereum</b><span>0.21 ETH</span></div><div class="val"><b>$486.20</b><span class="dn">-0.8%</span></div></div>
             <div class="w-row"><img src="../../images/coins/bnb.svg" alt=""><div class="nm"><b>BNB</b><span>0.35 BNB</span></div><div class="val"><b>$201.75</b><span class="up">+3.1%</span></div></div>
@@ -304,14 +305,15 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
       </div>
       <div class="w-tiles">
         <div class="w-tile glass"><span>本月支付</span><b>32笔</b></div>
-        <div class="w-tile glass"><span>P2E 奖励</span><b class="up">+480 FUNS</b></div>
+        <div class="w-tile glass"><span>P2E 奖励</span><b class="up">即将推出</b></div>
       </div>
       <div class="qr-tile glass">
         <span class="qr-mini"><span class="k"></span><span class="k"></span><span></span><span></span><span class="k"></span><span class="k"></span><span class="k"></span><span></span><span class="k"></span></span>
-        <div class="tx"><b>QR 支付</b><span>扫一次码,线下支付也能搞定</span></div>
+        <div class="tx"><b>QR 支付</b><span>即将推出 — 扫一次码完成线下支付</span></div>
       </div>
     </div>
   </div>
+  <p class="mock-note">此为示意模型,其中包含仍在开发中的功能 — 目前已可使用的功能请参见下方标签。</p>
 </header>
 
 <!-- Features -->
@@ -329,13 +331,13 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
     </div>
     <div class="fcard glass">
       <span class="ico">📱</span>
-      <b>QR 支付</b>
-      <p>扫一次码即可完成支付。无论线上还是线下门店,一个钱包轻松搞定支付。</p>
+      <b>QR 支付<span class="soon">即将推出</span></b>
+      <p>扫一次码即可完成支付。我们正在打造线上与线下门店都能使用的支付功能。<em>目前应用内的 QR 扫描用于读取收款地址。</em></p>
     </div>
     <div class="fcard glass">
       <span class="ico">🎮</span>
-      <b>P2E 奖励管理</b>
-      <p>游戏中获得的奖励直接进入钱包。玩得越多,累积的价值一目了然。</p>
+      <b>P2E 奖励管理<span class="soon">即将推出</span></b>
+      <p>游戏中获得的奖励将直接进入钱包。该功能正在开发中。</p>
     </div>
     <div class="fcard glass">
       <span class="ico">⛓️</span>
@@ -350,7 +352,7 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
     <div class="fcard glass">
       <span class="ico">🛟</span>
       <b>轻松备份与恢复</b>
-      <p>无需记忆冗长的助记词。几次点击即可安全备份,更换手机也能轻松找回。</p>
+      <p>只需几次点击即可备份你的 12 个单词助记词,更换手机时用它即可恢复。<strong>请妥善保管 — 它是找回钱包的唯一方式。</strong></p>
     </div>
   </div>
 </section>
@@ -379,8 +381,8 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
     <div class="road-line"></div>
     <div class="mile now"><span class="dot"></span><div class="when">2026 Q1–Q2 · 进行中</div><b>Wallet 上线</b><p>FunS Wallet 正式上线 · 社区开放</p></div>
     <div class="mile next"><span class="dot"></span><div class="when">2026 Q3–Q4</div><b>FunS Talk 上线</b><p>加密通讯应用 FunS Talk 正式上线 (iOS · Android)</p></div>
-    <div class="mile"><span class="dot"></span><div class="when">2027</div><b>生态扩展</b><p>跨链桥接 · DAO 治理 · 合作伙伴关系</p></div>
-    <div class="mile"><span class="dot"></span><div class="when">2028+</div><b>全球拓展</b><p>多链扩展 · 机构合作 · 治理体系升级</p></div>
+    <div class="mile"><span class="dot"></span><div class="when">2027</div><b>生态扩展</b><p>多链支持 · 合作伙伴关系</p></div>
+    <div class="mile"><span class="dot"></span><div class="when">2028+</div><b>全球拓展</b><p>多链扩展 · 机构合作</p></div>
   </div>
 </section>
 
@@ -392,7 +394,7 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
     <p>应用即将上线,请稍候。</p>
     <div class="cta-badges">
       <a href="https://play.google.com/store/apps/details?id=world.funs.wallet" aria-label="从 Google Play 下载"><img src="../../images/badges/google-play-ko.png" alt="Google Play 下载"></a>
-      <a href="download/" aria-label="申请 iOS 等待名单"><img src="../../images/badges/app-store-en.svg" alt="App Store — 即将上线"></a>
+      <a href="download/" aria-label="申请 iOS 等待名单" style="text-decoration:none"><span style="display:inline-flex;align-items:center;justify-content:center;height:50px;padding:0 20px;border:1px solid rgba(255,255,255,.28);border-radius:9px;font-weight:600;font-size:15px;color:#fff;white-space:nowrap">iOS — 即将上线</span></a>
     </div>
   </div>
 </section>
@@ -402,8 +404,8 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <div class="foot-brand"><img src="../../images/funs-nugi.png" alt=""><span>FunS Platform</span></div>
-        <p class="foot-desc">由加密通讯应用与多链钱包连接而成的 Web3 生态系统。</p>
+        <div class="foot-brand"><img src="../../images/funs-nugi.png" alt=""><span>FunS</span></div>
+        <p class="foot-desc">FunS Wallet 和 FunS Talk 是 AZEND PTE. LTD. 的产品。</p>
       </div>
       <div class="foot-col">
         <h4>PLATFORM</h4>
@@ -416,21 +418,21 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
       <div class="foot-col">
         <h4>COMPANY</h4>
         <nav>
-          <a href="../../talk/privacy.html">Privacy Policy</a>
-          <a href="../../talk/terms.html">Terms &amp; Conditions</a>
+          <a href="../../wallet/privacy.html">Privacy Policy</a>
+          <a href="../../wallet/terms.html">Terms &amp; Conditions</a>
         </nav>
       </div>
       <div class="foot-col">
         <h4>CONTACT</h4>
         <nav>
-          <a href="mailto:funsxofficial@gmail.com">funsxofficial@gmail.com</a>
+          <a href="mailto:funsxofficial@funs.world">funsxofficial@funs.world</a>
           <a href="https://t.me/funsofficialchannel" target="_blank" rel="noopener">Telegram</a>
-          <a href="https://x.com/funsxofficial" target="_blank" rel="noopener">X</a>
+          <a href="https://x.com/funsofficial" target="_blank" rel="noopener">X</a>
         </nav>
       </div>
     </div>
     <div class="foot-base">
-      <span>© 2026 FunS Platform. All rights reserved.</span>
+      <span>© 2026 AZEND PTE. LTD. All rights reserved. 由 AZEND PTE. LTD.（新加坡）运营。</span>
       <span>Multi-chain · Self-custody</span>
     </div>
   </div>

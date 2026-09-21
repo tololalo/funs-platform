@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FunS Wallet — Ví đa chuỗi</title>
-<meta name="description" content="Từ Bitcoin đến FUNS, tài sản của 6 chuỗi ở cùng một nơi. Thanh toán QR, thưởng P2E, tự quản lý tài sản — FunS Wallet.">
+<meta name="description" content="Ví tự quản lý tài sản cho BNB Smart Chain và Ethereum. Khóa riêng luôn nằm trên thiết bị của bạn. Đa chuỗi, thanh toán QR và thưởng P2E sắp ra mắt.">
 <meta property="og:title" content="FunS Wallet — Ví đa chuỗi">
-<meta property="og:description" content="Từ Bitcoin đến FUNS, tài sản của 6 chuỗi ở cùng một nơi. Chìa khóa chỉ mình bạn nắm giữ — tuân thủ nguyên tắc tự quản lý tài sản.">
+<meta property="og:description" content="BNB Smart Chain và Ethereum trong cùng một chiếc ví. Chìa khóa chỉ mình bạn nắm giữ.">
 <meta property="og:image" content="https://funs.world/funs-nugi.png">
 <meta property="og:url" content="https://funs.world/wallet/">
 <meta property="og:type" content="website">
@@ -151,6 +151,7 @@ img{max-width:100%}
 .chain-row{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
 .chain{display:inline-flex;align-items:center;gap:9px;padding:10px 20px;border-radius:50px;font-size:14.56px;font-weight:600;box-shadow:var(--shadow-sm)}
 .chain img{width:20px;height:20px;display:block}
+.mock-note{margin:10px auto 0;max-width:520px;text-align:center;font-size:12px;line-height:1.5;opacity:.62}
 .soon-chip{display:inline-flex;align-items:center;margin-left:10px;padding:4px 12px;border-radius:20px;font-size:11.76px;font-weight:700;letter-spacing:1.5px;color:#B07E00;background:rgba(255,201,61,.18);border:1px solid rgba(255,201,61,.45);vertical-align:middle}
 
 /* ─ Roadmap ─ */
@@ -264,7 +265,7 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
   <div>
     <span class="eyebrow glass">FUNS WALLET</span>
     <h1>Multi-chain<br><span class="grad">Wallet</span></h1>
-    <p class="lede">Từ Bitcoin đến FUNS, tài sản của <strong>6 chuỗi</strong> ở cùng một nơi. Chìa khóa chỉ mình bạn nắm giữ — tuân thủ nguyên tắc <strong>tự quản lý tài sản</strong>.</p>
+    <p class="lede">Ngay hôm nay, tài sản trên <strong>BNB Smart Chain</strong> và <strong>Ethereum</strong> ở cùng một nơi. Chìa khóa chỉ mình bạn nắm giữ — tuân thủ nguyên tắc <strong>tự quản lý tài sản</strong>. <em>Hỗ trợ thêm nhiều chuỗi sẽ sớm ra mắt.</em></p>
     <div class="hero-ctas">
       <a class="btn btn-dark" href="#download">📱 Tải ứng dụng</a>
       <a class="btn btn-ghost" href="#features">Khám phá tính năng ↓</a>
@@ -286,7 +287,7 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
         <div class="w-assets">
           <span class="lbl">ASSETS</span>
           <div class="w-rows">
-            <div class="w-row"><img src="../../images/funs-nugi.png" alt=""><div class="nm"><b>FunS</b><span>1,250 FUNS</span></div><div class="val"><b>$1,875.00</b><span class="up">+12.4%</span></div></div>
+            <div class="w-row"><img src="../../images/funs-nugi.png" alt=""><div class="nm"><b>FunS</b><span>1,250 FUNS</span></div><div class="val"><b>&mdash;</b></div></div>
             <div class="w-row"><img src="../../images/coins/btc.svg" alt=""><div class="nm"><b>Bitcoin</b><span>0.012 BTC</span></div><div class="val"><b>$824.10</b><span class="up">+1.2%</span></div></div>
             <div class="w-row"><img src="../../images/coins/eth.svg" alt=""><div class="nm"><b>Ethereum</b><span>0.21 ETH</span></div><div class="val"><b>$486.20</b><span class="dn">-0.8%</span></div></div>
             <div class="w-row"><img src="../../images/coins/bnb.svg" alt=""><div class="nm"><b>BNB</b><span>0.35 BNB</span></div><div class="val"><b>$201.75</b><span class="up">+3.1%</span></div></div>
@@ -304,7 +305,7 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
       </div>
       <div class="w-tiles">
         <div class="w-tile glass"><span>Giao dịch tháng này</span><b>32 giao dịch</b></div>
-        <div class="w-tile glass"><span>Thưởng P2E</span><b class="up">+480 FUNS</b></div>
+        <div class="w-tile glass"><span>Thưởng P2E</span><b class="up">Sắp có</b></div>
       </div>
       <div class="qr-tile glass">
         <span class="qr-mini"><span class="k"></span><span class="k"></span><span></span><span></span><span class="k"></span><span class="k"></span><span class="k"></span><span></span><span class="k"></span></span>
@@ -312,6 +313,7 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
       </div>
     </div>
   </div>
+  <p class="mock-note">Ảnh mô phỏng minh họa. Trong đó có những tính năng vẫn đang được phát triển — hãy xem các nhãn bên dưới để biết tính năng nào đã dùng được ngay hôm nay.</p>
 </header>
 
 <!-- Features -->
@@ -329,13 +331,13 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
     </div>
     <div class="fcard glass">
       <span class="ico">📱</span>
-      <b>Thanh toán QR</b>
-      <p>Chỉ một lần quét là thanh toán xong. Dùng một chiếc ví để thanh toán dễ dàng cả online lẫn tại cửa hàng offline.</p>
+      <b>Thanh toán QR<span class="soon">Sắp có</span></b>
+      <p>Chỉ một lần quét là thanh toán xong. Chúng tôi đang phát triển tính năng thanh toán dùng được cả online lẫn tại cửa hàng offline. <em>Hiện tại, trình quét QR trong ứng dụng dùng để đọc địa chỉ người nhận.</em></p>
     </div>
     <div class="fcard glass">
       <span class="ico">🎮</span>
-      <b>Quản lý thưởng P2E</b>
-      <p>Phần thưởng nhận được từ game vào thẳng ví của bạn. Theo dõi giá trị tích lũy càng chơi càng nhiều chỉ trong một cái nhìn.</p>
+      <b>Quản lý thưởng P2E<span class="soon">Sắp có</span></b>
+      <p>Phần thưởng nhận được từ game sẽ vào thẳng ví của bạn. Chúng tôi đang phát triển tính năng này.</p>
     </div>
     <div class="fcard glass">
       <span class="ico">⛓️</span>
@@ -350,7 +352,7 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
     <div class="fcard glass">
       <span class="ico">🛟</span>
       <b>Sao lưu &amp; khôi phục dễ dàng</b>
-      <p>Không cần ghi nhớ cụm mật khẩu dài. Sao lưu an toàn chỉ với vài lần chạm, và khôi phục dễ dàng dù đổi điện thoại.</p>
+      <p>Sao lưu cụm từ khôi phục 12 từ chỉ với vài lần chạm, và dùng nó để khôi phục ví trên điện thoại mới. <strong>Hãy giữ thật an toàn — đó là cách duy nhất để khôi phục ví của bạn.</strong></p>
     </div>
   </div>
 </section>
@@ -379,8 +381,8 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
     <div class="road-line"></div>
     <div class="mile now"><span class="dot"></span><div class="when">2026 Q1–Q2 · Đang triển khai</div><b>Ra mắt Wallet</b><p>Ra mắt chính thức FunS Wallet · Mở cộng đồng</p></div>
     <div class="mile next"><span class="dot"></span><div class="when">2026 Q3–Q4</div><b>Ra mắt FunS Talk</b><p>Ra mắt chính thức trình nhắn tin mã hóa FunS Talk (iOS · Android)</p></div>
-    <div class="mile"><span class="dot"></span><div class="when">2027</div><b>Mở rộng hệ sinh thái</b><p>Cầu nối liên chuỗi · Quản trị DAO · Hợp tác đối tác</p></div>
-    <div class="mile"><span class="dot"></span><div class="when">2028+</div><b>Mở rộng toàn cầu</b><p>Mở rộng đa chuỗi · Hợp tác tổ chức · Nâng cấp quản trị</p></div>
+    <div class="mile"><span class="dot"></span><div class="when">2027</div><b>Mở rộng hệ sinh thái</b><p>Hỗ trợ đa chuỗi · Hợp tác đối tác</p></div>
+    <div class="mile"><span class="dot"></span><div class="when">2028+</div><b>Mở rộng toàn cầu</b><p>Mở rộng đa chuỗi · Hợp tác tổ chức</p></div>
   </div>
 </section>
 
@@ -392,7 +394,7 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
     <p>Ứng dụng sắp ra mắt. Vui lòng chờ thêm một chút.</p>
     <div class="cta-badges">
       <a href="https://play.google.com/store/apps/details?id=world.funs.wallet" aria-label="Tải trên Google Play"><img src="../../images/badges/google-play-ko.png" alt="Tải trên Google Play"></a>
-      <a href="download/" aria-label="Đăng ký danh sách chờ iOS"><img src="../../images/badges/app-store-en.svg" alt="App Store — Sắp ra mắt"></a>
+      <a href="download/" aria-label="Đăng ký danh sách chờ iOS" style="text-decoration:none"><span style="display:inline-flex;align-items:center;justify-content:center;height:50px;padding:0 20px;border:1px solid rgba(255,255,255,.28);border-radius:9px;font-weight:600;font-size:15px;color:#fff;white-space:nowrap">iOS — Sắp ra mắt</span></a>
     </div>
   </div>
 </section>
@@ -402,8 +404,8 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <div class="foot-brand"><img src="../../images/funs-nugi.png" alt=""><span>FunS Platform</span></div>
-        <p class="foot-desc">Hệ sinh thái Web3 kết nối bằng trình nhắn tin mã hóa và ví đa chuỗi.</p>
+        <div class="foot-brand"><img src="../../images/funs-nugi.png" alt=""><span>FunS</span></div>
+        <p class="foot-desc">FunS Wallet và FunS Talk là sản phẩm của AZEND PTE. LTD.</p>
       </div>
       <div class="foot-col">
         <h4>PLATFORM</h4>
@@ -416,21 +418,21 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
       <div class="foot-col">
         <h4>COMPANY</h4>
         <nav>
-          <a href="../../talk/privacy.html">Privacy Policy</a>
-          <a href="../../talk/terms.html">Terms &amp; Conditions</a>
+          <a href="../../wallet/privacy.html">Privacy Policy</a>
+          <a href="../../wallet/terms.html">Terms &amp; Conditions</a>
         </nav>
       </div>
       <div class="foot-col">
         <h4>CONTACT</h4>
         <nav>
-          <a href="mailto:funsxofficial@gmail.com">funsxofficial@gmail.com</a>
+          <a href="mailto:funsxofficial@funs.world">funsxofficial@funs.world</a>
           <a href="https://t.me/funsofficialchannel" target="_blank" rel="noopener">Telegram</a>
-          <a href="https://x.com/funsxofficial" target="_blank" rel="noopener">X</a>
+          <a href="https://x.com/funsofficial" target="_blank" rel="noopener">X</a>
         </nav>
       </div>
     </div>
     <div class="foot-base">
-      <span>© 2026 FunS Platform. All rights reserved.</span>
+      <span>© 2026 AZEND PTE. LTD. All rights reserved. Được vận hành bởi AZEND PTE. LTD. (Singapore).</span>
       <span>Multi-chain · Self-custody</span>
     </div>
   </div>

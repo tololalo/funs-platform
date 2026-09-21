@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FunS Wallet — Billetera multichain</title>
-<meta name="description" content="De Bitcoin a FUNS, los activos de 6 cadenas en un solo lugar. Pago QR, recompensas P2E, autocustodia — FunS Wallet.">
+<meta name="description" content="Una billetera de autocustodia para BNB Smart Chain y Ethereum. Tus llaves se quedan en tu dispositivo. El soporte multichain, los pagos QR y las recompensas P2E llegarán próximamente.">
 <meta property="og:title" content="FunS Wallet — Billetera multichain">
-<meta property="og:description" content="De Bitcoin a FUNS, los activos de 6 cadenas en un solo lugar. La llave es solo tuya — respetamos el principio de autocustodia.">
+<meta property="og:description" content="BNB Smart Chain y Ethereum en una sola billetera. La llave es solo tuya — respetamos el principio de autocustodia.">
 <meta property="og:image" content="https://funs.world/funs-nugi.png">
 <meta property="og:url" content="https://funs.world/wallet/">
 <meta property="og:type" content="website">
@@ -151,6 +151,7 @@ img{max-width:100%}
 .chain-row{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
 .chain{display:inline-flex;align-items:center;gap:9px;padding:10px 20px;border-radius:50px;font-size:14.56px;font-weight:600;box-shadow:var(--shadow-sm)}
 .chain img{width:20px;height:20px;display:block}
+.mock-note{margin:10px auto 0;max-width:520px;text-align:center;font-size:12px;line-height:1.5;opacity:.62}
 .soon-chip{display:inline-flex;align-items:center;margin-left:10px;padding:4px 12px;border-radius:20px;font-size:11.76px;font-weight:700;letter-spacing:1.5px;color:#B07E00;background:rgba(255,201,61,.18);border:1px solid rgba(255,201,61,.45);vertical-align:middle}
 
 /* ─ Roadmap ─ */
@@ -264,7 +265,7 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
   <div>
     <span class="eyebrow glass">FUNS WALLET</span>
     <h1>Multi-chain<br><span class="grad">Wallet</span></h1>
-    <p class="lede">De Bitcoin a FUNS, los activos de <strong>6 cadenas</strong> en un solo lugar. La llave es solo tuya — respetamos el principio de <strong>autocustodia</strong>.</p>
+    <p class="lede">Hoy, ten tus activos de <strong>BNB Smart Chain</strong> y <strong>Ethereum</strong> en un solo lugar. La llave es solo tuya — respetamos el principio de <strong>autocustodia</strong>. <em>El soporte para más cadenas llegará próximamente.</em></p>
     <div class="hero-ctas">
       <a class="btn btn-dark" href="#download">📱 Descargar app</a>
       <a class="btn btn-ghost" href="#features">Ver funciones ↓</a>
@@ -286,7 +287,7 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
         <div class="w-assets">
           <span class="lbl">ASSETS</span>
           <div class="w-rows">
-            <div class="w-row"><img src="../../images/funs-nugi.png" alt=""><div class="nm"><b>FunS</b><span>1,250 FUNS</span></div><div class="val"><b>$1,875.00</b><span class="up">+12.4%</span></div></div>
+            <div class="w-row"><img src="../../images/funs-nugi.png" alt=""><div class="nm"><b>FunS</b><span>1,250 FUNS</span></div><div class="val"><b>&mdash;</b></div></div>
             <div class="w-row"><img src="../../images/coins/btc.svg" alt=""><div class="nm"><b>Bitcoin</b><span>0.012 BTC</span></div><div class="val"><b>$824.10</b><span class="up">+1.2%</span></div></div>
             <div class="w-row"><img src="../../images/coins/eth.svg" alt=""><div class="nm"><b>Ethereum</b><span>0.21 ETH</span></div><div class="val"><b>$486.20</b><span class="dn">-0.8%</span></div></div>
             <div class="w-row"><img src="../../images/coins/bnb.svg" alt=""><div class="nm"><b>BNB</b><span>0.35 BNB</span></div><div class="val"><b>$201.75</b><span class="up">+3.1%</span></div></div>
@@ -304,7 +305,7 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
       </div>
       <div class="w-tiles">
         <div class="w-tile glass"><span>Pagos este mes</span><b>32</b></div>
-        <div class="w-tile glass"><span>Recompensas P2E</span><b class="up">+480 FUNS</b></div>
+        <div class="w-tile glass"><span>Recompensas P2E</span><b class="up">Próximamente</b></div>
       </div>
       <div class="qr-tile glass">
         <span class="qr-mini"><span class="k"></span><span class="k"></span><span></span><span></span><span class="k"></span><span class="k"></span><span class="k"></span><span></span><span class="k"></span></span>
@@ -312,6 +313,7 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
       </div>
     </div>
   </div>
+  <p class="mock-note">Mockup ilustrativo. Incluye funciones que todavía están en desarrollo; consulta las etiquetas de abajo para ver qué está disponible hoy.</p>
 </header>
 
 <!-- Features -->
@@ -329,13 +331,13 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
     </div>
     <div class="fcard glass">
       <span class="ico">📱</span>
-      <b>Pago con QR</b>
-      <p>Un solo escaneo y listo. Paga fácilmente con una sola billetera, tanto en línea como en tiendas físicas.</p>
+      <b>Pago con QR<span class="soon">Próximamente</span></b>
+      <p>Un solo escaneo y listo. Estamos construyendo pagos que podrás usar tanto en línea como en tiendas físicas. <em>Hoy, el escáner QR de la app sirve para leer la dirección del destinatario.</em></p>
     </div>
     <div class="fcard glass">
       <span class="ico">🎮</span>
-      <b>Gestión de recompensas P2E</b>
-      <p>Las recompensas obtenidas en juegos llegan directamente a tu billetera. Consulta de un vistazo el valor que acumulas al jugar.</p>
+      <b>Gestión de recompensas P2E<span class="soon">Próximamente</span></b>
+      <p>Las recompensas obtenidas en juegos llegarán directamente a tu billetera. Estamos trabajando en ello.</p>
     </div>
     <div class="fcard glass">
       <span class="ico">⛓️</span>
@@ -350,7 +352,7 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
     <div class="fcard glass">
       <span class="ico">🛟</span>
       <b>Respaldo y recuperación sencillos</b>
-      <p>No necesitas memorizar frases largas. Haz una copia de seguridad con unos pocos toques y recupérala fácilmente si cambias de teléfono.</p>
+      <p>Haz una copia de seguridad de tu frase de recuperación de 12 palabras con unos pocos toques y restaura tu billetera en un teléfono nuevo con ella. <strong>Guárdala en un lugar seguro: es la única forma de recuperar tu billetera.</strong></p>
     </div>
   </div>
 </section>
@@ -379,8 +381,8 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
     <div class="road-line"></div>
     <div class="mile now"><span class="dot"></span><div class="when">2026 T1–T2 · En curso</div><b>Lanzamiento de Wallet</b><p>Lanzamiento oficial de FunS Wallet · apertura de la comunidad</p></div>
     <div class="mile next"><span class="dot"></span><div class="when">2026 T3–T4</div><b>Lanzamiento de FunS Talk</b><p>Lanzamiento oficial de la mensajería cifrada FunS Talk (iOS · Android)</p></div>
-    <div class="mile"><span class="dot"></span><div class="when">2027</div><b>Expansión del ecosistema</b><p>Puentes entre cadenas · gobernanza · alianzas estratégicas</p></div>
-    <div class="mile"><span class="dot"></span><div class="when">2028+</div><b>Expansión global</b><p>Ampliación multichain · alianzas institucionales · gobernanza más avanzada</p></div>
+    <div class="mile"><span class="dot"></span><div class="when">2027</div><b>Expansión del ecosistema</b><p>Compatibilidad multicadena · alianzas estratégicas</p></div>
+    <div class="mile"><span class="dot"></span><div class="when">2028+</div><b>Expansión global</b><p>Ampliación multichain · alianzas institucionales</p></div>
   </div>
 </section>
 
@@ -392,7 +394,7 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
     <p>La app se lanzará pronto. Un poco más de paciencia.</p>
     <div class="cta-badges">
       <a href="https://play.google.com/store/apps/details?id=world.funs.wallet" aria-label="Descargar desde Google Play"><img src="../../images/badges/google-play-ko.png" alt="Descargar en Google Play"></a>
-      <a href="download/" aria-label="Registrarse en la lista de espera de iOS"><img src="../../images/badges/app-store-en.svg" alt="App Store — próximamente"></a>
+      <a href="download/" aria-label="Registrarse en la lista de espera de iOS" style="text-decoration:none"><span style="display:inline-flex;align-items:center;justify-content:center;height:50px;padding:0 20px;border:1px solid rgba(255,255,255,.28);border-radius:9px;font-weight:600;font-size:15px;color:#fff;white-space:nowrap">iOS — próximamente</span></a>
     </div>
   </div>
 </section>
@@ -402,8 +404,8 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <div class="foot-brand"><img src="../../images/funs-nugi.png" alt=""><span>FunS Platform</span></div>
-        <p class="foot-desc">Un ecosistema Web3 conectado por mensajería cifrada y una billetera multichain.</p>
+        <div class="foot-brand"><img src="../../images/funs-nugi.png" alt=""><span>FunS</span></div>
+        <p class="foot-desc">FunS Wallet y FunS Talk son productos de AZEND PTE. LTD.</p>
       </div>
       <div class="foot-col">
         <h4>PLATFORM</h4>
@@ -416,21 +418,21 @@ footer{border-top:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.42
       <div class="foot-col">
         <h4>COMPANY</h4>
         <nav>
-          <a href="../../talk/privacy.html">Privacy Policy</a>
-          <a href="../../talk/terms.html">Terms &amp; Conditions</a>
+          <a href="../../wallet/privacy.html">Privacy Policy</a>
+          <a href="../../wallet/terms.html">Terms &amp; Conditions</a>
         </nav>
       </div>
       <div class="foot-col">
         <h4>CONTACT</h4>
         <nav>
-          <a href="mailto:funsxofficial@gmail.com">funsxofficial@gmail.com</a>
+          <a href="mailto:funsxofficial@funs.world">funsxofficial@funs.world</a>
           <a href="https://t.me/funsofficialchannel" target="_blank" rel="noopener">Telegram</a>
-          <a href="https://x.com/funsxofficial" target="_blank" rel="noopener">X</a>
+          <a href="https://x.com/funsofficial" target="_blank" rel="noopener">X</a>
         </nav>
       </div>
     </div>
     <div class="foot-base">
-      <span>© 2026 FunS Platform. All rights reserved.</span>
+      <span>© 2026 AZEND PTE. LTD. All rights reserved. Operado por AZEND PTE. LTD. (Singapur).</span>
       <span>Multi-chain · Self-custody</span>
     </div>
   </div>
