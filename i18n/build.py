@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os, re
 
-ROOT = '~/FUNS/Funshome'
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 LANGS = [
     ('en', 'English',           '🇺🇸'),

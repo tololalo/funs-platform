@@ -1,5 +1,5 @@
 import os, re
-ROOT = '~/FUNS/Funshome'
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PTYPES_FILES = []
 for lang_dir in ['', 'ko/', 'zh/', 'ja/', 'es/', 'vi/', 'ru/', 'id/', 'pt/', 'tr/']:
     for sub in ['', 'talk/', 'wallet/', 'talk/download/', 'wallet/download/', 'download-app/']:
