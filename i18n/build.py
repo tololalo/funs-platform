@@ -65,8 +65,8 @@ if __name__ == '__main__':
     assert href_to('ko','talk-download','en','talk-download') == '../../../talk/download/'
     assert asset('en','talk','images/funs-nugi.png') == '../images/funs-nugi.png'
     assert asset('ko','talk-download','images/funs-nugi.png') == '../../../images/funs-nugi.png'
-    assert file_path('en','home').endswith('Funshome/index.html')
-    assert file_path('ko','talk').endswith('Funshome/ko/talk/index.html')
+    assert file_path('en','home') == os.path.join(ROOT, 'index.html')
+    assert file_path('ko','talk') == os.path.join(ROOT, 'ko', 'talk', 'index.html')
     print("ALL SANITY CHECKS PASSED")
 
 CTA_LABEL = {
